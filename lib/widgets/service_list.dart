@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
 
@@ -31,6 +32,7 @@ class ServiceList extends StatelessWidget {
           ),
         ],
       ),
+      
       child: Column(
         children: [
           Card(
@@ -149,6 +151,7 @@ class ServiceList extends StatelessWidget {
               ),
             ),
           ),
+          TextButton(onPressed: (){}, child: Text("View More", style: TextStyle(color: AppColors.primary),)),
         ],
       ),
     );

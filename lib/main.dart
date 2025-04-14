@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
+import 'package:k3carcare/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        scaffoldBackgroundColor: Colors.grey[100],
-      ),
-      home: const CarWashHomePage(),
       debugShowCheckedModeBanner: false,
+      home: const NavigationMenu(),
     );
   }
 }

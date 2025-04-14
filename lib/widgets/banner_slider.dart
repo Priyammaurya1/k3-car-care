@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../utils/constants.dart';
 
 class BannerSlider extends StatefulWidget {
@@ -21,7 +22,7 @@ class _BannerSliderState extends State<BannerSlider> {
     return Column(
       children: [
         Container(
-          height: 160,
+          height: 190,
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(Dimensions.cardRadius),
