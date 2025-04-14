@@ -25,9 +25,9 @@ class _CarWashHomePageState extends State<CarWashHomePage> {
 
   void _onBuyPressed(int serviceId) {
     // Implement your buy functionality here
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Buying service ID: $serviceId')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Buying service ID: $serviceId')));
   }
 
   @override
@@ -38,7 +38,7 @@ class _CarWashHomePageState extends State<CarWashHomePage> {
           children: [
             // Top Container with Location and Profile
             const TopLocationBar(),
-            
+
             // Main Content - Scrollable
             Expanded(
               child: SingleChildScrollView(
@@ -47,53 +47,42 @@ class _CarWashHomePageState extends State<CarWashHomePage> {
                   children: [
                     // Upcoming Appointment Box
                     const AppointmentCard(date: "Today", time: "2:35 pm"),
-                    
+
                     const SizedBox(height: Dimensions.elementSpacing),
-                    
+
                     // Services Divider
                     const ServicesDivider(),
-                    
+
                     const SizedBox(height: Dimensions.elementSpacing),
-                    
+
                     // Banner Slider
                     const BannerSlider(),
-                    
+
                     const SizedBox(height: Dimensions.elementSpacing),
-                    
+
                     // Service List
-                    ServiceList(
-                      services: sampleServices,
-                      onBuyPressed: _onBuyPressed,
-                    ),
                   ],
                 ),
               ),
             ),
-            
+            ServiceList(services: sampleServices, onBuyPressed: _onBuyPressed),
+
             // Bottom Navigation
             Container(
               decoration: BoxDecoration(
                 color: AppColors.cardBackground,
-                border: Border(
-                  top: BorderSide(color: AppColors.borderColor),
-                ),
+                border: Border(top: BorderSide(color: AppColors.borderColor)),
               ),
               child: BottomNavigationBar(
                 currentIndex: _selectedIndex,
                 onTap: _onItemTapped,
                 items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: '',
-                  ),
+                  BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
                   BottomNavigationBarItem(
                     icon: Icon(Icons.shopping_cart),
                     label: '',
                   ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.person),
-                    label: '',
-                  ),
+                  BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
                 ],
                 selectedItemColor: AppColors.primary,
                 unselectedItemColor: Colors.grey,

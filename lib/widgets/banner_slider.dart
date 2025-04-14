@@ -21,7 +21,7 @@ class _BannerSliderState extends State<BannerSlider> {
     return Column(
       children: [
         Container(
-          height: 100,
+          height: 160,
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
             borderRadius: BorderRadius.circular(Dimensions.cardRadius),
