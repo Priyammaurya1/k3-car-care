@@ -14,9 +14,9 @@ class AppointmentCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(Dimensions.pagePadding),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+        color: KColors.white,
         borderRadius: BorderRadius.circular(Dimensions.cardRadius),
-        border: Border.all(color: AppColors.borderColor),
+        border: Border.all(color: KColors.borderPrimary),
       ),
       child: Row(
         children: [
@@ -41,7 +41,7 @@ class AppointmentCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary,
+              backgroundColor: KColors.primary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),

@@ -10,7 +10,7 @@ class TopLocationBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(Dimensions.pagePadding),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+        color: KColors.white,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(Dimensions.cardRadius),
           bottomRight: Radius.circular(Dimensions.cardRadius),
@@ -35,7 +35,7 @@ class TopLocationBar extends StatelessWidget {
                 children: [
                   const Icon(
                     Icons.location_on,
-                    color: AppColors.primary,
+                    color: KColors.primary,
                     size: 20,
                   ),
                   const SizedBox(width: Dimensions.smallSpacing),
@@ -50,7 +50,7 @@ class TopLocationBar extends StatelessWidget {
                         'blah blah...!!!!',
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppColors.textLight,
+                          color: KColors.textPrimary,
                         ),
                       ),
                     ],
@@ -79,7 +79,7 @@ class TopLocationBar extends StatelessWidget {
             ),
             child: const TextField(
               decoration: InputDecoration(
-                hintText: 'search',
+                hintText: 'Search...',
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 12,

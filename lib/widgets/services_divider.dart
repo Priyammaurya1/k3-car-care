@@ -14,18 +14,18 @@ class ServicesDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Divider(color: AppColors.dividerColor)),
+        Expanded(child: Divider(color: KColors.darkGrey)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.itemSpacing),
           child: Text(
             text,
             style: TextStyle(
-              color: AppColors.textLight,
+              color: KColors.textPrimary,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        Expanded(child: Divider(color: AppColors.dividerColor)),
+        Expanded(child: Divider(color: KColors.darkGrey)),
       ],
     );
   }

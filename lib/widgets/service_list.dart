@@ -18,7 +18,7 @@ class ServiceList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: Dimensions.pagePadding, left: Dimensions.pagePadding, right: Dimensions.pagePadding),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+        color: KColors.white,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(Dimensions.cardRadius),
           topRight: Radius.circular(Dimensions.cardRadius),
@@ -40,7 +40,7 @@ class ServiceList extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(Dimensions.pagePadding),
               decoration: BoxDecoration(
-                color: AppColors.cardBackground,
+                color: KColors.white,
                 borderRadius: BorderRadius.circular(Dimensions.cardRadius),
                 boxShadow: [
                   BoxShadow(
@@ -63,7 +63,7 @@ class ServiceList extends StatelessWidget {
                         border: index != services.length - 1
                             ? Border(
                                 bottom: BorderSide(
-                                  color: AppColors.borderColor,
+                                  color: KColors.borderPrimary,
                                   width: 1,
                                 ),
                               )
@@ -86,7 +86,7 @@ class ServiceList extends StatelessWidget {
                               child: Text(
                                 services[index].image,
                                 style: TextStyle(
-                                  color: AppColors.textLight,
+                                  color: KColors.textPrimary,
                                   fontSize: 12,
                                 ),
                               ),
@@ -109,7 +109,7 @@ class ServiceList extends StatelessWidget {
                                   services[index].description,
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: AppColors.textLight,
+                                    color: KColors.textPrimary,
                                   ),
                                 ),
                               ],
@@ -123,7 +123,7 @@ class ServiceList extends StatelessWidget {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.primary,
+                              backgroundColor: KColors.primary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
@@ -151,7 +151,7 @@ class ServiceList extends StatelessWidget {
               ),
             ),
           ),
-          TextButton(onPressed: (){}, child: Text("View More", style: TextStyle(color: AppColors.primary),)),
+          TextButton(onPressed: (){}, child: Text("View More", style: TextStyle(color: KColors.primary),)),
         ],
       ),
     );

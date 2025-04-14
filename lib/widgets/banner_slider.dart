@@ -24,14 +24,14 @@ class _BannerSliderState extends State<BannerSlider> {
         Container(
           height: 190,
           decoration: BoxDecoration(
-            color: AppColors.cardBackground,
+            color: KColors.white,
             borderRadius: BorderRadius.circular(Dimensions.cardRadius),
-            border: Border.all(color: AppColors.borderColor),
+            border: Border.all(color: KColors.borderPrimary),
           ),
           child: Center(
             child: Text(
               '"banners"',
-              style: TextStyle(color: AppColors.textLight),
+              style: TextStyle(color: KColors.textPrimary),
             ),
           ),
         ),
@@ -54,8 +54,8 @@ class _BannerSliderState extends State<BannerSlider> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _currentSlide == index
-                      ? AppColors.primary
-                      : AppColors.dividerColor,
+                      ? KColors.primary
+                      : KColors.darkGrey,
                 ),
               ),
             ),

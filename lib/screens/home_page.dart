@@ -14,7 +14,7 @@ class CarWashHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: KColors.primaryBackground,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
