@@ -6,5 +6,3 @@ class Dimensions {
   static const double smallSpacing = 8.0;
   static const double tinySpacing = 4.0;
 }
-
-class GradientColors {}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/screens/services_screens.dart';
 import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
@@ -6,17 +7,17 @@ import '../utils/constants.dart';
 class ServiceList extends StatelessWidget {
   final List<ServiceModel> services;
   final Function(int)? onBuyPressed;
-  
-  const ServiceList({
-    super.key,
-    required this.services,
-    this.onBuyPressed,
-  });
+
+  const ServiceList({super.key, required this.services, this.onBuyPressed});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: Dimensions.pagePadding, left: Dimensions.pagePadding, right: Dimensions.pagePadding),
+      padding: const EdgeInsets.only(
+        top: Dimensions.pagePadding,
+        left: Dimensions.pagePadding,
+        right: Dimensions.pagePadding,
+      ),
       decoration: BoxDecoration(
         color: KColors.white,
         borderRadius: const BorderRadius.only(
@@ -32,7 +33,7 @@ class ServiceList extends StatelessWidget {
           ),
         ],
       ),
-      
+
       child: Column(
         children: [
           Card(
@@ -56,21 +57,28 @@ class ServiceList extends StatelessWidget {
                   services.length,
                   (index) => Padding(
                     padding: EdgeInsets.only(
-                      bottom: index != services.length - 1 ? Dimensions.itemSpacing : 0,
+                      bottom:
+                          index != services.length - 1
+                              ? Dimensions.itemSpacing
+                              : 0,
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: index != services.length - 1
-                            ? Border(
-                                bottom: BorderSide(
-                                  color: KColors.borderPrimary,
-                                  width: 1,
-                                ),
-                              )
-                            : null,
+                        border:
+                            index != services.length - 1
+                                ? Border(
+                                  bottom: BorderSide(
+                                    color: KColors.borderPrimary,
+                                    width: 1,
+                                  ),
+                                )
+                                : null,
                       ),
                       padding: EdgeInsets.only(
-                        bottom: index != services.length - 1 ? Dimensions.itemSpacing : 0,
+                        bottom:
+                            index != services.length - 1
+                                ? Dimensions.itemSpacing
+                                : 0,
                       ),
                       child: Row(
                         children: [
@@ -151,7 +159,15 @@ class ServiceList extends StatelessWidget {
               ),
             ),
           ),
-          TextButton(onPressed: (){}, child: Text("View More", style: TextStyle(color: KColors.primary),)),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ServicesScreen()),
+              );
+            },
+            child: Text("View More", style: TextStyle(color: KColors.primary)),
+          ),
         ],
       ),
     );

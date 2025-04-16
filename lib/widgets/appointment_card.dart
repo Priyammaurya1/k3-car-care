@@ -38,7 +38,8 @@ class AppointmentCard extends StatelessWidget {
             ],
           ),
           SizedBox(width: 18),
-          ElevatedButton(
+            Spacer(),
+            ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: KColors.primary,
@@ -51,7 +52,7 @@ class AppointmentCard extends StatelessWidget {
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
             child: const Text(
-              'Reschedule Booking',
+              'Reschedule',
               style: TextStyle(color: Colors.white, fontSize: 12),
             ),
           ),
