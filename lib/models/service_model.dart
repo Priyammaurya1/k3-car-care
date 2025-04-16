@@ -22,12 +22,7 @@ class ServiceModel {
   }
 
   Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'image': image,
-    };
+    return {'id': id, 'name': name, 'description': description, 'image': image};
   }
 }
 
@@ -35,19 +30,19 @@ class ServiceModel {
 List<ServiceModel> sampleServices = [
   ServiceModel(
     id: 1,
-    name: 'Basic Car Wash',
+    name: 'Car Wash',
     description: 'Quick and effective cleaning for your vehicle',
     image: 'image',
   ),
   ServiceModel(
     id: 2,
-    name: 'Premium Car Wash',
+    name: 'Periodic Service',
     description: 'Thorough cleaning with premium products',
     image: 'image',
   ),
   ServiceModel(
     id: 3,
-    name: 'Deluxe Car Wash',
+    name: 'Exterior Protection',
     description: 'Complete car care with waxing and polishing',
     image: 'image',
   ),

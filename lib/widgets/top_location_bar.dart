@@ -10,7 +10,7 @@ class TopLocationBar extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(Dimensions.pagePadding),
       decoration: BoxDecoration(
-        color: KColors.white,
+        color: KColors.cardColor,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(Dimensions.cardRadius),
           bottomRight: Radius.circular(Dimensions.cardRadius),
@@ -44,13 +44,13 @@ class TopLocationBar extends StatelessWidget {
                     children: [
                       const Text(
                         'location blah blah',
-                        style: TextStyle(fontWeight: FontWeight.w500),
+                        style: TextStyle(color: KColors.textTitle, fontWeight: FontWeight.w500),
                       ),
                       Text(
                         'blah blah...!!!!',
                         style: TextStyle(
                           fontSize: 12,
-                          color: KColors.textPrimary,
+                          color: KColors.textDesc,
                         ),
                       ),
                     ],
@@ -73,8 +73,8 @@ class TopLocationBar extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: Dimensions.itemSpacing),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(10),
+              color: KColors.textForm,
+              borderRadius: BorderRadius.circular(Dimensions.cardRadius),
               border: Border.all(color: Colors.grey.shade300),
             ),
             child: const TextField(

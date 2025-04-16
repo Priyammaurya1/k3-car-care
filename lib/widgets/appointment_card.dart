@@ -12,11 +12,12 @@ class AppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      // height: 190,
       padding: const EdgeInsets.all(Dimensions.pagePadding),
       decoration: BoxDecoration(
-        color: KColors.white,
+        color: KColors.cardColor,
         borderRadius: BorderRadius.circular(Dimensions.cardRadius),
-        border: Border.all(color: KColors.borderPrimary),
+        
       ),
       child: Row(
         children: [
@@ -25,12 +26,13 @@ class AppointmentCard extends StatelessWidget {
             children: [
               Text(
                 "Your car's appointment is",
-                style: TextStyle( fontSize: 14),
+                style: TextStyle( fontSize: 14, color: KColors.textTitle),
               ),
               const SizedBox(height: Dimensions.tinySpacing),
               Text(
                 "$date at, $time",
-                style: const TextStyle(
+                style:  TextStyle(
+                  color: KColors.textTitle,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),

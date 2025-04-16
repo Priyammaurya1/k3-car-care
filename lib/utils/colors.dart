@@ -8,12 +8,15 @@ class KColors {
   static const Color cardColor = Color(0xff564E56);
 
   // divider color
-  static const Color dividerColor = Color(0xffBFB9C0);
+  static const Color dividerColor = Color(0xff807681);
 
   // Text colors
-  static const Color textPrimary = Color(0xFF333333);
-  static const Color textSecondary = Color(0xFF6C757D);
-  static const Color textWhite = Colors.white;
+  static const Color textTitle = Colors.white;
+  static const Color textDesc = Color.fromARGB(255, 212, 206, 206);
+  static const Color dividerText = Color(0xff807681);
+
+  // Text Form color
+  static const Color textForm = Color(0xffDDDDDD);
 
   // Background colors
   static const Color primaryBackground = Color(0xFF242124);

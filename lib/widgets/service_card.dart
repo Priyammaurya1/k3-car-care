@@ -1,6 +1,7 @@
 // lib/widgets/service_card.dart
 
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model2.dart';
 
 class ServiceCard extends StatelessWidget {
@@ -18,7 +19,6 @@ class ServiceCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
@@ -50,7 +50,7 @@ class ServiceCard extends StatelessWidget {
                 children: [
                   Text(
                     service.title,
-                    style: const TextStyle(
+                    style: const TextStyle(color: KColors.textTitle,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -60,7 +60,7 @@ class ServiceCard extends StatelessWidget {
                     service.description,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey.shade600,
+                      color: KColors.textDesc,
                     ),
                   ),
                   Text(

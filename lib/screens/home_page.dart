@@ -23,6 +23,7 @@ class CarWashHomePage extends StatelessWidget {
               
               ///--- Header ---///
               const TopLocationBar(),
+              const SizedBox(height: 18),
 
               Padding(
                 padding: const EdgeInsets.all(Dimensions.pagePadding),
@@ -39,7 +40,7 @@ class CarWashHomePage extends StatelessWidget {
 
                     ///--- Banners ---///
                     const BannerSlider(),
-                    const SizedBox(height: Dimensions.elementSpacing),
+                    // const SizedBox(height: 2),
                   ],
                 ),
               ),

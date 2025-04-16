@@ -22,18 +22,12 @@ class _BannerSliderState extends State<BannerSlider> {
     return Column(
       children: [
         Container(
-          height: 190,
+          height: 200,
           decoration: BoxDecoration(
-            color: KColors.white,
+            color: KColors.cardColor,
             borderRadius: BorderRadius.circular(Dimensions.cardRadius),
-            border: Border.all(color: KColors.borderPrimary),
           ),
-          child: Center(
-            child: Text(
-              '"banners"',
-              style: TextStyle(color: KColors.textPrimary),
-            ),
-          ),
+          child: Center(),
         ),
         const SizedBox(height: Dimensions.smallSpacing),
         // Dots for banner slides

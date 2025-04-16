@@ -20,12 +20,12 @@ class ServicesDivider extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              color: KColors.textPrimary,
+              color: KColors.textDesc,
               fontWeight: FontWeight.w500,
             ),
           ),
         ),
-        Expanded(child: Divider(color: KColors.darkGrey)),
+        Expanded(child: Divider(color: KColors.dividerText)),
       ],
     );
   }

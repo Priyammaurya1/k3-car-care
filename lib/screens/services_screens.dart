@@ -1,6 +1,7 @@
 // lib/screens/services_screen.dart
 
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model2.dart';
 import '../widgets/service_card.dart';
 
@@ -12,14 +13,14 @@ class ServicesScreen extends StatelessWidget {
     final services = ServiceModel2.getSampleServices();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: KColors.primaryBackground,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: KColors.primaryBackground,
         elevation: 0,
         title: const Text(
           'Services',
           style: TextStyle(
-            color: Colors.black,
+            color: KColors.textTitle,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),

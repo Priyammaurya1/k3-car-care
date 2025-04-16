@@ -18,21 +18,7 @@ class ServiceList extends StatelessWidget {
         left: Dimensions.pagePadding,
         right: Dimensions.pagePadding,
       ),
-      decoration: BoxDecoration(
-        color: KColors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(Dimensions.cardRadius),
-          topRight: Radius.circular(Dimensions.cardRadius),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.2),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(2, 0),
-          ),
-        ],
-      ),
+      
 
       child: Column(
         children: [
@@ -41,7 +27,7 @@ class ServiceList extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(Dimensions.pagePadding),
               decoration: BoxDecoration(
-                color: KColors.white,
+                color: KColors.cardColor,
                 borderRadius: BorderRadius.circular(Dimensions.cardRadius),
                 boxShadow: [
                   BoxShadow(
@@ -69,7 +55,7 @@ class ServiceList extends StatelessWidget {
                                 ? Border(
                                   bottom: BorderSide(
                                     color: KColors.borderPrimary,
-                                    width: 1,
+                                    width: 0.90,
                                   ),
                                 )
                                 : null,
@@ -94,7 +80,7 @@ class ServiceList extends StatelessWidget {
                               child: Text(
                                 services[index].image,
                                 style: TextStyle(
-                                  color: KColors.textPrimary,
+                                  color: KColors.textTitle,
                                   fontSize: 12,
                                 ),
                               ),
@@ -109,6 +95,7 @@ class ServiceList extends StatelessWidget {
                                 Text(
                                   services[index].name,
                                   style: const TextStyle(
+                                    color: KColors.textTitle,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -117,7 +104,7 @@ class ServiceList extends StatelessWidget {
                                   services[index].description,
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: KColors.textPrimary,
+                                    color: KColors.textDesc,
                                   ),
                                 ),
                               ],
