@@ -4,22 +4,15 @@ import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
 
-class ServiceList extends StatelessWidget {
+class CustomList extends StatelessWidget {
   final List<ServiceModel> services;
   final Function(int)? onBuyPressed;
 
-  const ServiceList({super.key, required this.services, this.onBuyPressed});
+  const CustomList({super.key, required this.services, this.onBuyPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(
-        top: Dimensions.pagePadding,
-        left: Dimensions.pagePadding,
-        right: Dimensions.pagePadding,
-      ),
-      
-
+    return SafeArea(
       child: Column(
         children: [
           Card(

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/screens/home_page.dart';
-import 'package:k3carcare/screens/payment_screen.dart';
+import 'package:k3carcare/screens/cart_screen.dart';
+import 'package:k3carcare/screens/products_screen.dart';
 import 'package:k3carcare/screens/profile_screen.dart';
 import 'package:k3carcare/screens/services_screens.dart';
 import 'package:k3carcare/utils/colors.dart';
@@ -47,8 +48,12 @@ class NavigationMenu extends StatelessWidget {
                 label: 'Services',
               ),
               NavigationDestination(
-                icon: Icon(Iconsax.card, color: KColors.white),
-                label: 'Payments',
+                icon: Icon(Iconsax.shop, color: KColors.white),
+                label: 'Store',
+              ),
+              NavigationDestination(
+                icon: Icon(Iconsax.shopping_bag, color: KColors.white),
+                label: 'Cart',
               ),
               NavigationDestination(
                 icon: Icon(Iconsax.user, color: KColors.white),
@@ -69,7 +74,8 @@ class NavigationController extends GetxController {
   final screens = [
     const CarWashHomePage(),
     const ServicesScreen(),
-    PaymentsScreen(),
+    const ProductsScreen(),
+    CartScreen(),
     const ProfileScreen(),
   ];
 }

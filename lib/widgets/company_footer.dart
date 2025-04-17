@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 
 class CompanyFooter extends StatelessWidget {
   const CompanyFooter({super.key});
@@ -13,7 +14,7 @@ class CompanyFooter extends StatelessWidget {
             fontSize: 18,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,
-            color: Theme.of(context).colorScheme.primary,
+            color: KColors.primary,
           ),
         ),
         const SizedBox(height: 4),

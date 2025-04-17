@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class KColors {
   // App theme colors
-  static const Color primary = Color(0xFF4b68ff);
+  static const Color primary = Colors.red;
 
   // List card colors
   static const Color cardColor = Color(0xff564E56);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/widgets/company_footer.dart';
 import 'package:k3carcare/widgets/menu_options.dart';
 import 'package:k3carcare/widgets/profile_avatar.dart';
@@ -9,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: KColors.primaryBackground,
       body: SafeArea(
         child: Column(
           children: [
@@ -24,6 +26,10 @@ class ProfileScreen extends StatelessWidget {
                       title: 'My Account',
                       icon: Icons.person_outline,
                       isFirst: true,
+                    ),
+                    const MenuOption(
+                      title: 'My Car',
+                      icon: Iconsax.car,
                     ),
                     const MenuOption(
                       title: 'Settings',

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
 import '../utils/constants.dart';
 
-class ServicesDivider extends StatelessWidget {
+class CustomDivider extends StatelessWidget {
   final String text;
   
-  const ServicesDivider({
+  const CustomDivider({
     super.key,
-    this.text = "Services",
+    required this.text,
   });
 
   @override

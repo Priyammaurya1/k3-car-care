@@ -15,6 +15,7 @@ class ServicesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: KColors.primaryBackground,
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: KColors.white),
         backgroundColor: KColors.primaryBackground,
         elevation: 0,
         title: const Text(
@@ -35,9 +36,7 @@ class ServicesScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return ServiceCard(
                 service: services[index],
-                onBookPressed: () {
-                  // _bookService(context, services[index]);
-                },
+                onBookPressed: () {},
               );
             },
           ),
@@ -45,18 +44,4 @@ class ServicesScreen extends StatelessWidget {
       ),
     );
   }
-
-//   void _bookService(BuildContext context, ServiceModel2 service) {
-//     // Show a snackbar for demonstration purposes
-//     // In a real app, this would navigate to a booking screen or show a booking dialog
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(
-//         content: Text('Booking ${service.title} - \$${service.price.toStringAsFixed(2)}'),
-//         action: SnackBarAction(
-//           label: 'OK',
-//           onPressed: () {},
-//         ),
-//       ),
-//     );
-//   }
 }

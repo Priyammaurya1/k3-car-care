@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
+import 'package:k3carcare/widgets/service_list.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
 import '../widgets/top_location_bar.dart';
 import '../widgets/appointment_card.dart';
 import '../widgets/services_divider.dart';
 import '../widgets/banner_slider.dart';
-import '../widgets/service_list.dart';
+
 
 class CarWashHomePage extends StatelessWidget {
   const CarWashHomePage({super.key});
@@ -35,18 +36,26 @@ class CarWashHomePage extends StatelessWidget {
                     const SizedBox(height: Dimensions.elementSpacing),
 
                     ///--- Services Divider ---///
-                    const ServicesDivider(),
+                    const CustomDivider(text: 'Banners',),
                     const SizedBox(height: Dimensions.elementSpacing),
 
                     ///--- Banners ---///
                     const BannerSlider(),
-                    // const SizedBox(height: 2),
+                    const SizedBox(height: Dimensions.elementSpacing),
+
+                    ///--- Services ---///
+                    const CustomDivider(text: 'Services'),
+                    const SizedBox(height: Dimensions.elementSpacing),
+                    CustomList(services: sampleServices),
+
+                    ///--- Services ---///
+                    const CustomDivider(text: 'Store'),
+                    const SizedBox(height: Dimensions.elementSpacing),
+                    CustomList(services: sampleServices),
                   ],
                 ),
               ),
 
-              ///--- Services ---///
-              ServiceList(services: sampleServices),
             ],
           ),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({super.key});
@@ -6,36 +7,40 @@ class ProfileAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Stack(
       alignment: Alignment.topCenter,
       children: [
         Container(
           width: screenWidth,
-          height: 120,
+          height: 180,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primary,
+            color: KColors.primary,
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(60),
-              bottomRight: Radius.circular(60),
+              bottomLeft: Radius.circular(200),
+              bottomRight: Radius.circular(200),
             ),
+            boxShadow: [
+              BoxShadow(
+                color: KColors.primary,
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 70),
+          padding: const EdgeInsets.only(top: 120),
           child: Container(
             width: 100,
             height: 100,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: KColors.primaryBackground,
               shape: BoxShape.circle,
-              border: Border.all(
-                color: Colors.white,
-                width: 4,
-              ),
+              border: Border.all(color: KColors.cardColor, width: 4),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha:  0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: 10,
                   offset: const Offset(0, 5),
                 ),
@@ -47,7 +52,7 @@ class ProfileAvatar extends StatelessWidget {
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
-                    color: Colors.grey.shade200,
+                    color: Colors.black,
                     child: Icon(
                       Icons.person,
                       size: 50,

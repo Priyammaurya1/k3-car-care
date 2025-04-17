@@ -68,7 +68,7 @@ class ServiceCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue.shade700,
+                      color: Colors.red.shade700,
                     ),
                   ),
                 ],
@@ -79,7 +79,7 @@ class ServiceCard extends StatelessWidget {
             ElevatedButton(
               onPressed: onBookPressed,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.red,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),

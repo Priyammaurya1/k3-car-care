@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 
 class MenuOption extends StatelessWidget {
   final String title;
@@ -30,12 +31,13 @@ class MenuOption extends StatelessWidget {
                 Icon(
                   icon,
                   size: 24,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: KColors.primary,
                 ),
                 const SizedBox(width: 16),
                 Text(
                   title,
                   style: const TextStyle(
+                    color: KColors.textTitle,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
