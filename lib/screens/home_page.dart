@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
+import 'package:k3carcare/widgets/banner_section_store.dart';
 import 'package:k3carcare/widgets/service_list.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
 import '../widgets/top_location_bar.dart';
 import '../widgets/appointment_card.dart';
 import '../widgets/services_divider.dart';
-import '../widgets/banner_slider.dart';
+
 
 
 class CarWashHomePage extends StatelessWidget {
@@ -40,7 +41,7 @@ class CarWashHomePage extends StatelessWidget {
                     const SizedBox(height: Dimensions.elementSpacing),
 
                     ///--- Banners ---///
-                    const BannerSlider(),
+                    const BannerSection(),
                     const SizedBox(height: Dimensions.elementSpacing),
 
                     ///--- Services ---///

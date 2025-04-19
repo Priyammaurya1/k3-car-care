@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/screens/home_page.dart';
 import 'package:k3carcare/screens/cart_screen.dart';
-import 'package:k3carcare/screens/products_screen.dart';
 import 'package:k3carcare/screens/profile_screen.dart';
 import 'package:k3carcare/screens/services_screens.dart';
+import 'package:k3carcare/screens/store_screen.dart';
 import 'package:k3carcare/utils/colors.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -74,7 +74,7 @@ class NavigationController extends GetxController {
   final screens = [
     const CarWashHomePage(),
     const ServicesScreen(),
-    const ProductsScreen(),
+    const StoreScreen(),
     CartScreen(),
     const ProfileScreen(),
   ];

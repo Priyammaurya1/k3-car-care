@@ -73,12 +73,13 @@ class TopLocationBar extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: Dimensions.itemSpacing),
             decoration: BoxDecoration(
-              color: KColors.textForm,
+              color: KColors.white,
               borderRadius: BorderRadius.circular(Dimensions.cardRadius),
               border: Border.all(color: Colors.grey.shade300),
             ),
             child: const TextField(
               decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
                 hintText: 'Search...',
                 contentPadding: EdgeInsets.symmetric(
                   horizontal: 16,
