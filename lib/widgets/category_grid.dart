@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../models/category.dart';
 
 class CategoryGrid extends StatelessWidget {
@@ -35,19 +36,20 @@ class CategoryItem extends StatelessWidget {
           ),
           child: Icon(
             category.icon,
-            color: Colors.blue,
+            color: KColors.primary,
             size: 30,
           ),
         ),
         const SizedBox(height: 8),
-        // Text(
-        //   category.name,
-        //   textAlign: TextAlign.center,
-        //   style: const TextStyle(
-        //     fontSize: 12,
-        //     fontWeight: FontWeight.w500,
-        //   ),
-        // ),
+        Text(
+          category.name,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: KColors.textTitle,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ],
     );
   }

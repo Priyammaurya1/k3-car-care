@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 import '../models/product.dart';
 
 class ProductList extends StatelessWidget {
@@ -14,6 +15,7 @@ class ProductList extends StatelessWidget {
             const Text(
               'Best Seller',
               style: TextStyle(
+                color: KColors.textTitle,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
@@ -23,7 +25,7 @@ class ProductList extends StatelessWidget {
               child: const Text(
                 'See All',
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: KColors.primary
                 ),
               ),
             ),
@@ -75,7 +77,7 @@ class ProductItem extends StatelessWidget {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.cyan,
+                color: KColors.cardColor,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),

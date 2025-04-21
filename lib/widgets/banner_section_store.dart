@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 
 class BannerSection extends StatefulWidget {
   const BannerSection({super.key});
@@ -39,7 +40,7 @@ class BannerSectionState extends State<BannerSection> {
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
-                  color: Colors.cyan,
+                  color: KColors.cardColor,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Center(
@@ -77,7 +78,7 @@ class BannerSectionState extends State<BannerSection> {
               height: 8,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _currentPage == index ? Colors.orange : Colors.grey[300],
+                color: _currentPage == index ? KColors.primary : Colors.grey[300],
               ),
             ),
           ),

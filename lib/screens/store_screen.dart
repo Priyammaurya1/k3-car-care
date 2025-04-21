@@ -31,7 +31,7 @@ class StoreScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchBarWidget(),
-              SizedBox(height: 16),
+              SizedBox(height: 24),
               BannerSection(),
               SizedBox(height: 24),
               CategoryGrid(),

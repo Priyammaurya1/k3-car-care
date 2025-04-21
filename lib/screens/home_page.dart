@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/models/product.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/widgets/banner_section_store.dart';
+import 'package:k3carcare/widgets/product_list.dart';
 import 'package:k3carcare/widgets/service_list.dart';
 import '../models/service_model.dart';
 import '../utils/constants.dart';
@@ -49,14 +51,36 @@ class CarWashHomePage extends StatelessWidget {
                     const SizedBox(height: Dimensions.elementSpacing),
                     CustomList(services: sampleServices),
 
-                    ///--- Services ---///
+                    ///--- Store ---///
                     const CustomDivider(text: 'Store'),
                     const SizedBox(height: Dimensions.elementSpacing),
-                    CustomList(services: sampleServices),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.75,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                          ),
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return ProductItem(product: products[index]);
+                      },
+                    ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "View More",
+                          style: TextStyle(color: KColors.primary),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
