@@ -9,6 +9,7 @@ class HomeScreenNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffFEF9F6),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -20,7 +21,6 @@ class HomeScreenNew extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 16),
                   height: MediaQuery.of(context).size.height / 6,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Colors.black12),
                   child: Column(
                     children: [
                       Row(
@@ -31,6 +31,7 @@ class HomeScreenNew extends StatelessWidget {
                               Text(
                                 'Welcome,',
                                 style: TextStyle(
+                                  // fontStyle: FontStyle.italic,
                                   color: Colors.black,
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
@@ -40,6 +41,7 @@ class HomeScreenNew extends StatelessWidget {
                               Text(
                                 "Priyam Maurya",
                                 style: TextStyle(
+                                  // fontStyle: FontStyle.italic,
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontFamily: "Poppins",
@@ -51,6 +53,14 @@ class HomeScreenNew extends StatelessWidget {
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  spreadRadius: -10,
+                                  blurRadius: 30,
+                                  offset: const Offset(0, 15),
+                                ),
+                              ],
                               color: Colors.grey.shade400,
                               shape: BoxShape.circle,
                             ),
@@ -63,6 +73,14 @@ class HomeScreenNew extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           height: 50,
                           decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade400,
+                                spreadRadius: -10,
+                                blurRadius: 40,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -86,7 +104,9 @@ class HomeScreenNew extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24),
-                BannerSection(),                         /// Banner
+                BannerSection(),
+
+                /// Banner
                 SizedBox(height: 24),
                 Text(
                   "Services",
@@ -100,21 +120,133 @@ class HomeScreenNew extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 24, horizontal: 15),
                   height: MediaQuery.of(context).size.height / 3.8,
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(color: Colors.black54),
+                  // decoration: BoxDecoration(color: Colors.black54),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Container(
+                            padding: EdgeInsets.only(
+                              top: 10,
+                              left: 10,
+                              bottom: 10,
+                            ),
                             height: 80,
                             width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  spreadRadius: -10,
+                                  blurRadius: 30,
+                                  offset: const Offset(0, 15),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                transform: GradientRotation(
+                                  390 * 3.1415927 / 180,
+                                ), // Convert degrees to radians
+                                colors: [
+                                  Color.fromRGBO(210, 0, 0, 1),
+                                  Color.fromRGBO(252, 43, 16, 1),
+                                  Color.fromRGBO(186, 172, 48, 1),
+                                ],
+                                stops: [0.0, 0.44, 1.0],
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Car Wash",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                        'assets/images/car-wash.png',
+                                      ),
+                                      height: 45,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           Spacer(),
                           Container(
+                            padding: EdgeInsets.only(
+                              top: 10,
+                              left: 10,
+                              bottom: 10,
+                            ),
                             height: 80,
                             width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  spreadRadius: -10,
+                                  blurRadius: 30,
+                                  offset: const Offset(0, 15),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                transform: GradientRotation(
+                                  390 * 3.1415927 / 180,
+                                ), // Convert degrees to radians
+                                colors: [
+                                  Color.fromRGBO(210, 0, 0, 1),
+                                  Color.fromRGBO(252, 43, 16, 1),
+                                  Color.fromRGBO(186, 172, 48, 1),
+                                ],
+                                stops: [0.0, 0.44, 1.0],
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Car Wash",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                        'assets/images/car-wash.png',
+                                      ),
+                                      height: 45,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -122,15 +254,127 @@ class HomeScreenNew extends StatelessWidget {
                       Row(
                         children: [
                           Container(
+                            padding: EdgeInsets.only(
+                              top: 10,
+                              left: 10,
+                              bottom: 10,
+                            ),
                             height: 80,
                             width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  spreadRadius: -10,
+                                  blurRadius: 30,
+                                  offset: const Offset(0, 15),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                transform: GradientRotation(
+                                  390 * 3.1415927 / 180,
+                                ), // Convert degrees to radians
+                                colors: [
+                                  Color.fromRGBO(210, 0, 0, 1),
+                                  Color.fromRGBO(252, 43, 16, 1),
+                                  Color.fromRGBO(186, 172, 48, 1),
+                                ],
+                                stops: [0.0, 0.44, 1.0],
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Car Wash",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                        'assets/images/car-wash.png',
+                                      ),
+                                      height: 45,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           Spacer(),
                           Container(
+                            padding: EdgeInsets.only(
+                              top: 10,
+                              left: 10,
+                              bottom: 10,
+                            ),
                             height: 80,
                             width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(12)),
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade400,
+                                  spreadRadius: -10,
+                                  blurRadius: 30,
+                                  offset: const Offset(0, 15),
+                                ),
+                              ],
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                transform: GradientRotation(
+                                  390 * 3.1415927 / 180,
+                                ), // Convert degrees to radians
+                                colors: [
+                                  Color.fromRGBO(210, 0, 0, 1),
+                                  Color.fromRGBO(252, 43, 16, 1),
+                                  Color.fromRGBO(186, 172, 48, 1),
+                                ],
+                                stops: [0.0, 0.44, 1.0],
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    Text(
+                                      "Car Wash",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Image(
+                                      image: AssetImage(
+                                        'assets/images/car-wash.png',
+                                      ),
+                                      height: 45,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -149,7 +393,13 @@ class HomeScreenNew extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    TextButton(onPressed: (){}, child: Text('See More')),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'See More',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ),
                   ],
                 ),
                 HorizontalServicesList(),

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 class HorizontalServicesList extends StatelessWidget {
   final List<Map<String, dynamic>> services = [
-    {'name': 'Oil Change', 'icon': Icons.oil_barrel},
-    {'name': 'Car Wash', 'icon': Icons.local_car_wash},
-    {'name': 'Battery Check', 'icon': Icons.battery_charging_full},
+    {'name': 'Electronics', 'icon': Icons.electrical_services},
+    {'name': 'Decoration', 'icon': Icons.style},
+    {'name': 'Battery', 'icon': Icons.battery_charging_full},
     {'name': 'AC Service', 'icon': Icons.ac_unit},
-    {'name': 'Tyre Replacement', 'icon': Icons.build_circle},
   ];
 
   HorizontalServicesList({super.key});
@@ -26,21 +25,29 @@ class HorizontalServicesList extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
-              elevation: 3,
+              
+              elevation: 2,
+              
               child: Container(
                 width: 280,
                 padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Icon(service['icon'], size: 30),
-                    const SizedBox(height: 10),
-                    Text(
-                      service['name'],
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(fontSize: 14),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(service['icon'], size: 30),
+                        const SizedBox(height: 10),
+                        Text(
+                          service['name'],
+                          textAlign: TextAlign.start,
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
                     ),
+                    // Image(image: service['image'], width: 100),
                   ],
+                  
                 ),
               ),
             ),
