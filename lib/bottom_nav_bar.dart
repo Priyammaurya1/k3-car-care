@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/screens/cart_screen.dart';
-import 'package:k3carcare/screens/home_screen_new.dart';
+import 'package:k3carcare/screens/home_screen.dart';
 import 'package:k3carcare/screens/profile_screen.dart';
 import 'package:k3carcare/screens/services_screens.dart';
 import 'package:k3carcare/screens/store_screen.dart';

@@ -19,7 +19,7 @@ class HorizontalServicesList extends StatelessWidget {
         itemBuilder: (context, index) {
           final service = services[index];
           return Card(
-            // color: Colors.white,
+            color: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:k3carcare/models/horizontal_scroll.dart';
-import 'package:k3carcare/widgets/banner_section_store.dart';
 
 class HomeScreenNew extends StatelessWidget {
   const HomeScreenNew({super.key});
@@ -26,19 +26,21 @@ class HomeScreenNew extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Welcome,',
+                                'Tarna,',
                                 style: TextStyle(
                                   // fontStyle: FontStyle.italic,
                                   color: Colors.black,
-                                  fontSize: 24,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Poppins",
                                 ),
                               ),
                               Text(
-                                "Priyam Maurya",
+                                "Shivpur,Varanasi - 221003",
                                 style: TextStyle(
                                   // fontStyle: FontStyle.italic,
                                   color: Colors.black,
@@ -104,7 +106,16 @@ class HomeScreenNew extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24),
-                BannerSection(),
+                // BannerSlider(
+                //   height: 200.0, // Set your desired height
+                //   assetPaths: [
+                //     'assets/images/banner/banner-1.png',
+                //     'assets/images/banner/banner-2.png',
+                //     'assets/images/banner/banner-3.png',
+                //     'assets/images/banner/banner-4.png',
+                //   ],
+                //   autoScrollDuration: const Duration(seconds: 3),
+                // ),
 
                 /// Banner
                 SizedBox(height: 24),
@@ -117,73 +128,76 @@ class HomeScreenNew extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 24, horizontal: 15),
-                  height: MediaQuery.of(context).size.height / 3.8,
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  height: MediaQuery.of(context).size.height / 3.9,
                   width: MediaQuery.of(context).size.width,
-                  // decoration: BoxDecoration(color: Colors.black54),
                   child: Column(
                     children: [
                       Row(
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                              top: 10,
-                              left: 10,
-                              bottom: 10,
-                            ),
-                            height: 80,
-                            width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade400,
-                                  spreadRadius: -10,
-                                  blurRadius: 30,
-                                  offset: const Offset(0, 15),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(12),
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                transform: GradientRotation(
-                                  390 * 3.1415927 / 180,
-                                ), // Convert degrees to radians
-                                colors: [
-                                  Color.fromRGBO(210, 0, 0, 1),
-                                  Color.fromRGBO(252, 43, 16, 1),
-                                  Color.fromRGBO(186, 172, 48, 1),
-                                ],
-                                stops: [0.0, 0.44, 1.0],
+                          GestureDetector(
+                            onTap: (){},
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 10,
+                                bottom: 10,
+                                right: 10,
                               ),
-                            ),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Text(
-                                      "Services",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
+                              height: 80,
+                              width: MediaQuery.of(context).size.width / 2.4,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade400,
+                                    spreadRadius: -10,
+                                    blurRadius: 30,
+                                    offset: const Offset(0, 15),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  transform: GradientRotation(
+                                    390 * 3.1415927 / 180,
+                                  ), // Convert degrees to radians
+                                  colors: [
+                                    Color.fromRGBO(210, 0, 0, 1),
+                                    Color.fromRGBO(252, 43, 16, 1),
+                                    Color.fromRGBO(186, 172, 48, 1),
                                   ],
+                                  stops: [0.0, 0.44, 1.0],
                                 ),
-                                Spacer(),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Image(
-                                      image: AssetImage(
-                                        'assets/images/car-wash.png',
+                              ),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Car\nServices",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                      height: 45,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Image(
+                                        image: AssetImage(
+                                          'assets/images/service.png',
+                                        ),
+                                        height: 40,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Spacer(),
@@ -191,6 +205,7 @@ class HomeScreenNew extends StatelessWidget {
                             padding: EdgeInsets.only(
                               top: 10,
                               left: 10,
+                              right: 10,
                               bottom: 10,
                             ),
                             height: 80,
@@ -224,10 +239,10 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Wash",
+                                      "Car\nWash",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -239,9 +254,9 @@ class HomeScreenNew extends StatelessWidget {
                                   children: [
                                     Image(
                                       image: AssetImage(
-                                        'assets/images/car-wash.png',
+                                        'assets/images/wash.png',
                                       ),
-                                      height: 45,
+                                      height: 55,
                                     ),
                                   ],
                                 ),
@@ -257,6 +272,7 @@ class HomeScreenNew extends StatelessWidget {
                             padding: EdgeInsets.only(
                               top: 10,
                               left: 10,
+                              right: 10,
                               bottom: 10,
                             ),
                             height: 80,
@@ -290,10 +306,10 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Batteries",
+                                      "Car\nBatteries",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -305,7 +321,7 @@ class HomeScreenNew extends StatelessWidget {
                                   children: [
                                     Image(
                                       image: AssetImage(
-                                        'assets/images/car-wash.png',
+                                        'assets/images/battery.png',
                                       ),
                                       height: 45,
                                     ),
@@ -355,7 +371,7 @@ class HomeScreenNew extends StatelessWidget {
                                       "K3\nGold Plan",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -405,8 +421,13 @@ class HomeScreenNew extends StatelessWidget {
                 HorizontalServicesList(),
                 SizedBox(height: 24),
                 Container(
-                  padding: EdgeInsets.only(top: 15, bottom: 15, right: 15, left: 10),
-                  height: MediaQuery.of(context).size.height/3,
+                  padding: EdgeInsets.only(
+                    top: 15,
+                    bottom: 15,
+                    right: 15,
+                    left: 10,
+                  ),
+                  height: MediaQuery.of(context).size.height / 7,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -423,7 +444,73 @@ class HomeScreenNew extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      Text("Extended Warranty with K3 Car Care", style: TextStyle(color: Colors.grey[600], fontSize: 15),),
+                      Text(
+                        "Extended Warranty with K3 Car Care",
+                        style: TextStyle(color: Colors.grey[600], fontSize: 15),
+                      ),
+                      SizedBox(height: 10),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 10,
+                              ),
+                              height: 40,
+                              width: 100,
+                              child: SvgPicture.asset(
+                                'assets/images/brands/bosch.svg',
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 10,
+                              ),
+                              height: 19,
+                              width: 100,
+                              child: SvgPicture.asset(
+                                'assets/images/brands/mahle.svg',
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 10,
+                              ),
+                              height: 25,
+                              width: 100,
+                              child: Image.asset(
+                                'assets/images/brands/ntn.png',
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 10,
+                              ),
+                              height: 40,
+                              width: 100,
+                              child: Image.asset(
+                                'assets/images/brands/textar.png',
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 10,
+                              ),
+                              height: 35,
+                              width: 100,
+                              child: SvgPicture.asset(
+                                'assets/images/brands/valeo.svg',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

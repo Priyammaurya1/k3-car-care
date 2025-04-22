@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
-import 'package:k3carcare/widgets/banner_section_store.dart';
+import 'package:k3carcare/widgets/banner_slider.dart';
 import '../widgets/search_bar_widget.dart';
 import '../widgets/category_grid.dart';
 import '../widgets/product_list.dart';
@@ -32,7 +32,16 @@ class StoreScreen extends StatelessWidget {
             children: [
               SearchBarWidget(),
               SizedBox(height: 24),
-              BannerSection(),
+              BannerSlider(
+                  height: 200.0, // Set your desired height
+                  assetPaths: [
+                    'assets/images/banner/banner-1.png',
+                    'assets/images/banner/banner-2.png',
+                    'assets/images/banner/banner-3.png',
+                    'assets/images/banner/banner-4.png',
+                  ],
+                  autoScrollDuration: Duration(seconds: 3),
+                ),
               SizedBox(height: 24),
               CategoryGrid(),
               SizedBox(height: 24),
