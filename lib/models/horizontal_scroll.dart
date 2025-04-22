@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class HorizontalServicesList extends StatelessWidget {
   final List<Map<String, dynamic>> services = [
-    {'name': 'Electronics', 'icon': Icons.electrical_services},
-    {'name': 'Decoration', 'icon': Icons.style},
-    {'name': 'Battery', 'icon': Icons.battery_charging_full},
-    {'name': 'AC Service', 'icon': Icons.ac_unit},
+    {'title': 'Exterior', 'desc': 'Buy Top Trending\nExterior Products.' , 'image': 'assets/images/wheel.png'},
+    {'title': 'Interior', 'desc': 'Buy Top Trending\nInterior Products.' , 'image': 'assets/images/asse.png'},
+    {'title': 'Bike Kit', 'desc': 'Buy Top Trending\nBike Kits.' , 'image': 'assets/images/bike-kit.png'},
   ];
 
   HorizontalServicesList({super.key});
@@ -19,36 +18,34 @@ class HorizontalServicesList extends StatelessWidget {
         itemCount: services.length,
         itemBuilder: (context, index) {
           final service = services[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              
-              elevation: 2,
-              
-              child: Container(
-                width: 280,
-                padding: const EdgeInsets.all(12),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(service['icon'], size: 30),
-                        const SizedBox(height: 10),
-                        Text(
-                          service['name'],
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                      ],
-                    ),
-                    // Image(image: service['image'], width: 100),
-                  ],
-                  
-                ),
+          return Card(
+            // color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            
+            // elevation: 3,
+            
+            child: Container(
+              width: 240,
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(service['title'], style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      Text(
+                        service['desc'],
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(fontSize: 14, color: Color.fromARGB(255, 105, 105, 105)),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                  Image(image: Image.asset(service['image'] as String).image),
+                ],
+                
               ),
             ),
           );

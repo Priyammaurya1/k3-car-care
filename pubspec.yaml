@@ -42,7 +42,6 @@ dependencies:
   shared_preferences: ^2.5.3
   webview_flutter: ^4.11.0
   icons_plus: ^5.0.0
-  gradient_like_css: ^1.0.0
 
 dev_dependencies:
   flutter_test:

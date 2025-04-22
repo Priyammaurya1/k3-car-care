@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/models/horizontal_scroll.dart';
-
 import 'package:k3carcare/widgets/banner_section_store.dart';
 
 class HomeScreenNew extends StatelessWidget {
@@ -9,7 +8,7 @@ class HomeScreenNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFEF9F6),
+      backgroundColor: Color.fromARGB(255, 240, 234, 231),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -72,6 +71,7 @@ class HomeScreenNew extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           height: 50,
+                          width: 400,
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
@@ -162,7 +162,7 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Car Wash",
+                                      "Services",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -212,9 +212,9 @@ class HomeScreenNew extends StatelessWidget {
                                   390 * 3.1415927 / 180,
                                 ), // Convert degrees to radians
                                 colors: [
-                                  Color.fromRGBO(210, 0, 0, 1),
-                                  Color.fromRGBO(252, 43, 16, 1),
-                                  Color.fromRGBO(186, 172, 48, 1),
+                                  Color.fromRGBO(0, 210, 210, 1),
+                                  Color.fromRGBO(16, 185, 252, 1),
+                                  Color.fromRGBO(48, 82, 186, 1),
                                 ],
                                 stops: [0.0, 0.44, 1.0],
                               ),
@@ -224,7 +224,7 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Car Wash",
+                                      "Wash",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -278,9 +278,9 @@ class HomeScreenNew extends StatelessWidget {
                                   390 * 3.1415927 / 180,
                                 ), // Convert degrees to radians
                                 colors: [
-                                  Color.fromRGBO(210, 0, 0, 1),
-                                  Color.fromRGBO(252, 43, 16, 1),
-                                  Color.fromRGBO(186, 172, 48, 1),
+                                  Color.fromRGBO(158, 172, 0, 1),
+                                  Color.fromRGBO(0, 158, 13, 1),
+                                  Color.fromRGBO(38, 148, 77, 1),
                                 ],
                                 stops: [0.0, 0.44, 1.0],
                               ),
@@ -290,7 +290,7 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Car Wash",
+                                      "Batteries",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -341,8 +341,8 @@ class HomeScreenNew extends StatelessWidget {
                                 ), // Convert degrees to radians
                                 colors: [
                                   Color.fromRGBO(210, 0, 0, 1),
-                                  Color.fromRGBO(252, 43, 16, 1),
-                                  Color.fromRGBO(186, 172, 48, 1),
+                                  Color.fromRGBO(252, 16, 16, 1),
+                                  Color.fromRGBO(186, 48, 48, 1),
                                 ],
                                 stops: [0.0, 0.44, 1.0],
                               ),
@@ -352,7 +352,7 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "Car Wash",
+                                      "K3\nGold Plan",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -403,6 +403,31 @@ class HomeScreenNew extends StatelessWidget {
                   ],
                 ),
                 HorizontalServicesList(),
+                SizedBox(height: 24),
+                Container(
+                  padding: EdgeInsets.only(top: 15, bottom: 15, right: 15, left: 10),
+                  height: MediaQuery.of(context).size.height/3,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Original Spare Parts',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text("Extended Warranty with K3 Car Care", style: TextStyle(color: Colors.grey[600], fontSize: 15),),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 24),
               ],
             ),
           ),
