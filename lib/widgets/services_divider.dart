@@ -14,7 +14,7 @@ class CustomDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Divider(color: KColors.darkGrey)),
+        Expanded(child: Divider(color: KColors.grey)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.itemSpacing),
           child: Text(
@@ -25,7 +25,7 @@ class CustomDivider extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(child: Divider(color: KColors.dividerText)),
+        Expanded(child: Divider(color: KColors.grey)),
       ],
     );
   }

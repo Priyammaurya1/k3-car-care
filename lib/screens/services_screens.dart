@@ -30,16 +30,21 @@ class ServicesScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
           child: ListView.builder(
+            
             itemCount: services.length,
             itemBuilder: (context, index) {
               return ServiceCard(
+                
                 service: services[index],
                 onBookPressed: () {},
               );
             },
           ),
+        ),
         ),
       ),
     );

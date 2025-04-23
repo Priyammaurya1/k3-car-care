@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:k3carcare/models/horizontal_scroll.dart';
+import 'package:k3carcare/widgets/appointment_card.dart';
+import 'package:k3carcare/widgets/banner_slider.dart';
+import 'package:k3carcare/widgets/services_divider.dart';
 
 class HomeScreenNew extends StatelessWidget {
   const HomeScreenNew({super.key});
@@ -12,131 +15,135 @@ class HomeScreenNew extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 16),
-                  height: MediaQuery.of(context).size.height / 6,
-                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.only(top: 24, bottom: 16),
+                  width: double.infinity,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               Text(
-                                'Tarna,',
+                                'Tarna',
                                 style: TextStyle(
-                                  // fontStyle: FontStyle.italic,
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w600,
                                   fontFamily: "Poppins",
                                 ),
                               ),
+                              SizedBox(height: 4),
                               Text(
-                                "Shivpur,Varanasi - 221003",
+                                "Shivpur, Varanasi - 221003",
                                 style: TextStyle(
-                                  // fontStyle: FontStyle.italic,
-                                  color: Colors.black,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontFamily: "Poppins",
+                                  color: Colors.black87,
                                 ),
                               ),
                             ],
                           ),
                           Container(
-                            width: 50,
-                            height: 50,
+                            width: 48,
+                            height: 48,
                             decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.grey.shade300,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.shade400,
-                                  spreadRadius: -10,
-                                  blurRadius: 30,
-                                  offset: const Offset(0, 15),
+                                  color: Colors.grey.withValues(alpha: 0.4),
+                                  blurRadius: 8,
+                                  offset: Offset(0, 4),
                                 ),
                               ],
-                              color: Colors.grey.shade400,
-                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.person,
+                              size: 28,
+                              color: Colors.black54,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          height: 50,
-                          width: 400,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade400,
-                                spreadRadius: -10,
-                                blurRadius: 40,
-                                offset: const Offset(0, 10),
-                              ),
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(Icons.search),
-                              SizedBox(width: 8),
-                              Expanded(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    hintText: 'Search item',
-                                    border: InputBorder.none,
-                                  ),
+                      const SizedBox(height: 20),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withValues(alpha: 0.3),
+                              blurRadius: 12,
+                              offset: Offset(0, 6),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: const [
+                            Icon(Icons.search, color: Colors.grey),
+                            SizedBox(width: 10),
+                            Expanded(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Search for Items',
+                                  hintStyle: TextStyle(fontFamily: 'Poppins', color: Colors.grey),
+                                  border: InputBorder.none,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 24),
-                // BannerSlider(
-                //   height: 200.0, // Set your desired height
-                //   assetPaths: [
-                //     'assets/images/banner/banner-1.png',
-                //     'assets/images/banner/banner-2.png',
-                //     'assets/images/banner/banner-3.png',
-                //     'assets/images/banner/banner-4.png',
-                //   ],
-                //   autoScrollDuration: const Duration(seconds: 3),
-                // ),
+                const SizedBox(height: 15),
+                const AppointmentCard(date: "Today", time: "2:35 pm"),
+                const SizedBox(height: 15),
+                const CustomDivider(text: 'Banners'),
+                const SizedBox(height: 15),
 
-                /// Banner
-                SizedBox(height: 24),
+                BannerSlider(           //////////  BANNER SLIDER //////////
+                  height: 200.0,
+                  assetPaths: [
+                    'assets/images/banner/banner-1.png',
+                    'assets/images/banner/banner-2.png',
+                    'assets/images/banner/banner-3.png',
+                    'assets/images/banner/banner-4.png',
+                  ],
+                  autoScrollDuration: const Duration(seconds: 3),
+                ),
+                SizedBox(height: 15),
+                const CustomDivider(text: 'Services'),
+                const SizedBox(height: 15),
                 Text(
                   "Services",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
+                    fontFamily: 'Poppins',
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                  height: MediaQuery.of(context).size.height / 3.9,
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  height: MediaQuery.of(context).size.height / 2.9,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: (){},
+                            onTap: () {},
                             child: Container(
                               padding: EdgeInsets.only(
                                 top: 10,
@@ -144,7 +151,7 @@ class HomeScreenNew extends StatelessWidget {
                                 bottom: 10,
                                 right: 10,
                               ),
-                              height: 80,
+                              height: 130,
                               width: MediaQuery.of(context).size.width / 2.4,
                               decoration: BoxDecoration(
                                 boxShadow: [
@@ -178,8 +185,9 @@ class HomeScreenNew extends StatelessWidget {
                                         "Car\nServices",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16,
+                                          fontSize: 19,
                                           fontWeight: FontWeight.bold,
+                                          fontFamily: 'Poppins',
                                         ),
                                       ),
                                     ],
@@ -192,7 +200,7 @@ class HomeScreenNew extends StatelessWidget {
                                         image: AssetImage(
                                           'assets/images/service.png',
                                         ),
-                                        height: 40,
+                                        height: 38,
                                       ),
                                     ],
                                   ),
@@ -208,7 +216,7 @@ class HomeScreenNew extends StatelessWidget {
                               right: 10,
                               bottom: 10,
                             ),
-                            height: 80,
+                            height: 130,
                             width: MediaQuery.of(context).size.width / 2.4,
                             decoration: BoxDecoration(
                               boxShadow: [
@@ -242,8 +250,9 @@ class HomeScreenNew extends StatelessWidget {
                                       "Car\nWash",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 19,
                                         fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins',
                                       ),
                                     ),
                                   ],
@@ -256,7 +265,7 @@ class HomeScreenNew extends StatelessWidget {
                                       image: AssetImage(
                                         'assets/images/wash.png',
                                       ),
-                                      height: 55,
+                                      height: 60,
                                     ),
                                   ],
                                 ),
@@ -275,7 +284,7 @@ class HomeScreenNew extends StatelessWidget {
                               right: 10,
                               bottom: 10,
                             ),
-                            height: 80,
+                            height: 130,
                             width: MediaQuery.of(context).size.width / 2.4,
                             decoration: BoxDecoration(
                               boxShadow: [
@@ -309,8 +318,9 @@ class HomeScreenNew extends StatelessWidget {
                                       "Car\nBatteries",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 19,
                                         fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins',
                                       ),
                                     ),
                                   ],
@@ -323,7 +333,7 @@ class HomeScreenNew extends StatelessWidget {
                                       image: AssetImage(
                                         'assets/images/battery.png',
                                       ),
-                                      height: 45,
+                                      height: 54,
                                     ),
                                   ],
                                 ),
@@ -337,7 +347,7 @@ class HomeScreenNew extends StatelessWidget {
                               left: 10,
                               bottom: 10,
                             ),
-                            height: 80,
+                            height: 130,
                             width: MediaQuery.of(context).size.width / 2.4,
                             decoration: BoxDecoration(
                               boxShadow: [
@@ -371,8 +381,9 @@ class HomeScreenNew extends StatelessWidget {
                                       "K3\nGold Plan",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 19,
                                         fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins',
                                       ),
                                     ),
                                   ],
@@ -385,7 +396,7 @@ class HomeScreenNew extends StatelessWidget {
                                       image: AssetImage(
                                         'assets/images/car-wash.png',
                                       ),
-                                      height: 45,
+                                      height: 47.6,
                                     ),
                                   ],
                                 ),
@@ -397,7 +408,8 @@ class HomeScreenNew extends StatelessWidget {
                     ],
                   ),
                 ),
-                // SizedBox(height: 24),
+                const SizedBox(height: 10),
+                const CustomDivider(text: 'Store'),
                 Row(
                   children: [
                     Text(
@@ -406,6 +418,7 @@ class HomeScreenNew extends StatelessWidget {
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
+                        fontFamily: 'Poppins',
                       ),
                     ),
                     Spacer(),
@@ -413,13 +426,28 @@ class HomeScreenNew extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         'See More',
-                        style: TextStyle(color: Colors.red),
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                     ),
                   ],
                 ),
                 HorizontalServicesList(),
-                SizedBox(height: 24),
+                const SizedBox(height: 10),
+                const CustomDivider(text: 'Warranty'),
+                const SizedBox(height: 10),
+                Text(
+                  'Original Spare Parts',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                SizedBox(height: 10),
                 Container(
                   padding: EdgeInsets.only(
                     top: 15,
@@ -427,7 +455,7 @@ class HomeScreenNew extends StatelessWidget {
                     right: 15,
                     left: 10,
                   ),
-                  height: MediaQuery.of(context).size.height / 7,
+                  height: MediaQuery.of(context).size.height / 9,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -437,16 +465,12 @@ class HomeScreenNew extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Original Spare Parts',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
                         "Extended Warranty with K3 Car Care",
-                        style: TextStyle(color: Colors.grey[600], fontSize: 15),
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                        ),
                       ),
                       SizedBox(height: 10),
                       SingleChildScrollView(
