@@ -32,7 +32,7 @@ class HomeScreenNew extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
                               Text(
-                                'Tarna',
+                                '📍Tarna',
                                 style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.w600,
@@ -64,18 +64,22 @@ class HomeScreenNew extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: Icon(
-                              Icons.person,
-                              size: 28,
-                              color: Colors.black54,
+                            child: ClipOval(
+                              child: Image.asset(
+                              'assets/images/pfp.png',
+                              fit: BoxFit.cover,
+                              width: 48,
+                              height: 48,
+                              ),
                             ),
+                            
                           ),
                         ],
                       ),
                       const SizedBox(height: 20),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        height: 50,
+                        height: 47,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12),
@@ -136,7 +140,7 @@ class HomeScreenNew extends StatelessWidget {
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                  height: MediaQuery.of(context).size.height / 2.9,
+                  height: MediaQuery.of(context).size.height / 2.8,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     children: [
@@ -149,7 +153,7 @@ class HomeScreenNew extends StatelessWidget {
                                 top: 10,
                                 left: 10,
                                 bottom: 10,
-                                right: 10,
+                                right: 5,
                               ),
                               height: 130,
                               width: MediaQuery.of(context).size.width / 2.4,
@@ -200,7 +204,8 @@ class HomeScreenNew extends StatelessWidget {
                                         image: AssetImage(
                                           'assets/images/service.png',
                                         ),
-                                        height: 38,
+                                        // height: 38,
+                                        height: MediaQuery.of(context).size.height/23.3,
                                       ),
                                     ],
                                   ),
@@ -378,7 +383,7 @@ class HomeScreenNew extends StatelessWidget {
                                 Column(
                                   children: [
                                     Text(
-                                      "K3\nGold Plan",
+                                      "K3 Gold\nPlan",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 19,
@@ -396,7 +401,7 @@ class HomeScreenNew extends StatelessWidget {
                                       image: AssetImage(
                                         'assets/images/car-wash.png',
                                       ),
-                                      height: 47.6,
+                                      height: MediaQuery.of(context).size.height/18,
                                     ),
                                   ],
                                 ),
@@ -455,7 +460,7 @@ class HomeScreenNew extends StatelessWidget {
                     right: 15,
                     left: 10,
                   ),
-                  height: MediaQuery.of(context).size.height / 9,
+                  height: MediaQuery.of(context).size.height / 8.6,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),

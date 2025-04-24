@@ -11,8 +11,8 @@ class CategoryGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 4,
-      mainAxisSpacing: 16,
-      crossAxisSpacing: 16,
+      mainAxisSpacing: 10,
+      crossAxisSpacing: 10,
       children: categories.map((category) => CategoryItem(category: category)).toList(),
     );
   }
@@ -44,10 +44,10 @@ class CategoryItem extends StatelessWidget {
         Text(
           category.name,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: TextStyle(
             color: KColors.textTitle,
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
+            fontSize: MediaQuery.of(context).size.width/35,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: const NavigationMenu(),
+      home: const LoginScreen(),
     );
   }
 }

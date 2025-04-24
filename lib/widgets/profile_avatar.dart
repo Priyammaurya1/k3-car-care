@@ -13,24 +13,24 @@ class ProfileAvatar extends StatelessWidget {
       children: [
         Container(
           width: screenWidth,
-          height: 180,
+          height: 240,
           decoration: BoxDecoration(
             color: KColors.primary,
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(200),
-              bottomRight: Radius.circular(200),
+              bottomLeft: Radius.circular(240),
+              bottomRight: Radius.circular(240),
             ),
             boxShadow: [
               BoxShadow(
                 color: KColors.primary,
-                blurRadius: 10,
+                blurRadius: 13,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 120),
+          padding: const EdgeInsets.only(top: 170),
           child: Container(
             width: 100,
             height: 100,
@@ -47,8 +47,8 @@ class ProfileAvatar extends StatelessWidget {
               ],
             ),
             child: ClipOval(
-              child: Image.network(
-                'https://via.placeholder.com/100',
+              child: Image.asset(
+                'assets/images/pfp.png',
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Container(
