@@ -18,8 +18,7 @@ class SignupScreen extends StatelessWidget {
             ClipPath(
               clipper: KCustomCurvedEdges(),
               child: SizedBox(
-               
-                height: MediaQuery.of(context).size.height / 1.8,
+                height: MediaQuery.of(context).size.height / 1.75,
                 width: MediaQuery.of(context).size.width,
                 child: Image(
                   image:
@@ -97,11 +96,11 @@ class SignupScreen extends StatelessWidget {
                             backgroundColor: KColors.primary,
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
+                             Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                builder: (context) => const NavigationMenu(),
+                              builder: (context) => const NavigationMenu(),
                               ),
+                              (route) => false,
                             );
                           },
                           child: const Text(
@@ -115,7 +114,6 @@ class SignupScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
 
                     /// Create Account
                     Center(

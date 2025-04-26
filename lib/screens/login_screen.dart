@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
             ClipPath(
               clipper: KCustomCurvedEdges(),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height / 1.6,
+                height: MediaQuery.of(context).size.height / 1.75,
                 width: MediaQuery.of(context).size.width,
                 child: Image(
                   image:
@@ -42,6 +42,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 10),
 
                     /// Email
                     TextFormField(
@@ -50,6 +51,7 @@ class LoginScreen extends StatelessWidget {
                         labelText: 'Email',
                       ),
                     ),
+                    SizedBox(height: 10),
 
                     /// Password
                     TextFormField(
@@ -60,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                         suffixIcon: Icon(Iconsax.eye_slash),
                       ),
                     ),
-                    // const SizedBox(height: 16),
+                    SizedBox(height: 10),
 
                     /// Remember Me & Forgot Password
                     Row(
@@ -81,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 10),
 
                     /// Login Button
                     Center(
@@ -91,14 +93,14 @@ class LoginScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: KColors.primary,
                           ),
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
+                            onPressed: () {
+                            Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                builder: (context) => const NavigationMenu(),
+                              builder: (context) => const NavigationMenu(),
                               ),
+                              (route) => false,
                             );
-                          },
+                            },
                           child: const Text(
                             "LogIn",
                             style: TextStyle(
@@ -110,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
 
                     /// Create Account
                     Center(

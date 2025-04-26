@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/screens/onboarding.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=> NavigationMenu()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_)=> OnBoardingScreen()));
     });
   }
 
