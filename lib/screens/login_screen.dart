@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/screens/forgot_password_screen.dart';
 import 'package:k3carcare/screens/signup_screen.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/widgets/curved_edges.dart';
@@ -75,7 +76,14 @@ class LoginScreen extends StatelessWidget {
                           ],
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const ForgotPasswordScreen(),
+                              ),
+                            );
+                          },
                           child: Text(
                             'Forget Password?',
                             style: TextStyle(color: KColors.primary),
@@ -93,14 +101,14 @@ class LoginScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: KColors.primary,
                           ),
-                            onPressed: () {
+                          onPressed: () {
                             Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                              builder: (context) => const NavigationMenu(),
+                                builder: (context) => const NavigationMenu(),
                               ),
                               (route) => false,
                             );
-                            },
+                          },
                           child: const Text(
                             "LogIn",
                             style: TextStyle(
