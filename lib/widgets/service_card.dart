@@ -63,14 +63,6 @@ class ServiceCard extends StatelessWidget {
                       color: KColors.textDesc,
                     ),
                   ),
-                  Text(
-                    '\$${service.price.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red.shade700,
-                    ),
-                  ),
                 ],
               ),
             ),

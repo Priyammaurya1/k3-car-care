@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/screens/booking_screen.dart';
 import 'package:k3carcare/utils/colors.dart';
 import '../utils/constants.dart';
 
@@ -17,7 +18,6 @@ class AppointmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: KColors.cardColor,
         borderRadius: BorderRadius.circular(Dimensions.cardRadius),
-        
       ),
       child: Row(
         children: [
@@ -26,12 +26,12 @@ class AppointmentCard extends StatelessWidget {
             children: [
               Text(
                 "Your car's appointment is",
-                style: TextStyle( fontSize: 14, color: KColors.textTitle),
+                style: TextStyle(fontSize: 14, color: KColors.textTitle),
               ),
               const SizedBox(height: Dimensions.tinySpacing),
               Text(
                 "$date at, $time",
-                style:  TextStyle(
+                style: TextStyle(
                   color: KColors.textTitle,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -40,9 +40,20 @@ class AppointmentCard extends StatelessWidget {
             ],
           ),
           SizedBox(width: 18),
-            Spacer(),
-            ElevatedButton(
-            onPressed: () {},
+          Spacer(),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (_) => const ServiceBookingScreen(
+                        buttonText: "Reschedule",
+                        title: "Reschdule Your Booking",
+                      ),
+                ),
+              );
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: KColors.primary,
               shape: RoundedRectangleBorder(

@@ -39,7 +39,7 @@ class HomeScreenNew extends StatelessWidget {
                                   fontFamily: "Poppins",
                                 ),
                               ),
-                              SizedBox(height: 4),
+                               SizedBox(height: 4),
                               Text(
                                 "Shivpur, Varanasi - 221003",
                                 style: TextStyle(
@@ -110,11 +110,11 @@ class HomeScreenNew extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 15),
-                const AppointmentCard(date: "Today", time: "2:35 pm"),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
+                const AppointmentCard(date: "Today", time: "2:00 pm"),
+                const SizedBox(height: 20),
                 const CustomDivider(text: 'Banners'),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
 
                 BannerSlider(           //////////  BANNER SLIDER //////////
                   height: 200.0,
@@ -126,9 +126,9 @@ class HomeScreenNew extends StatelessWidget {
                   ],
                   autoScrollDuration: const Duration(seconds: 3),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 20),
                 const CustomDivider(text: 'Services'),
-                const SizedBox(height: 15),
+                const SizedBox(height: 20),
                 Text(
                   "Services",
                   style: TextStyle(
@@ -213,7 +213,7 @@ class HomeScreenNew extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Container(
                             padding: EdgeInsets.only(
                               top: 10,
@@ -279,7 +279,7 @@ class HomeScreenNew extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 25),
                       Row(
                         children: [
                           Container(
@@ -413,7 +413,7 @@ class HomeScreenNew extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const CustomDivider(text: 'Store'),
                 Row(
                   children: [
@@ -440,9 +440,9 @@ class HomeScreenNew extends StatelessWidget {
                   ],
                 ),
                 HorizontalServicesList(),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 const CustomDivider(text: 'Warranty'),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Text(
                   'Original Spare Parts',
                   style: TextStyle(
@@ -452,7 +452,7 @@ class HomeScreenNew extends StatelessWidget {
                     fontFamily: 'Poppins',
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   padding: EdgeInsets.only(
                     top: 15,
@@ -477,7 +477,7 @@ class HomeScreenNew extends StatelessWidget {
                           fontFamily: 'Poppins',
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
@@ -543,7 +543,9 @@ class HomeScreenNew extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 40),
+                Center(child: const Text("Created for you with ❤", style: TextStyle(color: Colors.grey, fontSize: 15, fontFamily: 'Poppins'))),
+                const SizedBox(height: 20),
               ],
             ),
           ),

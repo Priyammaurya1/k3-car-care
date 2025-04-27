@@ -1,5 +1,3 @@
-// lib/screens/services_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
 import '../models/service_model2.dart';
