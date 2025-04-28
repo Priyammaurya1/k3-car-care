@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:k3carcare/screens/car_selection.dart';
+import 'package:k3carcare/screens/cart_screen.dart';
+
 
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: BrandSelectionScreen(),
+      home: CartScreen(),
     );
   }
 }

@@ -6,6 +6,7 @@ class MenuOption extends StatelessWidget {
   final IconData icon;
   final bool isFirst;
   final bool isLast;
+  final VoidCallback? onTap;
 
   const MenuOption({
     super.key,
@@ -13,47 +14,37 @@ class MenuOption extends StatelessWidget {
     required this.icon,
     this.isFirst = false,
     this.isLast = false,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (!isFirst) const Divider(height: 1),
-        InkWell(
-          onTap: () {
-            // Handle menu option tap
-          },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Row(
-              children: [
-                Icon(
-                  icon,
-                  size: 24,
-                  color: KColors.primary,
-                ),
-                const SizedBox(width: 16),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: KColors.textTitle,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const Spacer(),
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Colors.grey.shade400,
-                ),
-              ],
-            ),
+    return InkWell(
+      onTap: onTap,
+      splashColor: KColors.primary.withValues(alpha:0.2),
+      highlightColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: isFirst ? BorderSide(color: Colors.grey.shade300) : BorderSide.none,
+            bottom: isLast ? BorderSide(color: Colors.grey.shade300) : BorderSide(color: Colors.grey.shade200),
           ),
         ),
-        if (isLast) const Divider(height: 1),
-      ],
+        padding: const EdgeInsets.symmetric(vertical: 18),
+        child: Row(
+          children: [
+            Icon(icon, color: KColors.primary),
+            const SizedBox(width: 16),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

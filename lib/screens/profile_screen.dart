@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:k3carcare/screens/car_selection.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/widgets/company_footer.dart';
 import 'package:k3carcare/widgets/menu_options.dart';
@@ -21,27 +22,47 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 children: [
-                  const MenuOption(
+                  MenuOption(
                     title: 'My Account',
                     icon: Icons.person_outline,
                     isFirst: true,
+                    onTap: () {
+                      // Handle My Account tap
+                    },
                   ),
-                  const MenuOption(
+                  MenuOption(
                     title: 'My Car',
                     icon: Iconsax.car,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const BrandSelectionScreen(),
+                        ),
+                      );
+                    },
                   ),
-                  const MenuOption(
+                  MenuOption(
                     title: 'Settings',
                     icon: Icons.settings_outlined,
+                    onTap: () {
+                      // Handle Settings tap
+                    },
                   ),
-                  const MenuOption(
+                  MenuOption(
                     title: 'Terms and Conditions',
                     icon: Icons.description_outlined,
+                    onTap: () {
+                      // Handle Terms and Conditions tap
+                    },
                   ),
-                  const MenuOption(
+                  MenuOption(
                     title: 'Log Out',
                     icon: Icons.logout_outlined,
                     isLast: true,
+                    onTap: () {
+                      // Handle Log Out tap
+                    },
                   ),
                   const Spacer(),
                   const CompanyFooter(),
