@@ -35,7 +35,7 @@ class NavigationMenu extends StatelessWidget {
             selectedIndex: controller.selectIndex.value,
             onDestinationSelected:
                 (index) => controller.selectIndex.value = index,
-            backgroundColor: const Color.fromARGB(255, 240, 234, 231),
+            backgroundColor: const Color(0xFFF8F9FA),
             indicatorColor: const Color.fromARGB(255, 124, 115, 115).withValues(alpha: 0.1),
             destinations: const [
               NavigationDestination(

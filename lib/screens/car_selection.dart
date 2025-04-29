@@ -391,7 +391,7 @@ class BrandCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 4,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha:0.1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -412,7 +412,7 @@ class BrandCard extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: brand.brandColor.withOpacity(0.1),
+                color: brand.brandColor.withValues(alpha:0.1),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -530,7 +530,7 @@ class ModelCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha:0.1),
       margin: const EdgeInsets.only(bottom: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -555,7 +555,7 @@ class ModelCard extends StatelessWidget {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: brand.brandColor.withOpacity(0.1),
+                    color: brand.brandColor.withValues(alpha:0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -604,7 +604,7 @@ class ModelCard extends StatelessWidget {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                  color: brand.brandColor.withOpacity(0.1),
+                  color: brand.brandColor.withValues(alpha:0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -659,7 +659,7 @@ class ModelDetailScreen extends StatelessWidget {
                       child: Icon(
                         Icons.directions_car,
                         size: 100,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha:0.8),
                       ),
                       // In a real app, use this:
                       // Image.asset(
@@ -675,7 +675,7 @@ class ModelDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withOpacity(0.5),
+                          Colors.black.withValues(alpha: 0.5),
                         ],
                       ),
                     ),
@@ -771,7 +771,7 @@ class ModelDetailScreen extends StatelessWidget {
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: brand.brandColor.withOpacity(0.1),
+                            color: brand.brandColor.withValues(alpha:0.1),
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -789,7 +789,7 @@ class ModelDetailScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )).toList(),
+                  )),
                   const SizedBox(height: 32),
                   
                   // Call to action button
