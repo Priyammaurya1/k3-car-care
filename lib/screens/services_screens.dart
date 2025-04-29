@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k3carcare/models/service_model2.dart';
+import 'package:k3carcare/model/service_model2.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 
 class ServicesScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class ServicesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SectionHeader(title: 'Available Services'),
+              const SectionHeaderr(title: 'Available Services'),
               const SizedBox(height: 16),
               Expanded(
                 child: Container(

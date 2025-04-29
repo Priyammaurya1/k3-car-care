@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/widgets/banner_slider.dart';
+import 'package:k3carcare/widgets/section_header.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -19,36 +21,7 @@ class StoreScreen extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        actions: [
-            Stack(
-            children: [
-              IconButton(
-              icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black87),
-              onPressed: () {},
-              ),
-              Positioned(
-              right: 4,
-              top: 4,
-              child: Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-                ),
-                child: const Text(
-                '2',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-                ),
-              ),
-              ),
-            ],
-            ),
-          
-        ],
+        
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -98,94 +71,59 @@ class StoreScreen extends StatelessWidget {
   }
 
   Widget _buildBannerSlider() {
-    return Container(
-      height: 180,
-      margin: const EdgeInsets.only(bottom: 24),
-      child: PageView.builder(
-        itemBuilder: (context, index) {
-          final actualIndex = index % 4; // Loop through 4 banners
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: _getBannerColor(actualIndex),
-              image: DecorationImage(
-                image: AssetImage('assets/images/banner${actualIndex + 1}.jpg'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.2),
-                  BlendMode.darken,
-                ),
-              ),
-            ),
-            child: Stack(
-              children: [
-                Positioned(
-                  bottom: 20,
-                  left: 20,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        _getBannerTitle(actualIndex),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        _getBannerSubtitle(actualIndex),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-        scrollDirection: Axis.horizontal,
-        controller: PageController(viewportFraction: 0.9),
-        onPageChanged: (index) {},
-        itemCount: null, // Infinite scrolling
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          child: SectionHeaderr(title: 'Special Offers'),
+        ),
+        const SizedBox(height: 12),
+        BannerSlider(
+          height: 180.0,
+          assetPaths: [
+            'assets/images/banner/banner-1.png',
+            'assets/images/banner/banner-2.png',
+            'assets/images/banner/banner-3.png',
+            'assets/images/banner/banner-4.png',
+          ],
+          autoScrollDuration: const Duration(seconds: 3),
+        ),
+      ],
     );
   }
-
-  Color _getBannerColor(int index) {
-    List<Color> colors = [
-      Colors.blue,
-      Colors.orange,
-      Colors.green,
-      Colors.purple,
-    ];
-    return colors[index % colors.length];
+  
   }
 
-  String _getBannerTitle(int index) {
-    List<String> titles = [
-      'New Arrivals',
-      'Special Offers',
-      'Limited Edition',
-      'Member Deals',
-    ];
-    return titles[index % titles.length];
-  }
+  // Color _getBannerColor(int index) {
+  //   List<Color> colors = [
+  //     Colors.blue,
+  //     Colors.orange,
+  //     Colors.green,
+  //     Colors.purple,
+  //   ];
+  //   return colors[index % colors.length];
+  // }
 
-  String _getBannerSubtitle(int index) {
-    List<String> subtitles = [
-      'Fresh products just for you',
-      'Up to 50% off this week',
-      'Get them while they last',
-      'Exclusive to members only',
-    ];
-    return subtitles[index % subtitles.length];
-  }
+  // String _getBannerTitle(int index) {
+  //   List<String> titles = [
+  //     'New Arrivals',
+  //     'Special Offers',
+  //     'Limited Edition',
+  //     'Member Deals',
+  //   ];
+  //   return titles[index % titles.length];
+  // }
+
+  // String _getBannerSubtitle(int index) {
+  //   List<String> subtitles = [
+  //     'Fresh products just for you',
+  //     'Up to 50% off this week',
+  //     'Get them while they last',
+  //     'Exclusive to members only',
+  //   ];
+  //   return subtitles[index % subtitles.length];
+  // }
 
   Widget _buildCategorySection() {
     return Column(
@@ -419,4 +357,3 @@ class StoreScreen extends StatelessWidget {
     List<double> ratings = [4.8, 4.5, 4.2, 4.7, 4.4, 4.6];
     return ratings[index % ratings.length];
   }
-}

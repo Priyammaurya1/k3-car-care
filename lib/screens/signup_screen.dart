@@ -106,7 +106,7 @@ class SignupScreen extends StatelessWidget {
                           child: const Text(
                             "SignIn",
                             style: TextStyle(
-                              color: KColors.white,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),

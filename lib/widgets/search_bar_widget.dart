@@ -13,18 +13,18 @@ class SearchBarWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             height: 50,
             decoration: BoxDecoration(
-              color: KColors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
             child: const Row(
               children: [
-                Icon(Icons.search,color: KColors.grey),
+                Icon(Icons.search,color: Colors.grey),
                 SizedBox(width: 8),
                 Expanded(
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: 'Search item',
-                      hintStyle: TextStyle(color: KColors.grey),
+                      hintStyle: TextStyle(color:Colors.grey),
                       border: InputBorder.none,
                       
                     ),
@@ -44,7 +44,7 @@ class SearchBarWidget extends StatelessWidget {
           ),
           child: const Icon(
             Icons.tune,
-            color: KColors.white,
+            color: Colors.white,
           ),
         ),
       ],

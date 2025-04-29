@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:k3carcare/models/horizontal_scroll.dart';
+import 'package:k3carcare/model/horizontal_scroll.dart';
 import 'package:k3carcare/widgets/appointment_card.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
 import 'package:k3carcare/widgets/section_header.dart'; // New component
@@ -19,6 +19,7 @@ class HomeScreenNew extends StatelessWidget {
             children: [
               _buildHeader(context),
               _buildAppointmentSection(),
+              SizedBox(height: 5),
               _buildBannerSection(),
               _buildServicesSection(context),
               _buildStoreSection(),
@@ -164,7 +165,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeader(title: 'Your Appointment'),
+          const SectionHeaderr(title: 'Your Appointment'),
           const SizedBox(height: 12),
           const AppointmentCard(date: "Today", time: "2:00 pm"),
         ],
@@ -178,7 +179,7 @@ class HomeScreenNew extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: SectionHeader(title: 'Special Offers'),
+          child: SectionHeaderr(title: 'Special Offers'),
         ),
         const SizedBox(height: 12),
         BannerSlider(
@@ -201,7 +202,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeader(title: 'Our Services'),
+          const SectionHeaderr(title: 'Our Services'),
           const SizedBox(height: 16),
           GridView.count(
             physics: const NeverScrollableScrollPhysics(),
@@ -215,9 +216,9 @@ class HomeScreenNew extends StatelessWidget {
                 rightPadding: false,
                 title: "Regular\nServices",
                 iconPath: 'assets/images/service.png',
-                colors: const [
-                  Color(0xFFEF5350),
-                  Color(0xFFE53935),
+                 colors: const [
+                  Color(0xFFFF7043),
+                  Color(0xFFFF5722),
                 ],
                 onTap: () {},
               ),
@@ -246,8 +247,8 @@ class HomeScreenNew extends StatelessWidget {
                 title: "K3 Gold\nPlan",
                 iconPath: 'assets/images/car-wash.png',
                 colors: const [
-                  Color(0xFFFF7043),
-                  Color(0xFFFF5722),
+                  Color(0xFFEF5350),
+                  Color(0xFFE53935),
                 ],
                 onTap: () {},
               ),
@@ -319,7 +320,7 @@ class HomeScreenNew extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              const SectionHeader(title: 'Store'),
+              const SectionHeaderr(title: 'Store'),
               const Spacer(),
               TextButton(
                 onPressed: () {},
@@ -349,7 +350,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeader(title: 'Original Spare Parts'),
+          const SectionHeaderr(title: 'Original Spare Parts'),
           const SizedBox(height: 14),
           Container(
             padding: const EdgeInsets.all(16),

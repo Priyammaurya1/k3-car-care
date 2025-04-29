@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
-import '../models/service_model2.dart';
+import '../model/service_model2.dart';
 
 class ServiceCard extends StatelessWidget {
   final ServiceModel2 service;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/screens/services_screens.dart';
 import 'package:k3carcare/utils/colors.dart';
-import '../models/service_model.dart';
+import '../model/service_model.dart';
 import '../utils/constants.dart';
 
 class CustomList extends StatelessWidget {
@@ -47,7 +47,7 @@ class CustomList extends StatelessWidget {
                             index != services.length - 1
                                 ? Border(
                                   bottom: BorderSide(
-                                    color: KColors.borderPrimary,
+                                    color: Colors.grey.shade300,
                                     width: 0.90,
                                   ),
                                 )

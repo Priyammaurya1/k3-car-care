@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SectionHeader extends StatelessWidget {
+class SectionHeaderr extends StatelessWidget {
   final String title;
   final TextStyle? titleStyle;
   
-  const SectionHeader({
+  const SectionHeaderr({
     super.key,
     required this.title,
     this.titleStyle,

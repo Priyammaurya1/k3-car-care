@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
-import '../models/category.dart';
+import '../model/category.dart';
 
 class CategoryGrid extends StatelessWidget {
   const CategoryGrid({super.key});

@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SectionHeader(title: 'Account Settings'),
+                  const SectionHeaderr(title: 'Account Settings'),
                   const SizedBox(height: 16),
                   _buildMenuCard([
                     _buildMenuItem(
@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                   
                   const SizedBox(height: 24),
                   
-                  const SectionHeader(title: 'About'),
+                  const SectionHeaderr(title: 'About'),
                   const SizedBox(height: 16),
                   _buildMenuCard([
                     _buildMenuItem(

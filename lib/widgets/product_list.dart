@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/utils/colors.dart';
-import '../models/product.dart';
+import '../model/product.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key});

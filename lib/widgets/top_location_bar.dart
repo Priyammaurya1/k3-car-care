@@ -73,7 +73,7 @@ class TopLocationBar extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: Dimensions.itemSpacing),
             decoration: BoxDecoration(
-              color: KColors.white,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(Dimensions.cardRadius),
               border: Border.all(color: Colors.grey.shade300),
             ),
