@@ -10,9 +10,9 @@ class AppointmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Premium color palette based on red theme
-    const Color primaryRed = Color(0xFFE53935); // Using a premium shade of red
-    const Color darkRed = Color(0xFFC62828); // Darker red for depth
-    const Color charcoal = Color(0xFF2C2C2C); // Deep charcoal for contrast
+    const Color primaryRed = Color(0xFFE53935);
+    const Color darkRed = Color(0xFFC62828);
+    const Color charcoal = Color(0xFF2C2C2C);
 
     return Container(
       width: double.infinity,
@@ -217,34 +217,8 @@ class AppointmentCard extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-
-            // Action buttons with premium styling
             Row(
               children: [
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      // Handle cancel
-                    },
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      backgroundColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: Colors.grey[700]!, width: 1),
-                      ),
-                    ),
-                    child: Text(
-                      'Cancel',
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 14),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
