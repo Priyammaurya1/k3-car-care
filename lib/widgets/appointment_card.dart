@@ -243,8 +243,11 @@ class AppointmentCard extends StatelessWidget {
                           MaterialPageRoute(
                             builder:
                                 (_) => const ServiceBookingScreen(
-                                  buttonText: "Reschedule",
                                   title: "Reschedule Your Booking",
+                                  buttonText: "Reschedule",
+                                  aboveButtonText: "Reschedule Booking to",
+                                  confirmDialougeTitle: "Confirm Rescheduling?",
+                                  confirmText: "Rescheduling Confirmed",
                                 ),
                           ),
                         );
