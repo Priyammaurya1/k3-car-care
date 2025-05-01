@@ -247,7 +247,7 @@ class AppointmentCard extends StatelessWidget {
                                   buttonText: "Reschedule",
                                   aboveButtonText: "Reschedule Booking to",
                                   confirmDialougeTitle: "Confirm Rescheduling?",
-                                  confirmText: "Rescheduling Confirmed",
+                                  
                                 ),
                           ),
                         );

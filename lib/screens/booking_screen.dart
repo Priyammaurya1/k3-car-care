@@ -8,14 +8,15 @@ class ServiceBookingScreen extends StatefulWidget {
     required this.buttonText,
     required this.title,
     required this.aboveButtonText,
-    required this.confirmDialougeTitle, required this.confirmText,
+    required this.confirmDialougeTitle,
+   
   });
 
   final String title;
   final String buttonText;
   final String aboveButtonText;
   final String confirmDialougeTitle;
-  final String confirmText;
+  
 
   @override
   State<ServiceBookingScreen> createState() => _ServiceBookingScreenState();
@@ -920,7 +921,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      widget.confirmText,
+                                      "Booking Confirmed!",
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 14,
