@@ -23,14 +23,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit_outlined, color: Color(0xFF757575)),
-            onPressed: () {
-              // Handle edit profile
-            },
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(

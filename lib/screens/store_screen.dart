@@ -1,4 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:k3carcare/common/rounded_container.dart';
+import 'package:k3carcare/common/rounded_images.dart';
+import 'package:k3carcare/text/title_text.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 
@@ -33,10 +38,24 @@ class StoreScreen extends StatelessWidget {
             _buildBannerSlider(),
 
             // Categories Section
-            _buildCategorySection(), 
-            
+            _buildCategorySection(),
+
             // Products Section
-            // _buildProductsSection(),              /////////////////////IGNORED///////////////////////
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SectionHeaderr(title: 'Featured Products'),
+            ),
+            GridView.builder(
+              itemCount: products.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                mainAxisExtent: 293,
+              ),
+              itemBuilder: (_, index) => _buildProductsSection(products[index]),
+            ),
           ],
         ),
       ),
@@ -155,9 +174,14 @@ Widget _buildCategorySection() {
                     ),
                     child: Center(
                       // child: Image(image: AssetImage(''), fit: BoxFit.cover, color: Colors.black,),
-                      child: Icon(Icons.category, color: Colors.black, size: 24),
+                      child: Icon(
+                        Icons.category,
+                        color: Colors.black,
+                        size: 24,
+                      ),
                     ),
                   ),
+
                   /// Text
                   const SizedBox(height: 6),
                   SizedBox(
@@ -173,193 +197,211 @@ Widget _buildCategorySection() {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  
                 ],
               ),
             );
           },
         ),
       ),
-     
     ],
   );
 }
 
-Widget _buildCategoryItem(String title, IconData icon, Color color) {
-  return Column(
-    children: [
-      Container(
-        padding: const EdgeInsets.all(12),
+Widget _buildProductsSection(Product product) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    child: GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: 180,
+        padding: const EdgeInsets.only(top: 1, left: 1, right: 1),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
-          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.1),
+              blurRadius: 50,
+              spreadRadius: 7,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
         ),
-        child: Icon(icon, color: color, size: 24),
-      ),
-      const SizedBox(height: 6),
-      Text(
-        title,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-          color: Colors.black87,
-        ),
-      ),
-    ],
-  );
-}
-
-Widget _buildProductsSection() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            const Text(
-              'Popular Products',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+            MpRoundedContainer(
+              height: 180,
+              padding: const EdgeInsets.all(8),
+              backgroundColor: Colors.white,
+              child: Stack(
+                children: [
+                  MpRoundedImage(
+                    imageUrl: product.imageUrl,
+                    applyImageRadius: true,
+                  ),
+                  Positioned(
+                    top: 12,
+                    child: MpRoundedContainer(
+                      radius: 8,
+                      backgroundColor: Colors.yellow.withOpacity(0.8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      child: Text(
+                        "${product.discount}%",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.white,
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Iconsax.heart5, color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'See All',
-                style: TextStyle(color: Colors.blue),
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  KProductTitleText(title: product.title, smallSize: true),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        product.brand,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      ),
+                      const SizedBox(width: 4),
+                      Icon(Iconsax.verify5, color: Colors.blue, size: 12),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '\$${product.price}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(16),
+                          ),
+                        ),
+                        child: const SizedBox(
+                          width: 38.4,
+                          height: 38.4,
+                          child: Center(
+                            child: Icon(Iconsax.add, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
         ),
       ),
-      const SizedBox(height: 16),
-      GridView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.75,
-          crossAxisSpacing: 16,
-          mainAxisSpacing: 16,
-        ),
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return _buildProductCard(
-            title: _getProductName(index),
-            price: _getProductPrice(index),
-            rating: _getProductRating(index),
-            imageIndex: index + 1,
-          );
-        },
-      ),
-      const SizedBox(height: 24),
-    ],
-  );
-}
-
-Widget _buildProductCard({
-  required String title,
-  required double price,
-  required double rating,
-  required int imageIndex,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.05),
-          blurRadius: 10,
-          offset: const Offset(0, 3),
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Product Image
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(16),
-              ),
-              image: DecorationImage(
-                image: AssetImage('assets/images/product$imageIndex.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-
-        // Product Info
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Colors.black87,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 6),
-              Text(
-                '\$${price.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Row(
-                children: [
-                  const Icon(Icons.star, size: 16, color: Colors.amber),
-                  const SizedBox(width: 4),
-                  Text(
-                    rating.toString(),
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
     ),
   );
 }
 
-String _getProductName(int index) {
-  List<String> names = [
-    'Wireless Earbuds',
-    'Smart Watch',
-    'Leather Wallet',
-    'Portable Charger',
-    'Fitness Tracker',
-    'Sunglasses',
-  ];
-  return names[index % names.length];
+class Product {
+  final String title;
+  final String imageUrl;
+  final String brand;
+  final double price;
+  final int discount;
+
+  Product({
+    required this.title,
+    required this.imageUrl,
+    required this.brand,
+    required this.price,
+    required this.discount,
+  });
 }
 
-double _getProductPrice(int index) {
-  List<double> prices = [59.99, 129.99, 39.99, 49.99, 89.99, 79.99];
-  return prices[index % prices.length];
-}
-
-double _getProductRating(int index) {
-  List<double> ratings = [4.8, 4.5, 4.2, 4.7, 4.4, 4.6];
-  return ratings[index % ratings.length];
-}
+final List<Product> products = [
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  Product(
+    title: 'AlleXtreme Accessories Kit for Bike',
+    imageUrl: 'assets/images/bike-kit.png',
+    brand: 'AlleXtreme',
+    price: 35.5,
+    discount: 25,
+  ),
+  // Add 2 more for 4 total
+];
