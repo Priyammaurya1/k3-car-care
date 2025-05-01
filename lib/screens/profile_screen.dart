@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/screens/car_selection.dart';
+import 'package:k3carcare/screens/payment_history_screen.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -63,6 +64,14 @@ class ProfileScreen extends StatelessWidget {
                       isLast: true,
                       onTap: () {
                         // Handle Settings tap
+                      },
+                    ),
+                    _buildMenuItem(
+                      title: 'Payment History',
+                      icon: Icons.credit_card,
+                      isLast: true,
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> const PaymentHistoryScreen()));
                       },
                     ),
                   ]),

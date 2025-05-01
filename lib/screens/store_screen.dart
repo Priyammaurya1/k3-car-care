@@ -303,7 +303,7 @@ Widget _buildProductsSection(Product product) {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Colors.redAccent,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(12),
                             bottomRight: Radius.circular(16),
