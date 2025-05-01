@@ -95,7 +95,6 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
           primary: _primaryColor,
           secondary: _accentColor,
           surface: _surfaceColor,
-          background: _backgroundColor,
         ),
         useMaterial3: true,
         fontFamily: 'Poppins',
