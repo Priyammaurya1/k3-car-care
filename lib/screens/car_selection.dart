@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/utils/colors.dart';
 
 class CarBrand {
   final String id;
@@ -38,39 +39,39 @@ final List<CarBrand> carBrands = [
     id: '1',
     name: 'Toyota',
     logoUrl: 'assets/logos/toyota.png',
-    brandColor: Color(0xFFE50000),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: 'Camry', 
+        id: '1',
+        name: 'Camry',
         imageUrl: 'assets/models/camry.png',
         description: 'A midsize sedan with excellent reliability',
         features: ['Fuel Efficient', 'Spacious Interior', 'Advanced Safety'],
       ),
       CarModel(
-        id: '2', 
-        name: 'Corolla', 
+        id: '2',
+        name: 'Corolla',
         imageUrl: 'assets/models/corolla.png',
         description: 'Compact sedan with great value',
         features: ['Affordable', 'Low Maintenance', 'Good MPG'],
       ),
       CarModel(
-        id: '3', 
-        name: 'RAV4', 
+        id: '3',
+        name: 'RAV4',
         imageUrl: 'assets/models/rav4.png',
         description: 'Popular compact SUV with versatility',
         features: ['AWD Available', 'Cargo Space', 'Hybrid Option'],
       ),
       CarModel(
-        id: '4', 
-        name: 'Highlander', 
+        id: '4',
+        name: 'Highlander',
         imageUrl: 'assets/models/highlander.png',
         description: 'Three-row family SUV',
         features: ['Seats 7-8', 'Safety Features', 'Comfortable Ride'],
       ),
       CarModel(
-        id: '5', 
-        name: 'Tacoma', 
+        id: '5',
+        name: 'Tacoma',
         imageUrl: 'assets/models/tacoma.png',
         description: 'Midsize pickup with off-road capability',
         features: ['Durable', 'Off-Road Ready', 'Towing Capacity'],
@@ -81,39 +82,39 @@ final List<CarBrand> carBrands = [
     id: '2',
     name: 'Honda',
     logoUrl: 'assets/logos/honda.png',
-    brandColor: Color(0xFF0038A8),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: 'Civic', 
+        id: '1',
+        name: 'Civic',
         imageUrl: 'assets/models/civic.png',
         description: 'Sporty compact with modern design',
         features: ['Fun to Drive', 'Efficient', 'Tech Features'],
       ),
       CarModel(
-        id: '2', 
-        name: 'Accord', 
+        id: '2',
+        name: 'Accord',
         imageUrl: 'assets/models/accord.png',
         description: 'Award-winning midsize sedan',
         features: ['Spacious', 'Refined Interior', 'Reliable'],
       ),
       CarModel(
-        id: '3', 
-        name: 'CR-V', 
+        id: '3',
+        name: 'CR-V',
         imageUrl: 'assets/models/crv.png',
         description: 'Versatile compact SUV',
         features: ['Comfortable', 'Cargo Room', 'Fuel Efficient'],
       ),
       CarModel(
-        id: '4', 
-        name: 'Pilot', 
+        id: '4',
+        name: 'Pilot',
         imageUrl: 'assets/models/pilot.png',
         description: 'Three-row family SUV',
         features: ['Spacious', 'AWD Available', 'Safety Features'],
       ),
       CarModel(
-        id: '5', 
-        name: 'HR-V', 
+        id: '5',
+        name: 'HR-V',
         imageUrl: 'assets/models/hrv.png',
         description: 'Subcompact SUV with versatility',
         features: ['Magic Seats', 'Efficient', 'Affordable'],
@@ -124,39 +125,39 @@ final List<CarBrand> carBrands = [
     id: '3',
     name: 'Ford',
     logoUrl: 'assets/logos/ford.png',
-    brandColor: Color(0xFF003478),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: 'F-150', 
+        id: '1',
+        name: 'F-150',
         imageUrl: 'assets/models/f150.png',
         description: 'America\'s best-selling pickup truck',
         features: ['Tough', 'Powerful', 'Multiple Engine Options'],
       ),
       CarModel(
-        id: '2', 
-        name: 'Mustang', 
+        id: '2',
+        name: 'Mustang',
         imageUrl: 'assets/models/mustang.png',
         description: 'Iconic American sports car',
         features: ['Powerful', 'Historic', 'Driver Focused'],
       ),
       CarModel(
-        id: '3', 
-        name: 'Explorer', 
+        id: '3',
+        name: 'Explorer',
         imageUrl: 'assets/models/explorer.png',
         description: 'Popular three-row SUV',
         features: ['Spacious', 'Capable', 'Family Friendly'],
       ),
       CarModel(
-        id: '4', 
-        name: 'Escape', 
+        id: '4',
+        name: 'Escape',
         imageUrl: 'assets/models/escape.png',
         description: 'Versatile compact SUV',
         features: ['Efficient', 'Tech Features', 'Comfortable'],
       ),
       CarModel(
-        id: '5', 
-        name: 'Bronco', 
+        id: '5',
+        name: 'Bronco',
         imageUrl: 'assets/models/bronco.png',
         description: 'Rugged off-road SUV',
         features: ['Off-Road Ready', 'Removable Top', 'Adventure Vehicle'],
@@ -167,39 +168,39 @@ final List<CarBrand> carBrands = [
     id: '4',
     name: 'BMW',
     logoUrl: 'assets/logos/bmw.png',
-    brandColor: Color(0xFF1C69D4),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: '3 Series', 
+        id: '1',
+        name: '3 Series',
         imageUrl: 'assets/models/3series.png',
         description: 'Luxury sports sedan',
         features: ['Dynamic Handling', 'Luxury Interior', 'Advanced Tech'],
       ),
       CarModel(
-        id: '2', 
-        name: '5 Series', 
+        id: '2',
+        name: '5 Series',
         imageUrl: 'assets/models/5series.png',
         description: 'Executive luxury sedan',
         features: ['Comfort', 'Premium Features', 'Powerful Engines'],
       ),
       CarModel(
-        id: '3', 
-        name: 'X3', 
+        id: '3',
+        name: 'X3',
         imageUrl: 'assets/models/x3.png',
         description: 'Compact luxury SUV',
         features: ['Agile', 'Versatile', 'Premium Quality'],
       ),
       CarModel(
-        id: '4', 
-        name: 'X5', 
+        id: '4',
+        name: 'X5',
         imageUrl: 'assets/models/x5.png',
         description: 'Midsize luxury SUV',
         features: ['Spacious', 'High-End Features', 'Refined Driving'],
       ),
       CarModel(
-        id: '5', 
-        name: 'i4', 
+        id: '5',
+        name: 'i4',
         imageUrl: 'assets/models/i4.png',
         description: 'All-electric gran coupe',
         features: ['Electric', 'Performance', 'Long Range'],
@@ -210,39 +211,39 @@ final List<CarBrand> carBrands = [
     id: '5',
     name: 'Mercedes',
     logoUrl: 'assets/logos/mercedes.png',
-    brandColor: Color(0xFF242424),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: 'C-Class', 
+        id: '1',
+        name: 'C-Class',
         imageUrl: 'assets/models/cclass.png',
         description: 'Compact luxury sedan',
         features: ['Refined', 'Elegant', 'Comfortable'],
       ),
       CarModel(
-        id: '2', 
-        name: 'E-Class', 
+        id: '2',
+        name: 'E-Class',
         imageUrl: 'assets/models/eclass.png',
         description: 'Executive luxury sedan',
         features: ['Premium Interior', 'Advanced Tech', 'Smooth Ride'],
       ),
       CarModel(
-        id: '3', 
-        name: 'GLC', 
+        id: '3',
+        name: 'GLC',
         imageUrl: 'assets/models/glc.png',
         description: 'Compact luxury SUV',
         features: ['Stylish', 'Luxurious', 'Capable'],
       ),
       CarModel(
-        id: '4', 
-        name: 'GLE', 
+        id: '4',
+        name: 'GLE',
         imageUrl: 'assets/models/gle.png',
         description: 'Midsize luxury SUV',
         features: ['Spacious', 'Premium Features', 'Comfortable'],
       ),
       CarModel(
-        id: '5', 
-        name: 'S-Class', 
+        id: '5',
+        name: 'S-Class',
         imageUrl: 'assets/models/sclass.png',
         description: 'Flagship luxury sedan',
         features: ['Ultimate Luxury', 'Cutting-Edge Tech', 'Prestige'],
@@ -253,39 +254,39 @@ final List<CarBrand> carBrands = [
     id: '6',
     name: 'Tesla',
     logoUrl: 'assets/logos/tesla.png',
-    brandColor: Color(0xFFE82127),
+    brandColor: KColors.primaryLight,
     models: [
       CarModel(
-        id: '1', 
-        name: 'Model 3', 
+        id: '1',
+        name: 'Model 3',
         imageUrl: 'assets/models/model3.png',
         description: 'Popular electric sedan',
         features: ['Long Range', 'Fast Acceleration', 'Autopilot'],
       ),
       CarModel(
-        id: '2', 
-        name: 'Model Y', 
+        id: '2',
+        name: 'Model Y',
         imageUrl: 'assets/models/modely.png',
         description: 'Electric compact SUV',
         features: ['Spacious', 'Performance', 'Advanced Tech'],
       ),
       CarModel(
-        id: '3', 
-        name: 'Model S', 
+        id: '3',
+        name: 'Model S',
         imageUrl: 'assets/models/models.png',
         description: 'Premium electric sedan',
         features: ['Ludicrous Speed', 'Long Range', 'Premium Interior'],
       ),
       CarModel(
-        id: '4', 
-        name: 'Model X', 
+        id: '4',
+        name: 'Model X',
         imageUrl: 'assets/models/modelx.png',
         description: 'Premium electric SUV',
         features: ['Falcon Doors', 'Family Sized', 'All-Electric'],
       ),
       CarModel(
-        id: '5', 
-        name: 'Cybertruck', 
+        id: '5',
+        name: 'Cybertruck',
         imageUrl: 'assets/models/cybertruck.png',
         description: 'Futuristic electric pickup',
         features: ['Unique Design', 'Stainless Steel', 'Electric Performance'],
@@ -302,38 +303,84 @@ class BrandSelectionScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         elevation: 0,
-        title: const Text(
-          'Select Your Car',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Color(0xFF303030),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Color(0xFF303030)),
-          onPressed: () {
-            // Menu functionality would go here
-          },
+        title: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Car\'s Brand',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'Select from a wide range of Brands',
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.8),
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.help_outline, color: Color(0xFF303030)),
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(Icons.search, color: Colors.white, size: 20),
+            ),
             onPressed: () {
-              // Help functionality would go here
+              // will implement search functionality here
             },
           ),
+          const SizedBox(width: 16),
         ],
+
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+              padding: const EdgeInsets.fromLTRB(24, 10, 24, 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -391,10 +438,8 @@ class BrandCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 4,
-      shadowColor: Colors.black.withValues(alpha:0.1),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
@@ -412,7 +457,7 @@ class BrandCard extends StatelessWidget {
               width: 80,
               height: 80,
               decoration: BoxDecoration(
-                color: brand.brandColor.withValues(alpha:0.1),
+                color: brand.brandColor.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Center(
@@ -440,9 +485,9 @@ class BrandCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               '${brand.models.length} Models',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: const Color(0xFF6E7181),
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: const Color(0xFF6E7181)),
             ),
           ],
         ),
@@ -461,25 +506,82 @@ class ModelSelectionScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
-        title: Text(
-          brand.name,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Color(0xFF303030),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: Colors.white,
+        title: Center(
+          child: Column(
+            children: [
+              Text(
+                brand.name,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                'Select from a wide range of ${brand.name}\'s brand.',
+                style: const TextStyle(fontSize: 12, color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(Icons.search, color: Colors.white, size: 20),
+            ),
+            onPressed: () {
+              // will implement search functionality here
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
         centerTitle: true,
         iconTheme: const IconThemeData(color: Color(0xFF303030)),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+              padding: const EdgeInsets.fromLTRB(24, 10, 24, 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -530,18 +632,17 @@ class ModelCard extends StatelessWidget {
     return Card(
       color: Colors.white,
       elevation: 2,
-      shadowColor: Colors.black.withValues(alpha:0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
       margin: const EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         borderRadius: BorderRadius.circular(16),
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ModelDetailScreen(brand: brand, model: model),
+              builder:
+                  (context) => ModelDetailScreen(brand: brand, model: model),
             ),
           );
         },
@@ -555,7 +656,7 @@ class ModelCard extends StatelessWidget {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: brand.brandColor.withValues(alpha:0.1),
+                    color: brand.brandColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(
@@ -604,7 +705,7 @@ class ModelCard extends StatelessWidget {
                 width: 36,
                 height: 36,
                 decoration: BoxDecoration(
-                  color: brand.brandColor.withValues(alpha:0.1),
+                  color: brand.brandColor.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -626,7 +727,11 @@ class ModelDetailScreen extends StatelessWidget {
   final CarBrand brand;
   final CarModel model;
 
-  const ModelDetailScreen({super.key, required this.brand, required this.model});
+  const ModelDetailScreen({
+    super.key,
+    required this.brand,
+    required this.model,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -659,7 +764,7 @@ class ModelDetailScreen extends StatelessWidget {
                       child: Icon(
                         Icons.directions_car,
                         size: 100,
-                        color: Colors.white.withValues(alpha:0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                       ),
                       // In a real app, use this:
                       // Image.asset(
@@ -682,6 +787,15 @@ class ModelDetailScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
             actions: [
               IconButton(
@@ -708,7 +822,10 @@ class ModelDetailScreen extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: brand.brandColor,
                           borderRadius: BorderRadius.circular(16),
@@ -716,11 +833,7 @@ class ModelDetailScreen extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.verified,
-                              size: 16,
-                              color: Colors.white,
-                            ),
+                            Icon(Icons.verified, size: 16, color: Colors.white),
                             const SizedBox(width: 4),
                             Text(
                               brand.name,
@@ -735,7 +848,7 @@ class ModelDetailScreen extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Description
                   Text(
                     'About ${model.name}',
@@ -753,7 +866,7 @@ class ModelDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Features
                   Text(
                     'Key Features',
@@ -763,44 +876,48 @@ class ModelDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  ...model.features.map((feature) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 36,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: brand.brandColor.withValues(alpha:0.1),
-                            shape: BoxShape.circle,
+                  ...model.features.map(
+                    (feature) => Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: brand.brandColor.withValues(alpha: 0.1),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.check_circle,
+                              size: 18,
+                              color: brand.brandColor,
+                            ),
                           ),
-                          child: Icon(
-                            Icons.check_circle,
-                            size: 18,
-                            color: brand.brandColor,
+                          const SizedBox(width: 12),
+                          Text(
+                            feature,
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(color: const Color(0xFF303030)),
                           ),
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          feature,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: const Color(0xFF303030),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  )),
+                  ),
                   const SizedBox(height: 32),
-                  
+
                   // Call to action button
                   SizedBox(
                     width: double.infinity,
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
+                        Navigator.of(context).popUntil((route) => route.isFirst);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('You selected ${brand.name} ${model.name}'),
+                            content: Text(
+                              'You selected ${brand.name} ${model.name}',
+                            ),
                             behavior: SnackBarBehavior.floating,
                             backgroundColor: brand.brandColor,
                           ),
@@ -824,7 +941,7 @@ class ModelDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Secondary action
                   SizedBox(
                     width: double.infinity,

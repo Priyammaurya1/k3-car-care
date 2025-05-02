@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/models/cart_item.dart';
 import 'package:k3carcare/models/payment.dart';
 import 'package:k3carcare/models/recommended_item.dart';
@@ -22,15 +23,15 @@ class _CartScreenState extends State<CartScreen> {
   // Sample data - in a real app, this would come from a provider or API
   final List<CartItem> _cartItems = [
     CartItem(
-      id: '1', 
-      name: "Premium Monthly Service", 
-      price: 999.0, 
+      id: '1',
+      name: "Premium Monthly Service",
+      price: 999.0,
       imageUrl: "assets/images/monthly_service.png",
     ),
     CartItem(
-      id: '2', 
-      name: "Ultra Paint Protection", 
-      price: 1599.0, 
+      id: '2',
+      name: "Ultra Paint Protection",
+      price: 1599.0,
       imageUrl: "assets/images/paint_protection.png",
     ),
   ];
@@ -38,24 +39,24 @@ class _CartScreenState extends State<CartScreen> {
   final List<RecommendedItem> _recommendedServices = [
     RecommendedItem(
       id: '1',
-      name: "AC Disinfection", 
-      price: 399.0, 
+      name: "AC Disinfection",
+      price: 399.0,
       imageUrl: "assets/images/ac_disinfection.png",
       type: "service",
       duration: "30-45 min",
     ),
     RecommendedItem(
       id: '2',
-      name: "Tyre Polish", 
-      price: 199.0, 
+      name: "Tyre Polish",
+      price: 199.0,
       imageUrl: "assets/images/tyre_polish.png",
       type: "service",
       duration: "15-20 min",
     ),
     RecommendedItem(
       id: '3',
-      name: "Interior Deep Clean", 
-      price: 799.0, 
+      name: "Interior Deep Clean",
+      price: 799.0,
       imageUrl: "assets/images/interior_clean.png",
       type: "service",
       duration: "60-90 min",
@@ -65,51 +66,47 @@ class _CartScreenState extends State<CartScreen> {
   final List<RecommendedItem> _recommendedProducts = [
     RecommendedItem(
       id: '4',
-      name: "Headlights", 
-      price: 1199.0, 
+      name: "Headlights",
+      price: 1199.0,
       imageUrl: "assets/images/headlights.png",
       type: "product",
     ),
     RecommendedItem(
       id: '5',
-      name: "Windshield Film", 
-      price: 499.0, 
+      name: "Windshield Film",
+      price: 499.0,
       imageUrl: "assets/images/windshield.png",
       type: "product",
     ),
     RecommendedItem(
       id: '6',
-      name: "Music System", 
-      price: 4999.0, 
+      name: "Music System",
+      price: 4999.0,
       imageUrl: "assets/images/music_system.png",
       type: "product",
     ),
   ];
 
   final List<Payment> _paymentHistory = [
-    Payment(
-      id: '1',
-      date: DateTime(2023, 10, 1), 
-      amount: 5899.0, 
-      rating: 4,
-    ),
+    Payment(id: '1', date: DateTime(2023, 10, 1), amount: 5899.0, rating: 4),
     Payment(
       id: '2',
-      date: DateTime(2023, 10, 5), 
-      amount: 2199.0, 
+      date: DateTime(2023, 10, 5),
+      amount: 2199.0,
       rating: 5,
       serviceType: "Exterior detailing",
     ),
     Payment(
       id: '3',
-      date: DateTime(2023, 10, 10), 
-      amount: 1099.0, 
+      date: DateTime(2023, 10, 10),
+      amount: 1099.0,
       rating: 3,
       serviceType: "Oil change",
     ),
   ];
 
-  double get _totalAmount => _cartItems.fold(0, (sum, item) => sum + item.price);
+  double get _totalAmount =>
+      _cartItems.fold(0, (sum, item) => sum + item.price);
 
   void _removeCartItem(String id) {
     setState(() {
@@ -158,15 +155,14 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: KColors.primaryBackground,
       appBar: _buildAppBar(),
-      body: _cartItems.isEmpty 
-          ? _buildEmptyCart() 
-          : _buildCartContent(),
-      bottomSheet: _cartItems.isEmpty
-          ? null
-          : CheckoutBottomSheet(
-              totalAmount: _totalAmount,
-              onCheckout: _checkout,
-            ),
+      body: _cartItems.isEmpty ? _buildEmptyCart() : _buildCartContent(),
+      bottomSheet:
+          _cartItems.isEmpty
+              ? null
+              : CheckoutBottomSheet(
+                totalAmount: _totalAmount,
+                onCheckout: _checkout,
+              ),
     );
   }
 
@@ -178,7 +174,11 @@ class _CartScreenState extends State<CartScreen> {
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       title: const Text(
         'My Cart',
-        style: TextStyle(color: KColors.textTitle, fontSize: 20, fontWeight: FontWeight.w600),
+        style: TextStyle(
+          color: KColors.textTitle,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -201,10 +201,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            "Your cart is empty",
-            style: KStyles.heading2,
-          ),
+          const Text("Your cart is empty", style: KStyles.heading2),
           const SizedBox(height: 12),
           Text(
             "Browse services and products to add them to your cart",
@@ -213,7 +210,11 @@ class _CartScreenState extends State<CartScreen> {
           ),
           const SizedBox(height: 32),
           ElevatedButton(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed:
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const NavigationMenu()),
+                ),
             style: KStyles.primaryButton,
             child: const Text("Browse Services"),
           ),
@@ -246,10 +247,12 @@ class _CartScreenState extends State<CartScreen> {
                 actionText: "View More",
                 onActionPressed: () {},
               ),
-              ..._recommendedServices.map((service) => RecommendedItemCard(
-                item: service,
-                onAdd: () => _addToCart(service),
-              )),
+              ..._recommendedServices.map(
+                (service) => RecommendedItemCard(
+                  item: service,
+                  onAdd: () => _addToCart(service),
+                ),
+              ),
               const SizedBox(height: 24),
 
               // Recommended Products Section
@@ -259,10 +262,12 @@ class _CartScreenState extends State<CartScreen> {
                 actionText: "View More",
                 onActionPressed: () {},
               ),
-              ..._recommendedProducts.map((product) => RecommendedItemCard(
-                item: product,
-                onAdd: () => _addToCart(product),
-              )),
+              ..._recommendedProducts.map(
+                (product) => RecommendedItemCard(
+                  item: product,
+                  onAdd: () => _addToCart(product),
+                ),
+              ),
               const SizedBox(height: 24),
 
               // Payment History Section
@@ -272,12 +277,14 @@ class _CartScreenState extends State<CartScreen> {
                 actionText: "View More",
                 onActionPressed: () {},
               ),
-              ..._paymentHistory.map((payment) => PaymentCard(
-                payment: payment,
-                onTap: () {
-                  // View payment details
-                },
-              )),
+              ..._paymentHistory.map(
+                (payment) => PaymentCard(
+                  payment: payment,
+                  onTap: () {
+                    // View payment details
+                  },
+                ),
+              ),
               const SizedBox(height: 100), // Bottom padding for checkout button
             ]),
           ),
@@ -301,7 +308,7 @@ class _CartScreenState extends State<CartScreen> {
               showDivider: index < _cartItems.length - 1,
             );
           }),
-          
+
           // Total section
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -357,7 +364,8 @@ class _CartScreenState extends State<CartScreen> {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final dashWidth = 5.0;
-          final dashCount = (constraints.constrainWidth() / (2 * dashWidth)).floor();
+          final dashCount =
+              (constraints.constrainWidth() / (2 * dashWidth)).floor();
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(dashCount, (_) {
