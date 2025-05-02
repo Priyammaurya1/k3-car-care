@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SectionHeaderr(title: 'Account Settings'),
+                  const SectionHeader(title: 'Account Settings'),
                   const SizedBox(height: 16),
                   _buildMenuCard([
                     _buildMenuItem(
@@ -61,7 +61,6 @@ class ProfileScreen extends StatelessWidget {
                     _buildMenuItem(
                       title: 'Settings',
                       icon: Icons.settings_outlined,
-                      isLast: true,
                       onTap: () {
                         // Handle Settings tap
                       },
@@ -78,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                   
                   const SizedBox(height: 24),
                   
-                  const SectionHeaderr(title: 'About'),
+                  const SectionHeader(title: 'About'),
                   const SizedBox(height: 16),
                   _buildMenuCard([
                     _buildMenuItem(

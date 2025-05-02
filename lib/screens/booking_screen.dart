@@ -29,8 +29,8 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
 
-  // Demo booked slot (May 1st, 10-11 AM)
-  final DateTime _bookedDate = DateTime(2025, 5, 1);
+  // Demo booked slot (May 30th, 10-11 AM)
+  final DateTime _bookedDate = DateTime(2025, 5, 30);
   final String _bookedTimeSlot = "10:00 AM - 11:00 AM";
 
   // Generate time slots from 8 AM to 8 PM

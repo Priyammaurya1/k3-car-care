@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/models/cart_item.dart';
 import 'package:k3carcare/models/payment.dart';
@@ -7,7 +6,7 @@ import 'package:k3carcare/models/recommended_item.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/utils/styles.dart';
 import 'package:k3carcare/widgets/cart_item_card.dart';
-import 'package:k3carcare/widgets/cart_section_header.dart';
+import 'package:k3carcare/widgets/section_header.dart';
 import 'package:k3carcare/widgets/checkout_bottom_sheet.dart';
 import 'package:k3carcare/widgets/payment_card.dart';
 import 'package:k3carcare/widgets/recommended_item_card.dart';
@@ -168,16 +167,77 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      centerTitle: true,
-      backgroundColor: Colors.white,
+      //  leading: IconButton(
+      //     icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Color.fromARGB(255, 255, 75, 75)),
+      //     onPressed: () {
+      //       // hehehehehehehehehe
+      //     },
+      //   ),
       elevation: 0,
-      systemOverlayStyle: SystemUiOverlayStyle.dark,
-      title: const Text(
-        'My Cart',
-        style: TextStyle(
-          color: KColors.textTitle,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color.fromARGB(206, 255, 41, 41),
+              Color.fromARGB(210, 254, 61, 61),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+      ),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'My Cart',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.white,
+            ),
+          ),
+          Text(
+            '${_cartItems.length} items are in your cart',
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.8),
+              fontSize: 13,
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          icon: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(
+              Icons.help_outline_outlined,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+          onPressed: () {
+            // will implement help functionality here
+          },
+        ),
+        const SizedBox(width: 16),
+      ],
+
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(20),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFFF8F9FA),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         ),
       ),
     );
@@ -234,8 +294,8 @@ class _CartScreenState extends State<CartScreen> {
               // Cart Section
               SectionHeader(
                 title: "Items In Cart",
-                subtitle: "${_cartItems.length} items",
                 onActionPressed: () {},
+                topPadding: false,
               ),
               _buildCartItemsContainer(),
               const SizedBox(height: 24),
@@ -243,7 +303,6 @@ class _CartScreenState extends State<CartScreen> {
               // Recommended Services Section
               SectionHeader(
                 title: "Recommended Services",
-                subtitle: "Based on your car",
                 actionText: "View More",
                 onActionPressed: () {},
               ),
@@ -258,7 +317,6 @@ class _CartScreenState extends State<CartScreen> {
               // Recommended Products Section
               SectionHeader(
                 title: "Recommended Products",
-                subtitle: "Top accessories",
                 actionText: "View More",
                 onActionPressed: () {},
               ),
@@ -273,7 +331,6 @@ class _CartScreenState extends State<CartScreen> {
               // Payment History Section
               SectionHeader(
                 title: "Payment History",
-                subtitle: "Recent transactions",
                 actionText: "View More",
                 onActionPressed: () {},
               ),

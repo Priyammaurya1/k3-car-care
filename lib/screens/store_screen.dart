@@ -14,15 +14,71 @@ class StoreScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          'My Store',
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'My Store',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              'Get everything for your car at one place',
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.8),
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(
+                Icons.help_outline_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            onPressed: () {
+              // will implement help functionality here
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
+
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
           ),
         ),
       ),
@@ -31,7 +87,10 @@ class StoreScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Search Bar
-            _buildSearchBar(),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0, top: 1.0),
+              child: _buildSearchBar(),
+            ),
 
             // Banner Slider
             _buildBannerSlider(),
@@ -42,7 +101,7 @@ class StoreScreen extends StatelessWidget {
             // Products Section
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SectionHeaderr(title: 'Featured Products'),
+              child: SectionHeader(title: 'Featured Products'),
             ),
             GridView.builder(
               itemCount: products.length,
@@ -63,26 +122,38 @@ class StoreScreen extends StatelessWidget {
 
   Widget _buildSearchBar() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 16, 16, 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 46,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFEEEEEE)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: 'Search products...',
-          hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
-          prefixIcon: Icon(Icons.search, color: Colors.grey[400]),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 15),
-        ),
+      child: Row(
+        children: const [
+          Icon(Icons.search, color: Color(0xFF9E9E9E), size: 20),
+          SizedBox(width: 10),
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search for Products',
+                hintStyle: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 14,
+                  color: Color(0xFFBDBDBD),
+                ),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -93,7 +164,7 @@ class StoreScreen extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: SectionHeaderr(title: 'Special Offers'),
+          child: SectionHeader(title: 'Special Offers'),
         ),
         const SizedBox(height: 12),
         BannerSlider(
@@ -147,7 +218,7 @@ Widget _buildCategorySection() {
     children: [
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: SectionHeaderr(title: 'Popular Categories'),
+        child: SectionHeader(title: 'Popular Categories'),
       ),
       const SizedBox(height: 16),
 

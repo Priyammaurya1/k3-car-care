@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:k3carcare/model/horizontal_scroll.dart';
 import 'package:k3carcare/widgets/appointment_card.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
-import 'package:k3carcare/widgets/section_header.dart'; // New component
+import 'package:k3carcare/widgets/section_header.dart';
 
 class HomeScreenNew extends StatelessWidget {
   const HomeScreenNew({super.key});
@@ -11,7 +11,7 @@ class HomeScreenNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA), // Lighter, more professional background
+      backgroundColor: const Color(0xFFF8F9FA), 
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -26,15 +26,7 @@ class HomeScreenNew extends StatelessWidget {
               _buildWarrantySection(context),
               const SizedBox(height: 40),
               Center(
-                child: const Text(
-                  "Created for you with ❤",
-                  style: TextStyle(
-                    color: Color(0xFF9E9E9E),
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                child: _buildCompanyFooter(),
               ),
               const SizedBox(height: 20),
             ],
@@ -165,7 +157,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeaderr(title: 'Your Appointment'),
+          const SectionHeader(title: 'Your Appointment'),
           const SizedBox(height: 12),
           const AppointmentCard(date: "Today", time: "2:00 pm"),
         ],
@@ -179,7 +171,7 @@ class HomeScreenNew extends StatelessWidget {
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: SectionHeaderr(title: 'Special Offers'),
+          child: SectionHeader(title: 'Special Offers'),
         ),
         const SizedBox(height: 12),
         BannerSlider(
@@ -202,7 +194,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeaderr(title: 'Our Services'),
+          const SectionHeader(title: 'Our Services'),
           const SizedBox(height: 16),
           GridView.count(
             physics: const NeverScrollableScrollPhysics(),
@@ -320,7 +312,7 @@ class HomeScreenNew extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              const SectionHeaderr(title: 'Store'),
+              const SectionHeader(title: 'Store'),
               const Spacer(),
               TextButton(
                 onPressed: () {},
@@ -350,7 +342,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeaderr(title: 'Original Spare Parts'),
+          const SectionHeader(title: 'Original Spare Parts'),
           const SizedBox(height: 14),
           Container(
             padding: const EdgeInsets.all(16),
@@ -409,3 +401,38 @@ class HomeScreenNew extends StatelessWidget {
     );
   }
 }
+
+
+  Widget _buildCompanyFooter() {
+    return Center(
+      
+      child: Column(
+        
+        children: [
+          Image.asset(
+            'assets/images/logo.png',
+            height: 40,
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            "Created for you with ❤",
+            style: TextStyle(
+              color: Color(0xFF9E9E9E),
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            "v1.0.0",
+            style: TextStyle(
+              color: Color(0xFFBDBDBD),
+              fontSize: 12,
+              fontFamily: 'Poppins',
+            ),
+          ),
+        ],
+      ),
+    );
+  }

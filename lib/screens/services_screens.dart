@@ -12,35 +12,77 @@ class ServicesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        
         elevation: 0,
-        iconTheme: const IconThemeData(color: Color(0xFF212121)),
-        title: const Text(
-          'Services',
-          style: TextStyle(
-            color: Color(0xFF212121),
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Poppins',
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
-        centerTitle: true,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'My Services',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              'Get the best services for your car',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha:0.8),
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha:0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(Icons.help_outline_outlined, color: Colors.white, size: 20),
+            ),
+            onPressed: () {
+              // will implement help functionality here
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
+          preferredSize: const Size.fromHeight(20),
           child: Container(
-            height: 1,
-            color: const Color(0xFFEEEEEE),
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
           ),
         ),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),  //////////
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SectionHeaderr(title: 'Available Services'),
-              const SizedBox(height: 16),
+              const SectionHeader(title: 'Available Services'),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -48,7 +90,7 @@ class ServicesScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
+                        color: Colors.black.withValues(alpha: 0.05),
                         blurRadius: 10,
                         offset: const Offset(0, 2),
                       ),
@@ -59,11 +101,12 @@ class ServicesScreen extends StatelessWidget {
                     child: ListView.separated(
                       padding: EdgeInsets.zero,
                       itemCount: services.length,
-                      separatorBuilder: (context, index) => const Divider(
-                        height: 1,
-                        thickness: 1,
-                        color: Color(0xFFEEEEEE),
-                      ),
+                      separatorBuilder:
+                          (context, index) => const Divider(
+                            height: 1,
+                            thickness: 1,
+                            color: Color(0xFFEEEEEE),
+                          ),
                       itemBuilder: (context, index) {
                         return ImprovedServiceCard(
                           service: services[index],
@@ -137,21 +180,21 @@ class ImprovedServiceCard extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                      children: [
-                        _buildInfoChip(
-                          const Color(0xFFE8F5E9),
-                          const Color(0xFF4CAF50),
-                          '₹$service',
-                        ),
-                        const SizedBox(width: 8),
-                        _buildInfoChip(
-                          const Color(0xFFE3F2FD),
-                          const Color(0xFF2196F3),
-                          '$service min',
-                        ),
-                      ],
+                        children: [
+                          _buildInfoChip(
+                            const Color(0xFFE8F5E9),
+                            const Color(0xFF4CAF50),
+                            '₹$service',
+                          ),
+                          const SizedBox(width: 8),
+                          _buildInfoChip(
+                            const Color(0xFFE3F2FD),
+                            const Color(0xFF2196F3),
+                            '$service min',
+                          ),
+                        ],
+                      ),
                     ),
-                    )
                   ],
                 ),
               ),
@@ -251,11 +294,7 @@ class ImprovedServiceCard extends StatelessWidget {
   Widget _buildServiceFeature(IconData icon, String text) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 14,
-          color: const Color(0xFF9E9E9E),
-        ),
+        Icon(icon, size: 14, color: const Color(0xFF9E9E9E)),
         const SizedBox(width: 4),
         Text(
           text,
@@ -272,14 +311,21 @@ class ImprovedServiceCard extends StatelessWidget {
   IconData _getIconForService(String title) {
     // You can replace this with a more sophisticated mapping based on your service titles
     if (title.toLowerCase().contains('oil')) return Icons.oil_barrel_outlined;
-    if (title.toLowerCase().contains('wash')) return Icons.local_car_wash_outlined;
-    if (title.toLowerCase().contains('battery')) return Icons.battery_full_outlined;
-    if (title.toLowerCase().contains('check')) return Icons.check_circle_outline;
+    if (title.toLowerCase().contains('wash')) {
+      return Icons.local_car_wash_outlined;
+    }
+    if (title.toLowerCase().contains('battery')) {
+      return Icons.battery_full_outlined;
+    }
+    if (title.toLowerCase().contains('check')) {
+      return Icons.check_circle_outline;
+    }
     if (title.toLowerCase().contains('repair')) return Icons.build_outlined;
-    if (title.toLowerCase().contains('tire') || title.toLowerCase().contains('tyre')) {
+    if (title.toLowerCase().contains('tire') ||
+        title.toLowerCase().contains('tyre')) {
       return Icons.tire_repair_outlined;
     }
-    
+
     return Icons.miscellaneous_services_outlined; // Default
   }
 }
