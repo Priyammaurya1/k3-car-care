@@ -1,0 +1,602 @@
+import 'package:flutter/material.dart';
+import 'package:k3carcare/widgets/section_header.dart';
+
+class CarDetailingScreen extends StatefulWidget {
+  const CarDetailingScreen({super.key});
+
+  @override
+  State<CarDetailingScreen> createState() => _CarDetailingScreenState();
+}
+
+class _CarDetailingScreenState extends State<CarDetailingScreen>
+    with SingleTickerProviderStateMixin {
+  int _selectedTabIndex = 0;
+  final List<String> _tabTitles = [
+    'Polishing',
+    'Ceramic Coating',
+    'PPF Coating',
+    'Teflon Coating',
+    'Anti-Rust Coating',
+  ];
+  final ScrollController _scrollController = ScrollController();
+  final List<GlobalKey> _sectionKeys = [GlobalKey(), GlobalKey(), GlobalKey()];
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add scroll listener to detect which section is visible
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    // Find which section is most visible
+    for (int i = 0; i < _sectionKeys.length; i++) {
+      final RenderObject? renderObject =
+          _sectionKeys[i].currentContext?.findRenderObject();
+      if (renderObject is RenderBox) {
+        final RenderBox box = renderObject;
+        final Offset position = box.localToGlobal(Offset.zero);
+        // If this section is visible in the viewport
+        if (position.dy < MediaQuery.of(context).size.height / 2 &&
+            position.dy + box.size.height > 0) {
+          if (_selectedTabIndex != i) {
+            setState(() {
+              _selectedTabIndex = i;
+            });
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  void _scrollToSection(int index) {
+    final context = _sectionKeys[index].currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FA),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+        ),
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Car Detailing',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+             Text(
+              'We got you covered and your car as well',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.8),
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+        
+
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(70),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 16),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Row(
+                children: List.generate(_tabTitles.length, (index) {
+                  return _buildTabButton(_tabTitles[index], index);
+                }),
+              ),
+            ),
+          ),
+        ),
+        // bottom: PreferredSize(
+        //   preferredSize: const Size.fromHeight(50), // Reduced height
+        //   child: Container(
+        //     padding: const EdgeInsets.symmetric(
+        //       horizontal: 8,
+        //       vertical: 6,
+        //     ), // Reduced padding
+        //     decoration: const BoxDecoration(
+        //       color: Colors.white,
+        //       border: Border(
+        //         bottom: BorderSide(color: Color(0xFFEEEEEE), width: 1),
+        //       ),
+        //     ),
+        //     child: SingleChildScrollView(
+        //       scrollDirection: Axis.horizontal,
+        //       physics: const BouncingScrollPhysics(),
+        //       child: Row(
+        //         children: List.generate(_tabTitles.length, (index) {
+        //           return _buildTabButton(_tabTitles[index], index);
+        //         }),
+        //       ),
+        //     ),
+        // ),
+
+        // ),
+      ),
+      body: ListView(
+        controller: _scrollController,
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          // Scheduled Packages Section
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(
+              key: _sectionKeys[0],
+              title: 'Polishing',
+            ),
+          ),
+          _buildServicePackage(
+            title: '3M™ Car Polishing',
+            points: [
+              'Takes 4 Hours',
+              '3M Ultra Shine Polishing',
+              'Every 3 Months Recommended',
+            ],
+            originalPrice: '₹6,825',
+            discountedPrice: '₹5,119',
+            discountPercentage: '25% OFF',
+            isRecommended: true,
+            image:
+                'https://bizimages.withfloats.com/actual/6616e5973e13f24e870d16c4.jpg',
+          ),
+          const SizedBox(height: 20),
+
+          // Brake Maintenance Section
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(
+              key: _sectionKeys[1],
+              title: 'Ceramic Coating',
+            ),
+          ),
+          _buildServicePackage(
+            title: 'Ceramic Coating Service',
+            points: [
+              'Takes 2 days',
+              'Includes 2 Coats',
+              '5 Year Warranty',
+              'Hydrophobic Properties',
+              'UV Protection',
+            ],
+            originalPrice: '₹8,500',
+            discountedPrice: '₹6,375',
+            discountPercentage: '25% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 20),
+
+          // Under 49 Section
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(key: _sectionKeys[2], title: 'Teflon Coating'),
+          ),
+          _buildServicePackage(
+            title: '3M™ Teflon Coating',
+            points: [
+              'Takes 24 Hours',
+              '3 Months Warranty',
+              'Basic Diagnostics',
+              'Includes 3 Services',
+            ],
+            originalPrice: '₹9,499',
+            discountedPrice: '₹8,899',
+            discountPercentage: '24% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 16),
+          _buildServicePackage(
+            title: 'Meguiar\'s Teflon Coating',
+            points: [
+              'Takes 24 Hours',
+              '3 Months Warranty',
+              'Every 1 Year Recommended',
+            ],
+            originalPrice: '₹12,499',
+            discountedPrice: '₹11,799',
+            discountPercentage: '20% OFF',
+            isRecommended: false,
+            image:
+                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(key: _sectionKeys[2], title: 'PPF Coating'),
+          ),
+          _buildServicePackage(
+            title: 'PPF - Garware Plus',
+            points: [
+              'Takes 2 Days',
+              '5 Year Warranty',
+              '150 Microns Thickness',
+            ],
+            originalPrice: '₹69,499',
+            discountedPrice: '₹58,899',
+            discountPercentage: '24% OFF',
+            isRecommended: false,
+            image:
+                'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 16),
+          _buildServicePackage(
+            title: 'PPF - Garware Premium',
+            points: [
+              'Takes 2 days',
+              '8 Year Warranty',
+              '200 Microns Thickness',
+            ],
+            originalPrice: '₹99,499',
+            discountedPrice: '₹92,799',
+            discountPercentage: '20% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 16),
+          _buildServicePackage(
+            title: 'PPF - Garware Llumar',
+            points: [
+              'Takes 3 days',
+              '10 Year Warranty',
+              '210 Microns Thickness',
+            ],
+            originalPrice: '₹99,499',
+            discountedPrice: '₹92,799',
+            discountPercentage: '20% OFF',
+            isRecommended: false,
+            image:
+                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(key: _sectionKeys[2], title: 'Anti-Rust Coating'),
+          ),
+          _buildServicePackage(
+            title: 'Anti Rust Underbody Coating',
+            points: [
+              'Takes 24 Hours',
+              '3 Months Warranty',
+              'Monsoon Protection',
+            ],
+            originalPrice: '₹9,499',
+            discountedPrice: '₹8,899',
+            discountPercentage: '24% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 16),
+          _buildServicePackage(
+            title: 'Silencer Coating',
+            points: [
+              'Takes 6 days',
+              '3 Months Warranty',
+              '2 Layers of Protection',
+            ],
+            originalPrice: '₹5,499',
+            discountedPrice: '₹4,799',
+            discountPercentage: '20% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTabButton(String text, int index) {
+    final bool isSelected = _selectedTabIndex == index;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0), // Reduced padding
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              _selectedTabIndex = index;
+            });
+            _scrollToSection(index);
+          },
+          borderRadius: BorderRadius.circular(20), // Slightly reduced radius
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 10,
+            ), // Reduced padding
+            decoration: BoxDecoration(
+              color: isSelected ? const Color(0xFFEFEAFA) : Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color:
+                    isSelected
+                        ? const Color(0xFF673AB7)
+                        : const Color(0xFFEEEEEE),
+                width: 1.5,
+              ),
+              boxShadow:
+                  isSelected
+                      ? [
+                        BoxShadow(
+                          color: const Color(0xFF673AB7).withOpacity(0.1),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ]
+                      : null,
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: isSelected ? const Color(0xFF673AB7) : Colors.black54,
+                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                fontSize: 13, // Reduced font size
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServicePackage({
+    required String title,
+    required List<String> points,
+    required String originalPrice,
+    required String discountedPrice,
+    required String discountPercentage,
+    required bool isRecommended,
+    required String image,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              if (isRecommended)
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 255, 75, 75),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      ),
+                    ),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.thumb_up, color: Colors.white, size: 14),
+                        SizedBox(width: 4),
+                        Text(
+                          'RECOMMENDED',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              Padding(
+                padding:
+                    isRecommended
+                        ? const EdgeInsets.fromLTRB(16.0, 35.0, 16.0, 16.0)
+                        : const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: -0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          ...points.map(
+                            (point) => Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 6),
+                                    width: 6,
+                                    height: 6,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.black87,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text(
+                                      point,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black87,
+                                        height: 1.3,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            children: [
+                              Text(
+                                originalPrice,
+                                style: TextStyle(
+                                  decoration: TextDecoration.lineThrough,
+                                  color: Colors.grey[600],
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                discountedPrice,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                  vertical: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.green[50],
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  discountPercentage,
+                                  style: TextStyle(
+                                    color: Colors.green[700],
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            image,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.red[600],
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 32,
+                              vertical: 12,
+                            ),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                              side: BorderSide(color: Colors.red[600]!),
+                            ),
+                          ),
+                          child: const Text(
+                            'ADD',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Add Ons',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

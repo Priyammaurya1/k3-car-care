@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:k3carcare/screens/periodic_service_screen.dart';
+import 'package:k3carcare/screens/car_detailing_screen.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: PeriodicServicesScreen(),
+      home: CarDetailingScreen(),
     );
   }
 }
