@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/common/rounded_container.dart';
+import 'package:k3carcare/common/rounded_images.dart';
 import 'package:k3carcare/models/cart_item.dart';
 import 'package:k3carcare/models/payment.dart';
 import 'package:k3carcare/models/recommended_item.dart';
+import 'package:k3carcare/text/title_text.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/utils/styles.dart';
 import 'package:k3carcare/widgets/cart_item_card.dart';
@@ -62,29 +66,6 @@ class _CartScreenState extends State<CartScreen> {
     ),
   ];
 
-  final List<RecommendedItem> _recommendedProducts = [
-    RecommendedItem(
-      id: '4',
-      name: "Headlights",
-      price: 1199.0,
-      imageUrl: "assets/images/headlights.png",
-      type: "product",
-    ),
-    RecommendedItem(
-      id: '5',
-      name: "Windshield Film",
-      price: 499.0,
-      imageUrl: "assets/images/windshield.png",
-      type: "product",
-    ),
-    RecommendedItem(
-      id: '6',
-      name: "Music System",
-      price: 4999.0,
-      imageUrl: "assets/images/music_system.png",
-      type: "product",
-    ),
-  ];
 
   final List<Payment> _paymentHistory = [
     Payment(id: '1', date: DateTime(2023, 10, 1), amount: 5899.0, rating: 4),
@@ -286,65 +267,95 @@ class _CartScreenState extends State<CartScreen> {
   Widget _buildCartContent() {
     return CustomScrollView(
       slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate([
-              SizedBox(height: 10),
-              // Cart Section
-              SectionHeader(
-                title: "Items In Cart",
-                onActionPressed: () {},
-                topPadding: false,
+        SliverList(
+          delegate: SliverChildListDelegate([
+            SizedBox(height: 10),
+            // Cart Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  SectionHeader(
+                    title: "Items In Cart",
+                    onActionPressed: () {},
+                    topPadding: false,
+                  ),
+            _buildCartItemsContainer(),
+                ],
               ),
-              _buildCartItemsContainer(),
-              const SizedBox(height: 24),
-
-              // Recommended Services Section
-              SectionHeader(
-                title: "Recommended Services",
-                actionText: "View More",
-                onActionPressed: () {},
+            ),
+            const SizedBox(height: 24),
+        
+            // Recommended Services Section
+            Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  SectionHeader(
+                    title: "Recommended Services",
+                    actionText: "View More",
+                    onActionPressed: () {},
+                  ),
+            ..._recommendedServices.map(
+              (service) => RecommendedItemCard(
+                item: service,
+                onAdd: () => _addToCart(service),
               ),
-              ..._recommendedServices.map(
-                (service) => RecommendedItemCard(
-                  item: service,
-                  onAdd: () => _addToCart(service),
-                ),
+            ),
+                ],
               ),
-              const SizedBox(height: 24),
-
-              // Recommended Products Section
-              SectionHeader(
-                title: "Recommended Products",
-                actionText: "View More",
-                onActionPressed: () {},
-              ),
-              ..._recommendedProducts.map(
-                (product) => RecommendedItemCard(
-                  item: product,
-                  onAdd: () => _addToCart(product),
-                ),
-              ),
-              const SizedBox(height: 24),
-
-              // Payment History Section
-              SectionHeader(
-                title: "Payment History",
-                actionText: "View More",
-                onActionPressed: () {},
-              ),
-              ..._paymentHistory.map(
-                (payment) => PaymentCard(
-                  payment: payment,
-                  onTap: () {
-                    // View payment details
-                  },
-                ),
-              ),
-              const SizedBox(height: 100), // Bottom padding for checkout button
-            ]),
+            ),
+            const SizedBox(height: 24),
+        
+            // Recommended Products Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  SectionHeader(
+                    title: "Recommended Products",
+                    actionText: "View More",
+                    onActionPressed: () {},
+                  ),
+            GridView.builder(
+            itemCount: products.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              mainAxisExtent: 293,
+            ),
+            itemBuilder: (_, index) => _buildProductsSection(products[index]),
           ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+        
+            // Payment History Section
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  SectionHeader(
+                    title: "Payment History",
+                    actionText: "View More",
+                    onActionPressed: () {},
+                  ),
+            ..._paymentHistory.map(
+              (payment) => PaymentCard(
+                payment: payment,
+                onTap: () {
+                  // View payment details
+                },
+              ),
+            ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 100), // Bottom padding for checkout button
+          ]),
         ),
       ],
     );
@@ -438,3 +449,174 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
+
+Widget _buildProductsSection(Product product) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 14.0),
+    child: GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: 180,
+        padding: const EdgeInsets.only(top: 1, left: 1, right: 1),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withValues(alpha: 0.1),
+              blurRadius: 50,
+              spreadRadius: 7,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.white,
+        ),
+        child: Column(
+          children: [
+            MpRoundedContainer(
+              height: 180,
+              padding: const EdgeInsets.all(8),
+              backgroundColor: Colors.white,
+              child: Stack(
+                children: [
+                  MpRoundedImage(
+                    imageUrl: product.imageUrl,
+                    applyImageRadius: true,
+                  ),
+                  Positioned(
+                    top: 12,
+                    child: MpRoundedContainer(
+                      radius: 8,
+                      backgroundColor: Colors.yellow.withValues(alpha: 0.8),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      child: Text(
+                        "${product.discount}%",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: Colors.white,
+                      ),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Iconsax.heart5, color: Colors.red),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  KProductTitleText(title: product.title, smallSize: true),
+                  SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(
+                        product.brand,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                      ),
+                      const SizedBox(width: 4),
+                      Icon(Iconsax.verify5, color: Colors.blue, size: 12),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '₹${product.price}',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.redAccent,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(16),
+                          ),
+                        ),
+                        child: const SizedBox(
+                          width: 38.4,
+                          height: 38.4,
+                          child: Center(
+                            child: Icon(Iconsax.add, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+class Product {
+  final String title;
+  final String imageUrl;
+  final String brand;
+  final double price;
+  final int discount;
+
+  Product({
+    required this.title,
+    required this.imageUrl,
+    required this.brand,
+    required this.price,
+    required this.discount,
+  });
+}
+
+final List<Product> products = [
+
+  Product(
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 499,
+    discount: 20,
+  ),
+  Product(
+    title: 'Bluetooth Connector for Car',
+    imageUrl: 'assets/images/light.png',
+    brand: 'Portronics',
+    price: 449,
+    discount: 25,
+  ),
+  Product(
+    title: 'Automaze Alloy Wheel Hub Rim Udge Protector',
+    imageUrl: 'assets/images/rimline.png',
+    brand: 'Automaze',
+    price: 789,
+    discount: 45,
+  ),
+  Product(
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 399,
+    discount: 40,
+  ),
+];

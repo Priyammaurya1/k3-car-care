@@ -118,11 +118,11 @@ class _CarDetailingScreenState extends State<CarDetailingScreen> {
     );
     
     // Animate to the position
-    _tabScrollController.animateTo(
-      targetOffset,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
+    // _tabScrollController.animateTo(
+    //   targetOffset,
+    //   duration: const Duration(milliseconds: 300),
+    //   curve: Curves.easeInOut,
+    // );
   }
 
   void _scrollToSection(int index) {

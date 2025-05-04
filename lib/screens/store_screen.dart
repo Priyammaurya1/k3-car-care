@@ -212,68 +212,131 @@ class StoreScreen extends StatelessWidget {
 //   return subtitles[index % subtitles.length];
 // }
 
-Widget _buildCategorySection() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: SectionHeader(title: 'Popular Categories'),
-      ),
-      const SizedBox(height: 16),
+class CategoryItem {
+  final String name;
+  final IconData icon;
+  final Color backgroundColor;
+  final Color iconColor;
 
-      Container(
-        padding: const EdgeInsets.only(left: 16),
-        height: 80,
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: 8,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (_, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 15.0),
-              child: Column(
-                children: [
-                  Container(
-                    width: 56,
-                    height: 56,
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: Center(
-                      // child: Image(image: AssetImage(''), fit: BoxFit.cover, color: Colors.black,),
-                      child: Icon(
-                        Icons.category,
-                        color: Colors.black,
-                        size: 24,
-                      ),
-                    ),
-                  ),
+  CategoryItem({
+    required this.name,
+    required this.icon,
+    this.backgroundColor = const Color(0xFFF5F6FA),
+    this.iconColor = const Color(0xFF3B82F6),
+  });
+}
 
-                  /// Text
-                  const SizedBox(height: 6),
-                  SizedBox(
-                    width: 55,
-                    child: Text(
-                      'Category',
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
+class CategorySection extends StatelessWidget {
+  final String title;
+  final List<CategoryItem> categories;
+  final double itemSize;
+  final double spacing;
+  final EdgeInsets padding;
+  final Function(int)? onCategoryTap;
+
+  const CategorySection({
+    super.key,
+    this.title = 'Popular Categories',
+    required this.categories,
+    this.itemSize = 60,
+    this.spacing = 16,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.onCategoryTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: padding,
+          child: SectionHeader(title: 'Popular Categories')
         ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: itemSize + 30, // Account for text below
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: padding.left),
+            scrollDirection: Axis.horizontal,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+              final category = categories[index];
+              return Padding(
+                padding: EdgeInsets.only(right: spacing),
+                child: _buildCategoryItem(context, category, index),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCategoryItem(BuildContext context, CategoryItem category, int index) {
+    return GestureDetector(
+      onTap: () => onCategoryTap?.call(index),
+      child: Column(
+        children: [
+          Container(
+            width: itemSize,
+            height: itemSize,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.05),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Icon(
+                category.icon,
+                color: Colors.redAccent,
+                size: itemSize * 0.4,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: itemSize,
+            child: Text(
+              category.name,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
       ),
-    ],
+    );
+  }
+}
+
+// Example usage:
+Widget _buildCategorySection() {
+  final List<CategoryItem> demoCategories = [
+    CategoryItem(name: 'Tires', icon: Icons.tire_repair, iconColor: Colors.black),
+    CategoryItem(name: 'Engine Parts', icon: Icons.engineering, iconColor: Colors.red),
+    CategoryItem(name: 'Interior', icon: Icons.airline_seat_recline_normal, iconColor: Colors.brown),
+    CategoryItem(name: 'Accessories', icon: Icons.car_repair, iconColor: Colors.blue),
+    CategoryItem(name: 'Oil & Fluids', icon: Icons.opacity, iconColor: Colors.amber),
+    CategoryItem(name: 'Electronics', icon: Icons.electrical_services, iconColor: Colors.purple),
+    CategoryItem(name: 'Body Kits', icon: Icons.directions_car, iconColor: Colors.green),
+    CategoryItem(name: 'Tools', icon: Icons.handyman, iconColor: Colors.grey),
+  ];
+
+  return CategorySection(
+    categories: demoCategories,
+    onCategoryTap: (index) {
+    },
   );
 }
 
@@ -365,7 +428,7 @@ Widget _buildProductsSection(Product product) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${product.price}',
+                        '₹${product.price}',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
@@ -417,61 +480,75 @@ class Product {
 }
 
 final List<Product> products = [
+
   Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 499,
+    discount: 20,
+  ),
+  Product(
+    title: 'Bluetooth Connector for Car',
+    imageUrl: 'assets/images/light.png',
+    brand: 'Portronics',
+    price: 449,
     discount: 25,
   ),
   Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
+    title: 'Automaze Alloy Wheel Hub Rim Udge Protector',
+    imageUrl: 'assets/images/rimline.png',
+    brand: 'Automaze',
+    price: 789,
+    discount: 45,
+  ),
+  Product(
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 399,
+    discount: 40,
+  ),
+  Product(
+    title: '3M Maxx wash & wax',
+    imageUrl: 'assets/images/sunglassesholder.png',
+    brand: '3M',
+    price: 699,
+    discount: 80,
+  ),
+  Product(
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 499,
+    discount: 20,
+  ),
+  Product(
+    title: 'Bluetooth Connector for Car',
+    imageUrl: 'assets/images/light.png',
+    brand: 'Portronics',
+    price: 449,
     discount: 25,
   ),
   Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
+    title: 'Automaze Alloy Wheel Hub Rim Udge Protector',
+    imageUrl: 'assets/images/rimline.png',
+    brand: 'Automaze',
+    price: 789,
+    discount: 45,
   ),
   Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
+    title: 'BlueOxy Shine Protectant and Cleaner (200 ml)',
+    imageUrl: 'assets/images/spray.png',
+    brand: 'BlueOxy',
+    price: 399,
+    discount: 40,
   ),
   Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
+    title: '3M Maxx wash & wax',
+    imageUrl: 'assets/images/sunglassesholder.png',
+    brand: '3M',
+    price: 699,
+    discount: 80,
   ),
-  Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
-  ),
-  Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
-  ),
-  Product(
-    title: 'AlleXtreme Accessories Kit for Bike',
-    imageUrl: 'assets/images/bike-kit.png',
-    brand: 'AlleXtreme',
-    price: 35.5,
-    discount: 25,
-  ),
-  // Add 2 more for 4 total
 ];

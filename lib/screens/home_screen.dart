@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/model/horizontal_scroll.dart';
 import 'package:k3carcare/screens/car_detailing_screen.dart';
 import 'package:k3carcare/screens/periodic_service_screen.dart';
-import 'package:k3carcare/screens/store_screen.dart';
 import 'package:k3carcare/widgets/appointment_card.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
 import 'package:k3carcare/widgets/section_header.dart';
@@ -197,7 +197,7 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionHeader(title: 'Our Services'),
+          SectionHeader(title: 'Our Services', actionText: "View More", onActionPressed: () => NavigationController.instance.navigateToTab(1),),
           const SizedBox(height: 16),
           GridView.count(
             physics: const NeverScrollableScrollPhysics(),
@@ -240,7 +240,7 @@ class HomeScreenNew extends StatelessWidget {
                   Color(0xFF4CAF50),
                 ],
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const StoreScreen()));
+                  NavigationController.instance.navigateToTab(2);
                 },
               ),
               _buildServiceCard(
@@ -321,25 +321,7 @@ class HomeScreenNew extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            children: [
-              const SectionHeader(title: 'Store'),
-              const Spacer(),
-              TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  foregroundColor: const Color(0xFFE53935),
-                ),
-                child: const Text(
-                  'See More',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          child: SectionHeader(title: 'Store', actionText: 'View More', onActionPressed: ()=> NavigationController.instance.navigateToTab(2),),
         ),
         const SizedBox(height: 8),
         HorizontalServicesList(),

@@ -12,8 +12,9 @@ class NavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Make sure controller is initialized early
     final controller = Get.put(NavigationController());
-
+    
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBarTheme(
@@ -22,11 +23,11 @@ class NavigationMenu extends StatelessWidget {
               (Set<WidgetState> states) =>
                   states.contains(WidgetState.selected)
                       ? const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      )
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        )
                       : const TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
             ),
           ),
           child: NavigationBar(
@@ -68,6 +69,8 @@ class NavigationMenu extends StatelessWidget {
 }
 
 class NavigationController extends GetxController {
+  static NavigationController get instance => Get.find<NavigationController>();
+  
   final Rx<int> selectIndex = 0.obs;
 
   final screens = [
@@ -77,4 +80,9 @@ class NavigationController extends GetxController {
     CartScreen(),
     const ProfileScreen(),
   ];
+  
+  // Method to navigate to a specific tab
+  void navigateToTab(int index) {
+    selectIndex.value = index;
+  }
 }
