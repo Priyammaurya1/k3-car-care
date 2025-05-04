@@ -27,7 +27,7 @@ class RecommendedItemCard extends StatelessWidget {
               height: 64,
               width: 64,
               decoration: BoxDecoration(
-                color: KColors.primary.withOpacity(0.1),
+                color: KColors.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: _buildItemImage(),
@@ -107,14 +107,14 @@ class RecommendedItemCard extends StatelessWidget {
         Icon(
           Icons.timer_outlined,
           size: 14,
-          color: KColors.textDesc.withOpacity(0.7),
+          color: KColors.textDesc.withValues(alpha: 0.7),
         ),
         const SizedBox(width: 4),
         Text(
           item.duration,
           style: TextStyle(
             fontSize: 13,
-            color: KColors.textDesc.withOpacity(0.7),
+            color: KColors.textDesc.withValues(alpha: 0.7),
           ),
         ),
       ],

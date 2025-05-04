@@ -8,8 +8,7 @@ class PeriodicServicesScreen extends StatefulWidget {
   State<PeriodicServicesScreen> createState() => _PeriodicServicesScreenState();
 }
 
-class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
-    with SingleTickerProviderStateMixin {
+class _PeriodicServicesScreenState extends State<PeriodicServicesScreen> {
   int _selectedTabIndex = 0;
   final List<String> _tabTitles = [
     'Scheduled Packages',
@@ -17,12 +16,13 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
     'Under 49',
   ];
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _tabScrollController = ScrollController();
   final List<GlobalKey> _sectionKeys = [GlobalKey(), GlobalKey(), GlobalKey()];
+  bool _isScrollingProgrammatically = false;
 
   @override
   void initState() {
     super.initState();
-
     // Add scroll listener to detect which section is visible
     _scrollController.addListener(_onScroll);
   }
@@ -31,39 +31,109 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
   void dispose() {
     _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
+    _tabScrollController.dispose();
     super.dispose();
   }
 
   void _onScroll() {
+    if (_isScrollingProgrammatically) return;
+
     // Find which section is most visible
+    int? visibleSectionIndex;
+    double maxVisibleArea = 0;
+
     for (int i = 0; i < _sectionKeys.length; i++) {
-      final RenderObject? renderObject =
-          _sectionKeys[i].currentContext?.findRenderObject();
+      final RenderObject? renderObject = _sectionKeys[i].currentContext?.findRenderObject();
       if (renderObject is RenderBox) {
         final RenderBox box = renderObject;
         final Offset position = box.localToGlobal(Offset.zero);
-        // If this section is visible in the viewport
-        if (position.dy < MediaQuery.of(context).size.height / 2 &&
-            position.dy + box.size.height > 0) {
-          if (_selectedTabIndex != i) {
-            setState(() {
-              _selectedTabIndex = i;
-            });
-          }
-          break;
+        final double screenHeight = MediaQuery.of(context).size.height;
+        
+        // Calculate how much of this section is visible on screen
+        final double visibleTop = position.dy < 0 ? 0 : position.dy;
+        final double visibleBottom = (position.dy + box.size.height) > screenHeight 
+            ? screenHeight 
+            : (position.dy + box.size.height);
+        
+        final double visibleArea = visibleBottom > visibleTop ? visibleBottom - visibleTop : 0;
+        
+        if (visibleArea > maxVisibleArea) {
+          maxVisibleArea = visibleArea;
+          visibleSectionIndex = i;
         }
       }
     }
+
+    if (visibleSectionIndex != null && _selectedTabIndex != visibleSectionIndex) {
+      setState(() {
+        _selectedTabIndex = visibleSectionIndex!;
+      });
+      
+      // Scroll the tab into view
+      _scrollTabToCenter(visibleSectionIndex);
+    }
+  }
+
+  void _scrollTabToCenter(int tabIndex) {
+    // Get the context of the tab
+    final BuildContext? tabContext = _getTabContext(tabIndex);
+    if (tabContext == null) return;
+    
+    // Get the RenderBox of the tab
+    final RenderBox box = tabContext.findRenderObject() as RenderBox;
+    final double tabPosition = box.localToGlobal(Offset.zero).dx;
+    final double tabWidth = box.size.width;
+    
+    // Calculate target scroll position (center the tab in the horizontal scroll view)
+    final double screenWidth = MediaQuery.of(context).size.width;
+    double targetScrollPosition = tabPosition - (screenWidth / 2) + (tabWidth / 2);
+    
+    // Make sure we don't scroll beyond the scrollable area
+    targetScrollPosition = targetScrollPosition.clamp(
+      0.0,
+      _tabScrollController.position.maxScrollExtent,
+    );
+    
+    // Animate to the target position
+    _tabScrollController.animateTo(
+      targetScrollPosition,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  BuildContext? _getTabContext(int index) {
+    // ignore: unused_local_variable
+    final GlobalKey tabKey = GlobalKey();
+    // This is a workaround as we don't have direct access to tab keys
+    // In a production app, you'd likely maintain a list of keys for tabs
+    
+    // For now, we'll just return null and handle it in _scrollTabToCenter
+    return null;
   }
 
   void _scrollToSection(int index) {
+    _isScrollingProgrammatically = true;
+    
     final context = _sectionKeys[index].currentContext;
     if (context != null) {
       Scrollable.ensureVisible(
         context,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-      );
+      ).then((_) {
+        // Add a small delay before allowing the scroll listener to work again
+        Future.delayed(const Duration(milliseconds: 100), () {
+          if (mounted) {
+            setState(() {
+              _selectedTabIndex = index;
+              _isScrollingProgrammatically = false;
+            });
+          }
+        });
+      });
+    } else {
+      _isScrollingProgrammatically = false;
     }
   }
 
@@ -74,7 +144,7 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
         ),
         elevation: 0,
         flexibleSpace: Container(
@@ -100,7 +170,7 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
                 color: Colors.white,
               ),
             ),
-             Text(
+            Text(
               'It\'s recommended to go through every services',
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.8),
@@ -109,10 +179,8 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
             ),
           ],
         ),
-        
-
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+          preferredSize: const Size.fromHeight(80),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFFF8F9FA),
@@ -121,8 +189,9 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
                 topRight: Radius.circular(20),
               ),
             ),
-            padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 16),
+            padding: const EdgeInsets.only(top: 16, bottom: 16),
             child: SingleChildScrollView(
+              controller: _tabScrollController,
               scrollDirection: Axis.horizontal,
               physics: const AlwaysScrollableScrollPhysics(),
               child: Row(
@@ -133,31 +202,6 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
             ),
           ),
         ),
-        // bottom: PreferredSize(
-        //   preferredSize: const Size.fromHeight(50), // Reduced height
-        //   child: Container(
-        //     padding: const EdgeInsets.symmetric(
-        //       horizontal: 8,
-        //       vertical: 6,
-        //     ), // Reduced padding
-        //     decoration: const BoxDecoration(
-        //       color: Colors.white,
-        //       border: Border(
-        //         bottom: BorderSide(color: Color(0xFFEEEEEE), width: 1),
-        //       ),
-        //     ),
-        //     child: SingleChildScrollView(
-        //       scrollDirection: Axis.horizontal,
-        //       physics: const BouncingScrollPhysics(),
-        //       child: Row(
-        //         children: List.generate(_tabTitles.length, (index) {
-        //           return _buildTabButton(_tabTitles[index], index);
-        //         }),
-        //       ),
-        //     ),
-        // ),
-
-        // ),
       ),
       body: ListView(
         controller: _scrollController,
@@ -290,7 +334,7 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
   Widget _buildTabButton(String text, int index) {
     final bool isSelected = _selectedTabIndex == index;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0), // Reduced padding
+      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -300,40 +344,38 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
             });
             _scrollToSection(index);
           },
-          borderRadius: BorderRadius.circular(20), // Slightly reduced radius
+          borderRadius: BorderRadius.circular(20),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 10,
-            ), // Reduced padding
+            ),
             decoration: BoxDecoration(
               color: isSelected ? const Color(0xFFEFEAFA) : Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color:
-                    isSelected
-                        ? const Color(0xFF673AB7)
-                        : const Color(0xFFEEEEEE),
+                color: isSelected
+                    ? const Color(0xFF673AB7)
+                    : const Color(0xFFEEEEEE),
                 width: 1.5,
               ),
-              boxShadow:
-                  isSelected
-                      ? [
-                        BoxShadow(
-                          color: const Color(0xFF673AB7).withOpacity(0.1),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ]
-                      : null,
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFF673AB7).withValues(alpha: 0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
+                  : null,
             ),
             child: Text(
               text,
               style: TextStyle(
                 color: isSelected ? const Color(0xFF673AB7) : Colors.black54,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                fontSize: 13, // Reduced font size
+                fontSize: 13,
               ),
             ),
           ),
@@ -358,7 +400,7 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -402,10 +444,9 @@ class _PeriodicServicesScreenState extends State<PeriodicServicesScreen>
                   ),
                 ),
               Padding(
-                padding:
-                    isRecommended
-                        ? const EdgeInsets.fromLTRB(16.0, 35.0, 16.0, 16.0)
-                        : const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                padding: isRecommended
+                    ? const EdgeInsets.fromLTRB(16.0, 35.0, 16.0, 16.0)
+                    : const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

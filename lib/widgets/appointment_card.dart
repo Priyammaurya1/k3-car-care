@@ -25,13 +25,13 @@ class AppointmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withValues(alpha: 0.4),
             blurRadius: 15,
             offset: const Offset(0, 6),
             spreadRadius: 1,
           ),
           BoxShadow(
-            color: primaryRed.withOpacity(0.2),
+            color: primaryRed.withValues(alpha: 0.2),
             blurRadius: 20,
             offset: const Offset(0, 4),
             spreadRadius: -2,
@@ -59,7 +59,7 @@ class AppointmentCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: primaryRed.withOpacity(0.3),
+                        color: primaryRed.withValues(alpha: 0.3),
                         blurRadius: 8,
                         offset: const Offset(0, 2),
                       ),
@@ -106,12 +106,12 @@ class AppointmentCard extends StatelessWidget {
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [primaryRed.withOpacity(0.8), darkRed],
+                      colors: [primaryRed.withValues(alpha: 0.8), darkRed],
                     ),
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
-                        color: primaryRed.withOpacity(0.3),
+                        color: primaryRed.withValues(alpha: 0.3),
                         blurRadius: 6,
                         offset: const Offset(0, 2),
                       ),
@@ -136,15 +136,15 @@ class AppointmentCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: primaryRed.withOpacity(0.3),
+                  color: primaryRed.withValues(alpha: 0.3),
                   width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),

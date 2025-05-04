@@ -28,7 +28,7 @@ class CartItemCard extends StatelessWidget {
                 height: 70,
                 width: 70,
                 decoration: BoxDecoration(
-                  color: KColors.primary.withOpacity(0.1),
+                  color: KColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: _buildItemImage(),
@@ -46,7 +46,7 @@ class CartItemCard extends StatelessWidget {
                       item.description,
                       style: TextStyle(
                         fontSize: 13,
-                        color: KColors.textDesc.withOpacity(0.7),
+                        color: KColors.textDesc.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -119,7 +119,7 @@ class CartItemCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
           decoration: BoxDecoration(
-            color: KColors.primary.withOpacity(0.1),
+            color: KColors.primary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(6),
           ),
           child: Row(

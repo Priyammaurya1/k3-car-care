@@ -63,7 +63,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen>
               Text(
                 'Track all your transactions',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withValues(alpha: 0.8),
                   fontSize: 12,
                 ),
               ),
@@ -75,7 +75,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen>
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(Icons.search, color: Colors.white, size: 20),
@@ -151,8 +151,9 @@ class PaymentHistoryList extends StatelessWidget {
     final filteredPayments =
         _getDummyPayments().where((payment) {
           if (paymentType == PaymentType.all) return true;
-          if (paymentType == PaymentType.services)
+          if (paymentType == PaymentType.services) {
             return payment.type == 'Service';
+          }
           if (paymentType == PaymentType.store) return payment.type == 'Store';
           return false;
         }).toList();
@@ -355,7 +356,7 @@ class PaymentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -376,8 +377,8 @@ class PaymentCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color:
                           payment.type == 'Service'
-                              ? Colors.blue.withOpacity(0.1)
-                              : Colors.orange.withOpacity(0.1),
+                              ? Colors.blue.withValues(alpha: 0.1)
+                              : Colors.orange.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(
@@ -500,7 +501,7 @@ class PaymentCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -735,7 +736,7 @@ class PaymentCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey.withOpacity(0.2))),
+        border: Border(bottom: BorderSide(color: Colors.grey.withValues(alpha: 0.2))),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

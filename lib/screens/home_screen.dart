@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:k3carcare/model/horizontal_scroll.dart';
+import 'package:k3carcare/screens/car_detailing_screen.dart';
+import 'package:k3carcare/screens/periodic_service_screen.dart';
+import 'package:k3carcare/screens/store_screen.dart';
 import 'package:k3carcare/widgets/appointment_card.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
 import 'package:k3carcare/widgets/section_header.dart';
@@ -43,7 +46,7 @@ class HomeScreenNew extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -95,7 +98,7 @@ class HomeScreenNew extends StatelessWidget {
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: Colors.black.withValues(alpha: 0.1),
                       blurRadius: 8,
                       offset: const Offset(0, 2),
                     ),
@@ -120,7 +123,7 @@ class HomeScreenNew extends StatelessWidget {
               border: Border.all(color: const Color(0xFFEEEEEE)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.04),
+                  color: Colors.black.withValues(alpha: 0.04),
                   blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),
@@ -206,23 +209,27 @@ class HomeScreenNew extends StatelessWidget {
             children: [
               _buildServiceCard(
                 rightPadding: false,
-                title: "Regular\nServices",
+                title: "Periodic\nServices",
                 iconPath: 'assets/images/service.png',
                  colors: const [
                   Color(0xFFFF7043),
                   Color(0xFFFF5722),
                 ],
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const PeriodicServicesScreen()));
+                },
               ),
               _buildServiceCard(
                 rightPadding: false,
-                title: "Car\nWash",
+                title: "Car\nDetailing",
                 iconPath: 'assets/images/wash.png',
                 colors: const [
                   Color(0xFF26C6DA),
                   Color(0xFF00ACC1),
                 ],
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const CarDetailingScreen()));
+                },
               ),
               _buildServiceCard(
                 rightPadding: false,
@@ -232,7 +239,9 @@ class HomeScreenNew extends StatelessWidget {
                   Color(0xFF66BB6A),
                   Color(0xFF4CAF50),
                 ],
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const StoreScreen()));
+                },
               ),
               _buildServiceCard(
                 rightPadding: true,
@@ -242,7 +251,9 @@ class HomeScreenNew extends StatelessWidget {
                   Color(0xFFEF5350),
                   Color(0xFFE53935),
                 ],
-                onTap: () {},
+                onTap: () {
+                  // dance nigga you got no game
+                },
               ),
             ],
           ),
@@ -271,7 +282,7 @@ class HomeScreenNew extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: colors[0].withOpacity(0.3),
+              color: colors[0].withValues(alpha: 0.3),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),
@@ -351,7 +362,7 @@ class HomeScreenNew extends StatelessWidget {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 10,
                   offset: const Offset(0, 2),
                 ),

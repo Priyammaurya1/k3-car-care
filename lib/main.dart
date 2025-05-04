@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:k3carcare/screens/car_detailing_screen.dart';
+import 'package:k3carcare/bottom_nav_bar.dart';
 
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: CarDetailingScreen(),
+      home: NavigationMenu(),
     );
   }
 }

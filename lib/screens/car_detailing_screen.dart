@@ -8,8 +8,7 @@ class CarDetailingScreen extends StatefulWidget {
   State<CarDetailingScreen> createState() => _CarDetailingScreenState();
 }
 
-class _CarDetailingScreenState extends State<CarDetailingScreen>
-    with SingleTickerProviderStateMixin {
+class _CarDetailingScreenState extends State<CarDetailingScreen> {
   int _selectedTabIndex = 0;
   final List<String> _tabTitles = [
     'Polishing',
@@ -18,8 +17,16 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
     'Teflon Coating',
     'Anti-Rust Coating',
   ];
+  
+  // Controllers for both vertical and horizontal scrolling
   final ScrollController _scrollController = ScrollController();
-  final List<GlobalKey> _sectionKeys = [GlobalKey(), GlobalKey(), GlobalKey()];
+  final ScrollController _tabScrollController = ScrollController();
+  
+  // Create a key for each section corresponding to tabs
+  final List<GlobalKey> _sectionKeys = List.generate(5, (_) => GlobalKey());
+  
+  // Track if we're programmatically scrolling
+  bool _isScrollingProgrammatically = false;
 
   @override
   void initState() {
@@ -27,45 +34,121 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
 
     // Add scroll listener to detect which section is visible
     _scrollController.addListener(_onScroll);
+    
+    // Add post-frame callback to ensure all render objects are available
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Initialize to first section
+      if (_sectionKeys.isNotEmpty && _sectionKeys[0].currentContext != null) {
+        _selectedTabIndex = 0;
+      }
+    });
   }
 
   @override
   void dispose() {
     _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
+    _tabScrollController.dispose();
     super.dispose();
   }
 
   void _onScroll() {
+    // Skip this check if we're programmatically scrolling
+    if (_isScrollingProgrammatically) return;
+    
     // Find which section is most visible
+    double viewportHeight = MediaQuery.of(context).size.height;
+    double bestVisibleArea = 0;
+    int bestIndex = _selectedTabIndex;
+    
     for (int i = 0; i < _sectionKeys.length; i++) {
-      final RenderObject? renderObject =
-          _sectionKeys[i].currentContext?.findRenderObject();
+      final RenderObject? renderObject = _sectionKeys[i].currentContext?.findRenderObject();
       if (renderObject is RenderBox) {
         final RenderBox box = renderObject;
         final Offset position = box.localToGlobal(Offset.zero);
-        // If this section is visible in the viewport
-        if (position.dy < MediaQuery.of(context).size.height / 2 &&
-            position.dy + box.size.height > 0) {
-          if (_selectedTabIndex != i) {
-            setState(() {
-              _selectedTabIndex = i;
-            });
+        
+        // Calculate how much of this section is visible in the viewport
+        final double top = position.dy;
+        final double bottom = top + box.size.height;
+        final double viewportTop = 0;
+        final double viewportBottom = viewportHeight;
+        
+        // Calculate overlapping area
+        final double visibleTop = top < viewportTop ? viewportTop : top;
+        final double visibleBottom = bottom > viewportBottom ? viewportBottom : bottom;
+        
+        if (visibleBottom > visibleTop) {
+          final double visibleArea = visibleBottom - visibleTop;
+          if (visibleArea > bestVisibleArea) {
+            bestVisibleArea = visibleArea;
+            bestIndex = i;
           }
-          break;
         }
       }
     }
+    
+    // Update selected tab if it changed
+    if (bestIndex != _selectedTabIndex) {
+      setState(() {
+        _selectedTabIndex = bestIndex;
+      });
+      
+      // Scroll the tab into view
+      _scrollTabIntoView(bestIndex);
+    }
+  }
+
+  void _scrollTabIntoView(int tabIndex) {
+    if (!_tabScrollController.hasClients) return;
+    
+    // Calculate width of each tab (approximation - assuming uniform width)
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double averageTabWidth = 120.0; // Estimate - adjust based on your design
+    
+    // Calculate target scroll offset
+    double targetOffset = (averageTabWidth + 8.0) * tabIndex; // 8.0 is for padding
+    
+    // Center the tab if possible
+    targetOffset = targetOffset - (screenWidth / 2) + (averageTabWidth / 2);
+    
+    // Clamp the scroll offset to valid bounds
+    targetOffset = targetOffset.clamp(
+      0.0,
+      _tabScrollController.position.maxScrollExtent,
+    );
+    
+    // Animate to the position
+    _tabScrollController.animateTo(
+      targetOffset,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   void _scrollToSection(int index) {
+    // Ensure index is valid
+    if (index < 0 || index >= _sectionKeys.length) return;
+    
     final context = _sectionKeys[index].currentContext;
     if (context != null) {
+      setState(() {
+        _selectedTabIndex = index;
+        _isScrollingProgrammatically = true;
+      });
+      
       Scrollable.ensureVisible(
         context,
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
-      );
+      ).then((_) {
+        // Reset the flag after scrolling animation completes
+        setState(() {
+          _isScrollingProgrammatically = false;
+        });
+        
+        // Scroll the tab into view
+        _scrollTabIntoView(index);
+      });
     }
   }
 
@@ -76,7 +159,7 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
         ),
         elevation: 0,
         flexibleSpace: Container(
@@ -91,7 +174,7 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
             ),
           ),
         ),
-        title: Column(
+        title:   Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
@@ -102,7 +185,7 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
                 color: Colors.white,
               ),
             ),
-             Text(
+            Text(
               'We got you covered and your car as well',
               style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.8),
@@ -112,9 +195,8 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
           ],
         ),
         
-
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(70),
+          preferredSize: const Size.fromHeight(80),
           child: Container(
             decoration: const BoxDecoration(
               color: Color(0xFFF8F9FA),
@@ -123,8 +205,9 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
                 topRight: Radius.circular(20),
               ),
             ),
-            padding: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 16),
+            padding: const EdgeInsets.only(top: 20, bottom: 16),
             child: SingleChildScrollView(
+              controller: _tabScrollController,
               scrollDirection: Axis.horizontal,
               physics: const AlwaysScrollableScrollPhysics(),
               child: Row(
@@ -135,39 +218,14 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
             ),
           ),
         ),
-        // bottom: PreferredSize(
-        //   preferredSize: const Size.fromHeight(50), // Reduced height
-        //   child: Container(
-        //     padding: const EdgeInsets.symmetric(
-        //       horizontal: 8,
-        //       vertical: 6,
-        //     ), // Reduced padding
-        //     decoration: const BoxDecoration(
-        //       color: Colors.white,
-        //       border: Border(
-        //         bottom: BorderSide(color: Color(0xFFEEEEEE), width: 1),
-        //       ),
-        //     ),
-        //     child: SingleChildScrollView(
-        //       scrollDirection: Axis.horizontal,
-        //       physics: const BouncingScrollPhysics(),
-        //       child: Row(
-        //         children: List.generate(_tabTitles.length, (index) {
-        //           return _buildTabButton(_tabTitles[index], index);
-        //         }),
-        //       ),
-        //     ),
-        // ),
-
-        // ),
       ),
       body: ListView(
         controller: _scrollController,
         physics: const AlwaysScrollableScrollPhysics(),
         children: [
-          // Scheduled Packages Section
+          // Polishing Section
           Padding(
-            padding: const EdgeInsets.only(left: 16.0),
+            padding: const EdgeInsets.only(left: 16.0, top: 16.0),
             child: SectionHeader(
               key: _sectionKeys[0],
               title: 'Polishing',
@@ -189,7 +247,7 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
           ),
           const SizedBox(height: 20),
 
-          // Brake Maintenance Section
+          // Ceramic Coating Section
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: SectionHeader(
@@ -215,45 +273,13 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
           ),
           const SizedBox(height: 20),
 
-          // Under 49 Section
+          // PPF Coating Section
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: SectionHeader(key: _sectionKeys[2], title: 'Teflon Coating'),
-          ),
-          _buildServicePackage(
-            title: '3M™ Teflon Coating',
-            points: [
-              'Takes 24 Hours',
-              '3 Months Warranty',
-              'Basic Diagnostics',
-              'Includes 3 Services',
-            ],
-            originalPrice: '₹9,499',
-            discountedPrice: '₹8,899',
-            discountPercentage: '24% OFF',
-            isRecommended: true,
-            image:
-                'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1074&q=80',
-          ),
-          const SizedBox(height: 16),
-          _buildServicePackage(
-            title: 'Meguiar\'s Teflon Coating',
-            points: [
-              'Takes 24 Hours',
-              '3 Months Warranty',
-              'Every 1 Year Recommended',
-            ],
-            originalPrice: '₹12,499',
-            discountedPrice: '₹11,799',
-            discountPercentage: '20% OFF',
-            isRecommended: false,
-            image:
-                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: SectionHeader(key: _sectionKeys[2], title: 'PPF Coating'),
+            child: SectionHeader(
+              key: _sectionKeys[2],
+              title: 'PPF Coating',
+            ),
           ),
           _buildServicePackage(
             title: 'PPF - Garware Plus',
@@ -299,9 +325,55 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
             image:
                 'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
           ),
+          const SizedBox(height: 20),
+          
+          // Teflon Coating Section
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: SectionHeader(key: _sectionKeys[2], title: 'Anti-Rust Coating'),
+            child: SectionHeader(
+              key: _sectionKeys[3],
+              title: 'Teflon Coating',
+            ),
+          ),
+          _buildServicePackage(
+            title: '3M™ Teflon Coating',
+            points: [
+              'Takes 24 Hours',
+              '3 Months Warranty',
+              'Basic Diagnostics',
+              'Includes 3 Services',
+            ],
+            originalPrice: '₹9,499',
+            discountedPrice: '₹8,899',
+            discountPercentage: '24% OFF',
+            isRecommended: true,
+            image:
+                'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 16),
+          _buildServicePackage(
+            title: 'Meguiar\'s Teflon Coating',
+            points: [
+              'Takes 24 Hours',
+              '3 Months Warranty',
+              'Every 1 Year Recommended',
+            ],
+            originalPrice: '₹12,499',
+            discountedPrice: '₹11,799',
+            discountPercentage: '20% OFF',
+            isRecommended: false,
+            image:
+                'https://images.unsplash.com/photo-1565043666747-69f6646db940?auto=format&fit=crop&w=1074&q=80',
+          ),
+          const SizedBox(height: 20),
+          
+          // Anti-Rust Coating Section
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: SectionHeader(
+              key: _sectionKeys[4],
+              title: 'Anti-Rust Coating',
+            ),
           ),
           _buildServicePackage(
             title: 'Anti Rust Underbody Coating',
@@ -341,50 +413,50 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
   Widget _buildTabButton(String text, int index) {
     final bool isSelected = _selectedTabIndex == index;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0), // Reduced padding
+      padding: const EdgeInsets.only(left: 4.0, right: 4.0),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
             setState(() {
               _selectedTabIndex = index;
+              _isScrollingProgrammatically = true;
             });
+            // Scroll to the corresponding section
             _scrollToSection(index);
           },
-          borderRadius: BorderRadius.circular(20), // Slightly reduced radius
+          borderRadius: BorderRadius.circular(20),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 10,
-            ), // Reduced padding
+            ),
             decoration: BoxDecoration(
               color: isSelected ? const Color(0xFFEFEAFA) : Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color:
-                    isSelected
-                        ? const Color(0xFF673AB7)
-                        : const Color(0xFFEEEEEE),
+                color: isSelected
+                    ? const Color(0xFF673AB7)
+                    : const Color(0xFFEEEEEE),
                 width: 1.5,
               ),
-              boxShadow:
-                  isSelected
-                      ? [
-                        BoxShadow(
-                          color: const Color(0xFF673AB7).withOpacity(0.1),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ]
-                      : null,
+              boxShadow: isSelected
+                  ? [
+                      BoxShadow(
+                        color: const Color(0xFF673AB7).withValues(alpha: 0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ]
+                  : null,
             ),
             child: Text(
               text,
               style: TextStyle(
                 color: isSelected ? const Color(0xFF673AB7) : Colors.black54,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
-                fontSize: 13, // Reduced font size
+                fontSize: 13,
               ),
             ),
           ),
@@ -409,7 +481,7 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -453,10 +525,9 @@ class _CarDetailingScreenState extends State<CarDetailingScreen>
                   ),
                 ),
               Padding(
-                padding:
-                    isRecommended
-                        ? const EdgeInsets.fromLTRB(16.0, 35.0, 16.0, 16.0)
-                        : const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                padding: isRecommended
+                    ? const EdgeInsets.fromLTRB(16.0, 35.0, 16.0, 16.0)
+                    : const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

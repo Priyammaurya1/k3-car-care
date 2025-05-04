@@ -41,7 +41,7 @@ class StoreScreen extends StatelessWidget {
             Text(
               'Get everything for your car at one place',
               style: TextStyle(
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white.withValues(alpha: 0.8),
                 fontSize: 13,
               ),
             ),
@@ -52,7 +52,7 @@ class StoreScreen extends StatelessWidget {
             icon: Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
@@ -130,7 +130,7 @@ class StoreScreen extends StatelessWidget {
         border: Border.all(color: const Color(0xFFEEEEEE)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
+            color: Colors.black.withValues(alpha: 0.04),
             blurRadius: 6,
             offset: const Offset(0, 2),
           ),
@@ -288,7 +288,7 @@ Widget _buildProductsSection(Product product) {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               blurRadius: 50,
               spreadRadius: 7,
               offset: const Offset(0, 2),
@@ -313,7 +313,7 @@ Widget _buildProductsSection(Product product) {
                     top: 12,
                     child: MpRoundedContainer(
                       radius: 8,
-                      backgroundColor: Colors.yellow.withOpacity(0.8),
+                      backgroundColor: Colors.yellow.withValues(alpha: 0.8),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
                         vertical: 4,

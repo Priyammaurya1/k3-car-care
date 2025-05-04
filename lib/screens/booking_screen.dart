@@ -137,7 +137,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
                 Text(
                   'Select from available slots',
                   style: TextStyle(
-                    color: Colors.white.withOpacity(0.8),
+                    color: Colors.white.withValues(alpha: 0.8),
                     fontSize: 12,
                   ),
                 ),
@@ -149,7 +149,7 @@ class _ServiceBookingScreenState extends State<ServiceBookingScreen>
               icon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.2),
+                  color: Colors.white.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: const Icon(

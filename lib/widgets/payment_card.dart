@@ -30,7 +30,7 @@ class PaymentCard extends StatelessWidget {
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  color: KColors.primary.withOpacity(0.1),
+                  color: KColors.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Center(
@@ -59,7 +59,7 @@ class PaymentCard extends StatelessWidget {
                           payment.formattedDate,
                           style: TextStyle(
                             fontSize: 13,
-                            color: KColors.textDesc.withOpacity(0.7),
+                            color: KColors.textDesc.withValues(alpha: 0.7),
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -67,7 +67,7 @@ class PaymentCard extends StatelessWidget {
                           width: 4,
                           height: 4,
                           decoration: BoxDecoration(
-                            color: KColors.textDesc.withOpacity(0.4),
+                            color: KColors.textDesc.withValues(alpha: 0.4),
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -76,7 +76,7 @@ class PaymentCard extends StatelessWidget {
                           payment.serviceType,
                           style: TextStyle(
                             fontSize: 13,
-                            color: KColors.textDesc.withOpacity(0.7),
+                            color: KColors.textDesc.withValues(alpha: 0.7),
                           ),
                         ),
                       ],

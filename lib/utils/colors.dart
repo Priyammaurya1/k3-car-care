@@ -28,6 +28,7 @@ class KColors {
   
   // Function to get color with opacity
   static Color withOpacity(Color color, double opacity) {
+    // ignore: deprecated_member_use
     return color.withOpacity(opacity);
   }
 }

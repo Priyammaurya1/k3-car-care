@@ -200,7 +200,7 @@ class _CartScreenState extends State<CartScreen> {
           Text(
             '${_cartItems.length} items are in your cart',
             style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 0.8),
               fontSize: 13,
             ),
           ),
@@ -211,7 +211,7 @@ class _CartScreenState extends State<CartScreen> {
           icon: Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color: Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(
@@ -251,7 +251,7 @@ class _CartScreenState extends State<CartScreen> {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: KColors.primary.withOpacity(0.1),
+              color: KColors.primary.withValues(alpha: 0.1),
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -402,7 +402,7 @@ class _CartScreenState extends State<CartScreen> {
                       "Including taxes & charges",
                       style: TextStyle(
                         fontSize: 12,
-                        color: KColors.textDesc.withOpacity(0.6),
+                        color: KColors.textDesc.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -429,7 +429,7 @@ class _CartScreenState extends State<CartScreen> {
               return Container(
                 width: dashWidth,
                 height: 1,
-                color: Colors.grey.withOpacity(0.3),
+                color: Colors.grey.withValues(alpha: 0.3),
               );
             }),
           );
