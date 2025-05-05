@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:k3carcare/screens/services_screens.dart';
+import 'package:k3carcare/screens/services_screen.dart';
 import 'package:k3carcare/utils/colors.dart';
 import '../model/service_model.dart';
 import '../utils/constants.dart';
@@ -143,7 +143,7 @@ class CustomList extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ServicesScreen()),
+                MaterialPageRoute(builder: (context) => ServiceScreen()),
               );
             },
             child: Text("View More", style: TextStyle(color: KColors.primary)),

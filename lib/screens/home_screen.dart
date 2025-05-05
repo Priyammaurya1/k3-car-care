@@ -14,7 +14,7 @@ class HomeScreenNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA), 
+      backgroundColor: const Color(0xFFF8F9FA),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -28,9 +28,7 @@ class HomeScreenNew extends StatelessWidget {
               _buildStoreSection(),
               _buildWarrantySection(context),
               const SizedBox(height: 40),
-              Center(
-                child: _buildCompanyFooter(),
-              ),
+              Center(child: _buildCompanyFooter()),
               const SizedBox(height: 20),
             ],
           ),
@@ -197,7 +195,12 @@ class HomeScreenNew extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SectionHeader(title: 'Our Services', actionText: "View More", onActionPressed: () => NavigationController.instance.navigateToTab(1),),
+          SectionHeader(
+            title: 'Our Services',
+            actionText: "View More",
+            onActionPressed:
+                () => NavigationController.instance.navigateToTab(1),
+          ),
           const SizedBox(height: 16),
           GridView.count(
             physics: const NeverScrollableScrollPhysics(),
@@ -211,34 +214,35 @@ class HomeScreenNew extends StatelessWidget {
                 rightPadding: false,
                 title: "Periodic\nServices",
                 iconPath: 'assets/images/service.png',
-                 colors: const [
-                  Color(0xFFFF7043),
-                  Color(0xFFFF5722),
-                ],
+                colors: const [Color(0xFFFF7043), Color(0xFFFF5722)],
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const PeriodicServicesScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PeriodicServicesScreen(),
+                    ),
+                  );
                 },
               ),
               _buildServiceCard(
                 rightPadding: false,
                 title: "Car\nDetailing",
                 iconPath: 'assets/images/wash.png',
-                colors: const [
-                  Color(0xFF26C6DA),
-                  Color(0xFF00ACC1),
-                ],
+                colors: const [Color(0xFF26C6DA), Color(0xFF00ACC1)],
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const CarDetailingScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const CarDetailingScreen(),
+                    ),
+                  );
                 },
               ),
               _buildServiceCard(
                 rightPadding: false,
                 title: "Car\nBatteries",
                 iconPath: 'assets/images/battery.png',
-                colors: const [
-                  Color(0xFF66BB6A),
-                  Color(0xFF4CAF50),
-                ],
+                colors: const [Color(0xFF66BB6A), Color(0xFF4CAF50)],
                 onTap: () {
                   NavigationController.instance.navigateToTab(2);
                 },
@@ -247,10 +251,7 @@ class HomeScreenNew extends StatelessWidget {
                 rightPadding: true,
                 title: "K3 Gold\nPlan",
                 iconPath: 'assets/images/car-wash.png',
-                colors: const [
-                  Color(0xFFEF5350),
-                  Color(0xFFE53935),
-                ],
+                colors: const [Color(0xFFEF5350), Color(0xFFE53935)],
                 onTap: () {
                   // dance nigga you got no game
                 },
@@ -272,7 +273,12 @@ class HomeScreenNew extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.only(top: 16, bottom: 16, left: 16, right: rightPadding? 0:16),
+        padding: EdgeInsets.only(
+          top: 16,
+          bottom: 16,
+          left: 16,
+          right: rightPadding ? 0 : 16,
+        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
@@ -304,10 +310,7 @@ class HomeScreenNew extends StatelessWidget {
             const Spacer(),
             Align(
               alignment: Alignment.bottomRight,
-              child: Image.asset(
-                iconPath,
-                height: 60,
-              ),
+              child: Image.asset(iconPath, height: 60),
             ),
           ],
         ),
@@ -321,7 +324,12 @@ class HomeScreenNew extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: SectionHeader(title: 'Store', actionText: 'View More', onActionPressed: ()=> NavigationController.instance.navigateToTab(2),),
+          child: SectionHeader(
+            title: 'Store',
+            actionText: 'View More',
+            onActionPressed:
+                () => NavigationController.instance.navigateToTab(2),
+          ),
         ),
         const SizedBox(height: 8),
         HorizontalServicesList(),
@@ -367,11 +375,36 @@ class HomeScreenNew extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildBrandLogo('assets/images/brands/bosch.svg', 40, 100, isSvg: true),
-                      _buildBrandLogo('assets/images/brands/mahle.svg', 19, 100, isSvg: true),
-                      _buildBrandLogo('assets/images/brands/ntn.png', 25, 100, isSvg: false),
-                      _buildBrandLogo('assets/images/brands/textar.png', 40, 100, isSvg: false),
-                      _buildBrandLogo('assets/images/brands/valeo.svg', 35, 100, isSvg: true),
+                      _buildBrandLogo(
+                        'assets/images/brands/bosch.svg',
+                        40,
+                        100,
+                        isSvg: true,
+                      ),
+                      _buildBrandLogo(
+                        'assets/images/brands/mahle.svg',
+                        19,
+                        100,
+                        isSvg: true,
+                      ),
+                      _buildBrandLogo(
+                        'assets/images/brands/ntn.png',
+                        25,
+                        100,
+                        isSvg: false,
+                      ),
+                      _buildBrandLogo(
+                        'assets/images/brands/textar.png',
+                        40,
+                        100,
+                        isSvg: false,
+                      ),
+                      _buildBrandLogo(
+                        'assets/images/brands/valeo.svg',
+                        35,
+                        100,
+                        isSvg: true,
+                      ),
                     ],
                   ),
                 ),
@@ -383,49 +416,49 @@ class HomeScreenNew extends StatelessWidget {
     );
   }
 
-  Widget _buildBrandLogo(String path, double height, double width, {required bool isSvg}) {
+  Widget _buildBrandLogo(
+    String path,
+    double height,
+    double width, {
+    required bool isSvg,
+  }) {
     return Container(
       margin: const EdgeInsets.only(right: 20),
       height: height,
       width: width,
-      child: isSvg
-          ? SvgPicture.asset(path)
-          : Image.asset(path, fit: BoxFit.contain),
+      child:
+          isSvg
+              ? SvgPicture.asset(path)
+              : Image.asset(path, fit: BoxFit.contain),
     );
   }
 }
 
-
-  Widget _buildCompanyFooter() {
-    return Center(
-      
-      child: Column(
-        
-        children: [
-          Image.asset(
-            'assets/images/logo.png',
-            height: 40,
+Widget _buildCompanyFooter() {
+  return Center(
+    child: Column(
+      children: [
+        Image.asset('assets/images/logo.png', height: 40),
+        const SizedBox(height: 10),
+        const Text(
+          "Created for you with ❤",
+          style: TextStyle(
+            color: Color(0xFF9E9E9E),
+            fontSize: 14,
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w500,
           ),
-          const SizedBox(height: 10),
-          const Text(
-            "Created for you with ❤",
-            style: TextStyle(
-              color: Color(0xFF9E9E9E),
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w500,
-            ),
+        ),
+        const SizedBox(height: 6),
+        const Text(
+          "v1.0.0",
+          style: TextStyle(
+            color: Color(0xFFBDBDBD),
+            fontSize: 12,
+            fontFamily: 'Poppins',
           ),
-          const SizedBox(height: 6),
-          const Text(
-            "v1.0.0",
-            style: TextStyle(
-              color: Color(0xFFBDBDBD),
-              fontSize: 12,
-              fontFamily: 'Poppins',
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+      ],
+    ),
+  );
+}
