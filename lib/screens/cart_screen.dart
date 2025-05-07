@@ -4,15 +4,14 @@ import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/common/rounded_container.dart';
 import 'package:k3carcare/common/rounded_images.dart';
 import 'package:k3carcare/models/cart_item.dart';
-import 'package:k3carcare/models/payment.dart';
 import 'package:k3carcare/models/recommended_item.dart';
+import 'package:k3carcare/screens/payment_history_screen.dart';
 import 'package:k3carcare/text/title_text.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/utils/styles.dart';
 import 'package:k3carcare/widgets/cart_item_card.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 import 'package:k3carcare/widgets/checkout_bottom_sheet.dart';
-import 'package:k3carcare/widgets/payment_card.dart';
 import 'package:k3carcare/widgets/recommended_item_card.dart';
 
 class CartScreen extends StatefulWidget {
@@ -63,25 +62,6 @@ class _CartScreenState extends State<CartScreen> {
       imageUrl: "assets/images/interior_clean.png",
       type: "service",
       duration: "60-90 min",
-    ),
-  ];
-
-
-  final List<Payment> _paymentHistory = [
-    Payment(id: '1', date: DateTime(2023, 10, 1), amount: 5899.0, rating: 4),
-    Payment(
-      id: '2',
-      date: DateTime(2023, 10, 5),
-      amount: 2199.0,
-      rating: 5,
-      serviceType: "Exterior detailing",
-    ),
-    Payment(
-      id: '3',
-      date: DateTime(2023, 10, 10),
-      amount: 1099.0,
-      rating: 3,
-      serviceType: "Oil change",
     ),
   ];
 
@@ -252,10 +232,7 @@ class _CartScreenState extends State<CartScreen> {
           const SizedBox(height: 32),
           ElevatedButton(
             onPressed:
-                () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const NavigationMenu()),
-                ),
+              () => NavigationController.instance.navigateToTab(2),
             style: KStyles.primaryButton,
             child: const Text("Browse Services"),
           ),
@@ -341,20 +318,14 @@ class _CartScreenState extends State<CartScreen> {
                   SectionHeader(
                     title: "Payment History",
                     actionText: "View More",
-                    onActionPressed: () {},
+                    onActionPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=> const PaymentHistoryScreen()));
+                    },
                   ),
-            ..._paymentHistory.map(
-              (payment) => PaymentCard(
-                payment: payment,
-                onTap: () {
-                  // View payment details
-                },
-              ),
-            ),
                 ],
               ),
             ),
-            const SizedBox(height: 100), // Bottom padding for checkout button
+            const SizedBox(height: 80), // Bottom padding for checkout button
           ]),
         ),
       ],

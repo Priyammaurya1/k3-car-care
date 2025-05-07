@@ -1,29 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:k3carcare/screens/account_screen.dart';
 import 'package:k3carcare/screens/car_selection.dart';
 import 'package:k3carcare/screens/payment_history_screen.dart';
+import 'package:k3carcare/screens/settings_screen.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
-        title: const Text(
-          'Profile',
-          style: TextStyle(
-            color: Color(0xFF212121),
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            fontFamily: 'Poppins',
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(206, 255, 41, 41),
+                Color.fromARGB(210, 254, 61, 61),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
         ),
-        centerTitle: true,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Main title
+            const Text(
+              'My Profile',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+            // Subtitle
+            Text(
+              'Manage your account settings',
+              style: TextStyle(
+                color: Colors.white.withValues(alpha: 0.8),
+                fontSize: 13,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          // Help button
+          IconButton(
+            icon: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Icon(
+                Icons.help_outline_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+            onPressed: () {
+              // Help functionality will be implemented here
+              // Maybe show a dialog with helpful information
+            },
+          ),
+          const SizedBox(width: 16),
+        ],
+        // Rounded bottom corners for AppBar
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Color(0xFFF8F9FA),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -44,6 +105,12 @@ class ProfileScreen extends StatelessWidget {
                       isFirst: true,
                       onTap: () {
                         // Handle My Account tap
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const AccountSettingsScreen(),
+                          ),
+                        );
                       },
                     ),
                     _buildMenuItem(
@@ -63,6 +130,12 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.settings_outlined,
                       onTap: () {
                         // Handle Settings tap
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SettingsScreen(),
+                          ),
+                        );
                       },
                     ),
                     _buildMenuItem(
@@ -70,13 +143,18 @@ class ProfileScreen extends StatelessWidget {
                       icon: Icons.credit_card,
                       isLast: true,
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=> const PaymentHistoryScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const PaymentHistoryScreen(),
+                          ),
+                        );
                       },
                     ),
                   ]),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   const SectionHeader(title: 'About'),
                   const SizedBox(height: 16),
                   _buildMenuCard([
@@ -104,15 +182,15 @@ class ProfileScreen extends StatelessWidget {
                       },
                     ),
                   ]),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   _buildLogoutButton(context),
-                  
+
                   const SizedBox(height: 70),
-                  
+
                   _buildCompanyFooter(),
-                  
+
                   const SizedBox(height: 24),
                 ],
               ),
@@ -122,7 +200,7 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildProfileHeader() {
     return Container(
       width: double.infinity,
@@ -145,10 +223,7 @@ class ProfileScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
-              border: Border.all(
-                color: const Color(0xFFE53935),
-                width: 2,
-              ),
+              border: Border.all(color: const Color(0xFFE53935), width: 2),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.1),
@@ -158,15 +233,12 @@ class ProfileScreen extends StatelessWidget {
               ],
             ),
             child: ClipOval(
-              child: Image.asset(
-                'assets/images/pfp.png',
-                fit: BoxFit.cover,
-              ),
+              child: Image.asset('assets/images/pfp.png', fit: BoxFit.cover),
             ),
           ),
           const SizedBox(height: 16),
           const Text(
-            'John Doe',
+            'Priyam Maurya',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -176,7 +248,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           const Text(
-            'john.doe@example.com',
+            'priyammaurya643@gmail.com',
             style: TextStyle(
               fontSize: 14,
               color: Color(0xFF757575),
@@ -185,7 +257,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           const Text(
-            '+91 98765 43210',
+            '+91 94528 92916',
             style: TextStyle(
               fontSize: 14,
               color: Color(0xFF757575),
@@ -197,7 +269,7 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildMenuCard(List<Widget> children) {
     return Container(
       decoration: BoxDecoration(
@@ -211,12 +283,10 @@ class ProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        children: children,
-      ),
+      child: Column(children: children),
     );
   }
-  
+
   Widget _buildMenuItem({
     required String title,
     required IconData icon,
@@ -229,14 +299,12 @@ class ProfileScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         decoration: BoxDecoration(
-          border: !isLast
-              ? const Border(
-                  bottom: BorderSide(
-                    color: Color(0xFFEEEEEE),
-                    width: 1,
-                  ),
-                )
-              : null,
+          border:
+              !isLast
+                  ? const Border(
+                    bottom: BorderSide(color: Color(0xFFEEEEEE), width: 1),
+                  )
+                  : null,
           borderRadius: BorderRadius.vertical(
             top: isFirst ? const Radius.circular(12) : Radius.zero,
             bottom: isLast ? const Radius.circular(12) : Radius.zero,
@@ -251,11 +319,7 @@ class ProfileScreen extends StatelessWidget {
                 color: const Color(0xFFEEF2FF),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(
-                icon,
-                color: const Color(0xFFE53935),
-                size: 20,
-              ),
+              child: Icon(icon, color: const Color(0xFFE53935), size: 20),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -279,7 +343,7 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildLogoutButton(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -289,10 +353,7 @@ class ProfileScreen extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFFE53935),
-            Color(0xFFC62828),
-          ],
+          colors: [Color(0xFFE53935), Color(0xFFC62828)],
         ),
         boxShadow: [
           BoxShadow(
@@ -313,10 +374,7 @@ class ProfileScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.logout_outlined,
-                  color: Colors.white,
-                ),
+                Icon(Icons.logout_outlined, color: Colors.white),
                 SizedBox(width: 10),
                 Text(
                   'Log Out',
@@ -334,18 +392,12 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
-  
-  
+
   Widget _buildCompanyFooter() {
     return Center(
-      
       child: Column(
-        
         children: [
-          Image.asset(
-            'assets/images/logo.png',
-            height: 40,
-          ),
+          Image.asset('assets/images/logo.png', height: 40),
           const SizedBox(height: 10),
           const Text(
             "Created for you with ❤",

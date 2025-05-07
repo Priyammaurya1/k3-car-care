@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/utils/colors.dart';
 
 class CarBrand {
@@ -37,8 +38,8 @@ class CarModel {
 final List<CarBrand> carBrands = [
   CarBrand(
     id: '1',
-    name: 'Toyota',
-    logoUrl: 'assets/logos/toyota.png',
+    name: 'Audi',
+    logoUrl: 'assets/logos/audi.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -80,8 +81,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '2',
-    name: 'Honda',
-    logoUrl: 'assets/logos/honda.png',
+    name: 'BMW',
+    logoUrl: 'assets/logos/bmw.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -123,8 +124,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '3',
-    name: 'Ford',
-    logoUrl: 'assets/logos/ford.png',
+    name: 'Mercedes',
+    logoUrl: 'assets/logos/mercedes.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -166,8 +167,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '4',
-    name: 'BMW',
-    logoUrl: 'assets/logos/bmw.png',
+    name: 'MG',
+    logoUrl: 'assets/logos/mg.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -209,8 +210,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '5',
-    name: 'Mercedes',
-    logoUrl: 'assets/logos/mercedes.png',
+    name: 'Mahindra',
+    logoUrl: 'assets/logos/mahindra.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -252,8 +253,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '6',
-    name: 'Tesla',
-    logoUrl: 'assets/logos/tesla.png',
+    name: 'Tata',
+    logoUrl: 'assets/logos/tata.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -461,17 +462,13 @@ class BrandCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: Icon(
-                  Icons.directions_car,
-                  size: 40,
-                  color: brand.brandColor,
-                ),
-                // In a real app, use this instead of the Icon:
-                // Image.asset(
-                //   brand.logoUrl,
-                //   width: 60,
-                //   height: 60,
-                // ),
+                /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////
+                child: Image.asset(brand.logoUrl, width: 60, height: 60),
               ),
             ),
             const SizedBox(height: 12),
@@ -912,7 +909,12 @@ class ModelDetailScreen extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).popUntil((route) => route.isFirst);
+                        Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                              builder: (context) => const NavigationMenu(),
+                              ),
+                              (route) => false,
+                            );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(

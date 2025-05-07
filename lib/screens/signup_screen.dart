@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/screens/car_selection.dart';
 import 'package:k3carcare/screens/login_screen.dart';
 import 'package:k3carcare/utils/colors.dart';
 import 'package:k3carcare/widgets/curved_edges.dart';
@@ -98,7 +98,7 @@ class SignupScreen extends StatelessWidget {
                           onPressed: () {
                              Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                              builder: (context) => const NavigationMenu(),
+                              builder: (context) => const BrandSelectionScreen(),
                               ),
                               (route) => false,
                             );

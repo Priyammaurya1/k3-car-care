@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/screens/car_detailing_screen.dart';
+import 'package:k3carcare/screens/periodic_service_screen.dart';
 import 'package:k3carcare/widgets/section_header.dart';
 import 'package:k3carcare/widgets/service_widget.dart';
 
@@ -61,13 +63,11 @@ class ServiceScreen extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // Help functionality will be implemented here
               // Maybe show a dialog with helpful information
             },
           ),
           const SizedBox(width: 16),
         ],
-        // Rounded bottom corners for AppBar
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(20),
           child: Container(
@@ -87,19 +87,20 @@ class ServiceScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             child: Column(
-              children: [
+                children: [
                 const SectionHeader(title: 'Available Services'),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'Thorough cleaning with premium products', rowText1: 'stating from 4999', rowText2: 'Book Now', onPressedInfo: () {}),
+                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'Thorough cleaning with premium products', rowText1: 'stating from 4999', rowText2: 'Book Now', onPressedInfo: () {}),
+                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'Thorough cleaning with premium products', rowText1: 'stating from 4999', rowText2: 'Book Now', onPressedInfo: () {}),
+                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'Thorough cleaning with premium products', rowText1: 'stating from 4999', rowText2: 'Book Now', onPressedInfo: () {}),
+                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'Thorough cleaning with premium products', rowText1: 'stating from 4999', rowText2: 'Book Now', onPressedInfo: () {}),
+                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
                 const SizedBox(height: 16),
-                
+                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
+                const SizedBox(height: 16),
               ],
             ),
           ),

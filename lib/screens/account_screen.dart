@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:k3carcare/widgets/section_header.dart';
 
 class AccountSettingsScreen extends StatefulWidget {
   const AccountSettingsScreen({super.key});
@@ -11,19 +12,19 @@ class AccountSettingsScreen extends StatefulWidget {
 class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   // Mock user data - in a real app, this would come from a user model/service
   final TextEditingController _nameController = TextEditingController(
-    text: 'John Doe',
+    text: 'Priyam Maurya',
   );
   final TextEditingController _emailController = TextEditingController(
-    text: 'john.doe@example.com',
+    text: 'priyammaurya643@gmail.com',
   );
   final TextEditingController _phoneController = TextEditingController(
-    text: '+1 234 567 8900',
+    text: '+91 94528 92916',
   );
   final TextEditingController _addressController = TextEditingController(
-    text: '123 Main St, City, Country',
+    text: 'Tarna, Shivpur, Varanasi, Uttar Pradesh',
   );
   final TextEditingController _bioController = TextEditingController(
-    text: 'Flutter developer and tech enthusiast',
+    text: 'Your App developer and Car enthusiast',
   );
 
   File? _profileImage;
@@ -43,7 +44,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
   Future<void> _pickImage() async {
     // In a real app, you would implement image picker functionality here
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Image selection would happen here')),
+      const SnackBar(content: Text('When you tap on the image, it will open the image picker')),
     );
   }
 
@@ -93,25 +94,27 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
             ),
           ),
         ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'My Account',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.white,
+        title: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'My Account',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
               ),
-            ),
-            Text(
-              'Manage your account settings',
-              style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.8),
-                fontSize: 13,
+              Text(
+                'Manage your account settings',
+                style: TextStyle(
+                  color: Colors.white.withValues(alpha: 0.8),
+                  fontSize: 13,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         actions: [
           IconButton(
@@ -130,7 +133,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
             },
             tooltip: _isEditing ? 'Save Changes' : 'Edit Profile',
           ),
-          // const SizedBox(width: 16)
+          const SizedBox(width: 14),
         ],
 
         bottom: PreferredSize(
@@ -154,7 +157,7 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
             // Colored header section for profile image
             Container(
               width: double.infinity,
-              color: Theme.of(context).primaryColor.withOpacity(0.05),
+              color: const Color(0xFFF8F9FA),
               padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: ProfileHeader(
                 profileImage: _profileImage,
@@ -169,7 +172,15 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Profile header is now in the colored container above
-                  const SectionHeader(title: 'Personal Information'),
+                  const SectionHeader(
+                    title: 'Personal Information',
+                    titleStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF212121),
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
                   ProfileField(
                     controller: _nameController,
                     label: 'Full Name',
@@ -198,7 +209,15 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                   ),
 
                   const SizedBox(height: 24),
-                  const SectionTitle(title: 'About Me'),
+                  const SectionHeader(
+                    title: 'About Me',
+                    titleStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF212121),
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
                   ProfileTextField(
                     controller: _bioController,
                     label: 'Bio',
@@ -207,49 +226,6 @@ class _AccountSettingsScreenState extends State<AccountSettingsScreen> {
                   ),
 
                   const SizedBox(height: 24),
-                  const SectionTitle(title: 'Preferences'),
-                  PreferenceToggle(
-                    title: 'Push Notifications',
-                    subtitle: 'Receive alerts and updates',
-                    value: true,
-                    onChanged: _isEditing ? (value) {} : null,
-                  ),
-                  PreferenceToggle(
-                    title: 'Email Newsletters',
-                    subtitle: 'Receive monthly newsletters',
-                    value: false,
-                    onChanged: _isEditing ? (value) {} : null,
-                  ),
-
-                  const SizedBox(height: 24),
-                  if (!_isEditing) ...[
-                    const SectionTitle(title: 'Account Actions'),
-                    AccountActionButton(
-                      title: 'Change Password',
-                      icon: Icons.lock,
-                      onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Change password dialog would open here',
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    AccountActionButton(
-                      title: 'Privacy Settings',
-                      icon: Icons.security,
-                      onTap: () {},
-                    ),
-                    AccountActionButton(
-                      title: 'Delete Account',
-                      icon: Icons.delete_forever,
-                      color: Colors.red,
-                      onTap: () {},
-                    ),
-                    const SizedBox(height: 40),
-                  ],
                 ],
               ),
             ),
@@ -326,7 +302,7 @@ class ProfileHeader extends StatelessWidget {
                     color: Colors.white,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withValues(alpha: 0.1),
                         blurRadius: 10,
                         spreadRadius: 1,
                       ),
@@ -339,7 +315,7 @@ class ProfileHeader extends StatelessWidget {
                         profileImage != null
                             ? FileImage(profileImage!) as ImageProvider
                             : const AssetImage(
-                              'assets/images/default_avatar.png',
+                              'assets/images/pfp.png',
                             ),
                   ),
                 ),
@@ -350,12 +326,12 @@ class ProfileHeader extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Colors.redAccent,
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.white, width: 2),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 5,
                             spreadRadius: 1,
                           ),
@@ -417,7 +393,7 @@ class ProfileField extends StatelessWidget {
                 controller: controller,
                 decoration: InputDecoration(
                   labelText: label,
-                  prefixIcon: Icon(icon, color: Theme.of(context).primaryColor),
+                  prefixIcon: Icon(icon, color: Colors.redAccent),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                     borderSide: BorderSide(color: Colors.grey.shade300),
@@ -428,10 +404,7 @@ class ProfileField extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
+                    borderSide: BorderSide(color: Colors.redAccent, width: 2.0),
                   ),
                   filled: true,
                   fillColor: Colors.grey.shade50,
@@ -450,7 +423,7 @@ class ProfileField extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(icon, color: Theme.of(context).primaryColor),
+                    Icon(icon, color: Colors.redAccent),
                     const SizedBox(width: 16.0),
                     Expanded(
                       child: Column(
@@ -552,144 +525,6 @@ class ProfileTextField extends StatelessWidget {
                   ],
                 ),
               ),
-    );
-  }
-}
-
-class PreferenceToggle extends StatefulWidget {
-  final String title;
-  final String subtitle;
-  final bool value;
-  final ValueChanged<bool>? onChanged;
-
-  const PreferenceToggle({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.value,
-    this.onChanged,
-  });
-
-  @override
-  State<PreferenceToggle> createState() => _PreferenceToggleState();
-}
-
-class _PreferenceToggleState extends State<PreferenceToggle> {
-  late bool _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = widget.value;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 5,
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: SwitchListTile(
-        title: Text(
-          widget.title,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16.0),
-        ),
-        subtitle: Text(
-          widget.subtitle,
-          style: TextStyle(color: Colors.grey.shade600),
-        ),
-        value: _value,
-        onChanged:
-            widget.onChanged != null
-                ? (value) {
-                  setState(() {
-                    _value = value;
-                  });
-                  widget.onChanged!(value);
-                }
-                : null,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 8.0,
-        ),
-        activeColor: Theme.of(context).primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-      ),
-    );
-  }
-}
-
-class AccountActionButton extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Color? color;
-  final VoidCallback onTap;
-
-  const AccountActionButton({
-    super.key,
-    required this.title,
-    required this.icon,
-    this.color,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 5,
-            spreadRadius: 0,
-          ),
-        ],
-      ),
-      child: ListTile(
-        leading: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: (color ?? Theme.of(context).primaryColor).withOpacity(0.1),
-            shape: BoxShape.circle,
-          ),
-          child: Icon(
-            icon,
-            color: color ?? Theme.of(context).primaryColor,
-            size: 24,
-          ),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(
-            color: color ?? Colors.black87,
-            fontWeight: FontWeight.w500,
-            fontSize: 16.0,
-          ),
-        ),
-        trailing: Icon(Icons.chevron_right, color: Colors.grey.shade400),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16.0,
-          vertical: 8.0,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        onTap: onTap,
-      ),
     );
   }
 }
