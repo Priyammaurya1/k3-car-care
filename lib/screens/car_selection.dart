@@ -81,8 +81,8 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '2',
-    name: 'BMW',
-    logoUrl: 'assets/logos/bmw.png',
+    name: 'MG',
+    logoUrl: 'assets/logos/mg.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
@@ -167,42 +167,42 @@ final List<CarBrand> carBrands = [
   ),
   CarBrand(
     id: '4',
-    name: 'MG',
-    logoUrl: 'assets/logos/mg.png',
+    name: 'BMW',
+    logoUrl: 'assets/logos/bmw.png',
     brandColor: KColors.primaryLight,
     models: [
       CarModel(
         id: '1',
         name: '3 Series',
-        imageUrl: 'assets/models/3series.png',
+        imageUrl: 'assets/cars/3series.png',
         description: 'Luxury sports sedan',
         features: ['Dynamic Handling', 'Luxury Interior', 'Advanced Tech'],
       ),
       CarModel(
         id: '2',
         name: '5 Series',
-        imageUrl: 'assets/models/5series.png',
+        imageUrl: 'assets/cars/5series.png',
         description: 'Executive luxury sedan',
         features: ['Comfort', 'Premium Features', 'Powerful Engines'],
       ),
       CarModel(
         id: '3',
         name: 'X3',
-        imageUrl: 'assets/models/x3.png',
+        imageUrl: 'assets/cars/x3.png',
         description: 'Compact luxury SUV',
         features: ['Agile', 'Versatile', 'Premium Quality'],
       ),
       CarModel(
         id: '4',
         name: 'X5',
-        imageUrl: 'assets/models/x5.png',
+        imageUrl: 'assets/cars/x5.png',
         description: 'Midsize luxury SUV',
         features: ['Spacious', 'High-End Features', 'Refined Driving'],
       ),
       CarModel(
         id: '5',
         name: 'i4',
-        imageUrl: 'assets/models/i4.png',
+        imageUrl: 'assets/cars/i4.png',
         description: 'All-electric gran coupe',
         features: ['Electric', 'Performance', 'Long Range'],
       ),
@@ -656,21 +656,21 @@ class ModelCard extends StatelessWidget {
                     color: brand.brandColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: Icon(
-                    Icons.directions_car,
-                    size: 40,
-                    color: brand.brandColor,
-                  ),
-                  // In a real app, use this:
-                  // ClipRRect(
-                  //   borderRadius: BorderRadius.circular(12),
-                  //   child: Image.asset(
-                  //     model.imageUrl,
-                  //     width: 80,
-                  //     height: 80,
-                  //     fit: BoxFit.cover,
-                  //   ),
+                  // child: Icon(
+                  //   Icons.directions_car,
+                  //   size: 40,
+                  //   color: brand.brandColor,
                   // ),
+                  // In a real app, use this:
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      model.imageUrl,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
@@ -737,6 +737,33 @@ class ModelDetailScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(40),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5.0, bottom: 5.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image(
+                        image: Image.asset(brand.logoUrl).image,
+                        height: 42,
+                      ),
+                      // const SizedBox(width: 8),
+                      Text(
+                        model.name,
+                        style: const TextStyle(
+                          fontSize: 34,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             expandedHeight: 240,
             backgroundColor: brand.brandColor,
             elevation: 0,
@@ -744,30 +771,14 @@ class ModelDetailScreen extends StatelessWidget {
             stretch: true,
             iconTheme: const IconThemeData(color: Colors.white),
             flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                model.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               background: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Container(color: brand.brandColor),
+                  Container(color: Colors.white),
                   Center(
                     child: Hero(
                       tag: '${brand.id}-${model.id}',
-                      child: Icon(
-                        Icons.directions_car,
-                        size: 100,
-                        color: Colors.white.withValues(alpha: 0.8),
-                      ),
-                      // In a real app, use this:
-                      // Image.asset(
-                      //   model.imageUrl,
-                      //   fit: BoxFit.cover,
-                      // ),
+                      child: Image.asset(model.imageUrl, fit: BoxFit.cover),
                     ),
                   ),
                   Container(
@@ -777,7 +788,7 @@ class ModelDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withValues(alpha: 0.5),
+                          Colors.black.withValues(alpha: 0.45),
                         ],
                       ),
                     ),
@@ -788,7 +799,7 @@ class ModelDetailScreen extends StatelessWidget {
             leading: IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios_rounded,
-                color: Colors.white,
+                color: Color.fromARGB(255, 0, 0, 0),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -910,11 +921,11 @@ class ModelDetailScreen extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                              builder: (context) => const NavigationMenu(),
-                              ),
-                              (route) => false,
-                            );
+                          MaterialPageRoute(
+                            builder: (context) => const NavigationMenu(),
+                          ),
+                          (route) => false,
+                        );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
