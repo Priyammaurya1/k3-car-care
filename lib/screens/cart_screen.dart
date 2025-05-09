@@ -128,12 +128,6 @@ class _CartScreenState extends State<CartScreen> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      //  leading: IconButton(
-      //     icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Color.fromARGB(255, 255, 75, 75)),
-      //     onPressed: () {
-      //       // hehehehehehehehehe
-      //     },
-      //   ),
       elevation: 0,
       flexibleSpace: Container(
         decoration: const BoxDecoration(
@@ -182,7 +176,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           onPressed: () {
-            // will implement help functionality here
+           
           },
         ),
         const SizedBox(width: 16),

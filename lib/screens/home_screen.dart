@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:k3carcare/bottom_nav_bar.dart';
 import 'package:k3carcare/model/horizontal_scroll.dart';
+import 'package:k3carcare/provider/selected_car_provider.dart';
 import 'package:k3carcare/screens/car_detailing_screen.dart';
+import 'package:k3carcare/screens/car_selection.dart';
 import 'package:k3carcare/screens/periodic_service_screen.dart';
 import 'package:k3carcare/widgets/appointment_card.dart';
 import 'package:k3carcare/widgets/banner_slider.dart';
 import 'package:k3carcare/widgets/section_header.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenNew extends StatelessWidget {
   const HomeScreenNew({super.key});
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +41,18 @@ class HomeScreenNew extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
+    // Get the selected car from provider
+    final selectedCarProvider = Provider.of<SelectedCarProvider>(context);
+    final selectedModel = selectedCarProvider.selectedModel;
+    final selectedBrand = selectedCarProvider.selectedBrand;
+
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: Colors.black.withOpacity(0.05),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -91,29 +97,52 @@ class HomeScreenNew extends StatelessWidget {
                   ),
                 ],
               ),
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.1),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
+              // Display selected car image if available, otherwise show profile picture
+              Column(
+                children: [
+                  Container(
+                    width: 65,
+                    height: 65,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
                     ),
-                  ],
-                ),
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/images/pfp.png',
-                    fit: BoxFit.cover,
+                    child: ClipOval(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Show car details when tapped
+                          if (selectedBrand != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => const BrandSelectionScreen(),
+                              ),
+                            );
+                          }
+                        },
+                        child: Image.asset(
+                          selectedModel!.imageUrl,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  Text(
+                    '${selectedBrand!.name} ${selectedModel.name}',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          const SizedBox(height: 20),
+
+          const SizedBox(height: 16),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             height: 46,
@@ -123,7 +152,7 @@ class HomeScreenNew extends StatelessWidget {
               border: Border.all(color: const Color(0xFFEEEEEE)),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
+                  color: Colors.black.withOpacity(0.04),
                   blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),

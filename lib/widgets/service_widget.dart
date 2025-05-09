@@ -8,6 +8,7 @@ class ServiceWidget extends StatelessWidget {
     required this.rowText1,
     required this.rowText2,
     this.onPressedInfo,
+    required this.imageString,
   });
 
   final String titleText;
@@ -15,6 +16,7 @@ class ServiceWidget extends StatelessWidget {
   final String rowText1;
   final String rowText2;
   final VoidCallback? onPressedInfo;
+  final String imageString;
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +44,13 @@ class ServiceWidget extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEEF2FF),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.miscellaneous_services_outlined,
-                        color: const Color(0xFFE53935),
-                        size: 30,
-                      ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(color: Colors.white),
+                      child: Image(image: Image.asset(imageString).image, fit: BoxFit.cover),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -199,7 +195,8 @@ class ServiceWidget extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {}, // Use the unique booking handler
+                      onPressed:
+                          onPressedInfo, // Use the unique booking handler
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFE53935),
                         foregroundColor: Colors.white,

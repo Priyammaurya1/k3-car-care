@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:k3carcare/bottom_nav_bar.dart';
+import 'package:k3carcare/provider/selected_car_provider.dart';
 import 'package:k3carcare/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 class CarBrand {
   final String id;
@@ -462,12 +464,6 @@ class BrandCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: Center(
-                /////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////
-                /////////////////////////////////////////////////////////////////////
                 child: Image.asset(brand.logoUrl, width: 60, height: 60),
               ),
             ),
@@ -719,7 +715,6 @@ class ModelCard extends StatelessWidget {
   }
 }
 
-// New screen for model details
 class ModelDetailScreen extends StatelessWidget {
   final CarBrand brand;
   final CarModel model;
@@ -788,7 +783,7 @@ class ModelDetailScreen extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black.withValues(alpha: 0.45),
+                          Colors.black.withOpacity(0.45),
                         ],
                       ),
                     ),
@@ -893,7 +888,7 @@ class ModelDetailScreen extends StatelessWidget {
                             width: 36,
                             height: 36,
                             decoration: BoxDecoration(
-                              color: brand.brandColor.withValues(alpha: 0.1),
+                              color: brand.brandColor.withOpacity(0.1),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
@@ -920,12 +915,17 @@ class ModelDetailScreen extends StatelessWidget {
                     height: 56,
                     child: ElevatedButton(
                       onPressed: () {
+                        // Save the selected car to provider
+                        final carProvider = Provider.of<SelectedCarProvider>(context, listen: false);
+                        carProvider.selectCar(brand, model);
+                        
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                             builder: (context) => const NavigationMenu(),
                           ),
                           (route) => false,
                         );
+                        
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(

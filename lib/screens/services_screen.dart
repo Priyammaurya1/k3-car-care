@@ -87,20 +87,103 @@ class ServiceScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
             child: Column(
-                children: [
+              children: [
                 const SectionHeader(title: 'Available Services'),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
+                ServiceWidget(
+                  titleText: 'Periodic Service',
+                  subtitleText: 'With Us increase the life spam of your car',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PeriodicServicesScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/mec.png',
+                ),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
+                ServiceWidget(
+                  titleText: 'Car Detailing',
+                  subtitleText: 'Get every corner of your car cleaned',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const CarDetailingScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/detail.png',
+                ),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
+                
+                ServiceWidget(
+                  titleText: 'Periodic Service',
+                  subtitleText: 'With Us increase the life spam of your car',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PeriodicServicesScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/mec.png',
+                ),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
+                ServiceWidget(
+                  titleText: 'Car Detailing',
+                  subtitleText: 'Get every corner of your car cleaned',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const CarDetailingScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/detail.png',
+                ),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Periodic Service', subtitleText: 'With Us increase the life spam of your car', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const PeriodicServicesScreen()));}),
+                
+                ServiceWidget(
+                  titleText: 'Periodic Service',
+                  subtitleText: 'With Us increase the life spam of your car',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const PeriodicServicesScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/mec.png',
+                ),
                 const SizedBox(height: 16),
-                ServiceWidget(titleText: 'Car Detailing', subtitleText: 'Get every corner of your car cleaned', rowText1: 'Starting From ₹4999', rowText2: 'Average time: 5 Hours', onPressedInfo: () {Navigator.push(context, MaterialPageRoute(builder: (_) => const CarDetailingScreen()));}),
+                ServiceWidget(
+                  titleText: 'Car Detailing',
+                  subtitleText: 'Get every corner of your car cleaned',
+                  rowText1: 'Starting From ₹4999',
+                  rowText2: 'Average time: 5 Hours',
+                  onPressedInfo: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const CarDetailingScreen(),
+                      ),
+                    );
+                  }, imageString: 'assets/images/detail.png',
+                ),
                 const SizedBox(height: 16),
+                
+               
+                
               ],
             ),
           ),

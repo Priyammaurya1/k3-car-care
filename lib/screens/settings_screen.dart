@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:k3carcare/screens/login_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -325,11 +326,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 onPressed: () {
                   // Clear search history logic
-                  Navigator.of(context).pop();
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const LoginScreen()));
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text(
-                        'Search history cleared',
+                        'Your account has been deleted.',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -338,6 +339,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       behavior: SnackBarBehavior.floating,
                       backgroundColor: Colors.red,
+                      duration: Duration(seconds: 3),
                     ),
                   );
                 },
